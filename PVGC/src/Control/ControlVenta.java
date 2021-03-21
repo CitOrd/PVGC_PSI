@@ -17,7 +17,7 @@ public class ControlVenta {
     public VentaDAO ventaDao;
 
     public ControlVenta() {
-        this.ventaDao= ventaDao;
+        this.ventaDao= new VentaDAO();
     }
     
     

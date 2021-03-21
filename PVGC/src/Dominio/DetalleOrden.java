@@ -12,12 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author R2
  */
 @Entity
+@Table(name = "DetalleOrden")
 public class DetalleOrden implements Serializable {
 
     private static final long serialVersionUID = 1L;

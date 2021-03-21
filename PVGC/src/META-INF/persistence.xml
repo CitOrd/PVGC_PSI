@@ -8,6 +8,7 @@
     <class>Dominio.Orden</class>
     <class>Dominio.DetalleOrden</class>
     <class>Dominio.Venta</class>
+    <class>Dominio.ReporteVenta</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pvgc?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

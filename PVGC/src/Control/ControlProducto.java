@@ -16,7 +16,7 @@ public class ControlProducto {
     ProductoDAO productoDao;
 
     public ControlProducto() {
-        this.productoDao= productoDao;
+        this.productoDao= new ProductoDAO();
     }
     
     public void agregarProducto(Producto producto){

@@ -5,13 +5,15 @@
  */
 package Dominio;
 
+import Enums.Periodo;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,16 +21,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author R2
  */
 @Entity
-@Table(name = "Venta")
-public class Venta implements Serializable {
+@Table(name = "ReporteVenta")
+public class ReporteVenta implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -37,30 +37,25 @@ public class Venta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "fecha", nullable = false, length = 50)
-    @Temporal(TemporalType.DATE)
-    private Calendar fecha;
-    @Column(name = "total", nullable = false, length = 50)
-    private float total;
-    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
-    private List<Orden> ordenes;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "periodo", nullable = false, length = 50)
+    private Periodo periodo;
+    @OneToMany(mappedBy = "reporteV", cascade = CascadeType.ALL)
+    private List<Venta> ventas;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idReporteVenta")
-    private ReporteVenta reporteV;
+    @JoinColumn(name = "idEmpleado")
+    private Empleado empleado;
 
     //CONSTRUCTORES
 
-    public Venta() {
-        this.ordenes = new ArrayList<>();
+    public ReporteVenta() {
+        this.ventas = new ArrayList<>();
     }
 
-    public Venta(Long id, float total, List<Orden> ordenes, ReporteVenta reporteV) {
-        this();
+    public ReporteVenta(Long id, Periodo periodo, Empleado empleado) {
         this.id = id;
-        this.fecha = Calendar.getInstance();
-        this.total = total;
-        this.ordenes = ordenes;
-        this.reporteV = reporteV;
+        this.periodo = periodo;
+        this.empleado = empleado;
     }
     
     
@@ -74,40 +69,32 @@ public class Venta implements Serializable {
         this.id = id;
     }
 
-    public Calendar getFecha() {
-        return fecha;
+    public Periodo getPeriodo() {
+        return periodo;
     }
 
-    public void setFecha(Calendar fecha) {
-        this.fecha = fecha;
+    public void setPeriodo(Periodo periodo) {
+        this.periodo = periodo;
     }
 
-    public float getTotal() {
-        return total;
+    public List<Venta> getVentas() {
+        return ventas;
     }
 
-    public void setTotal(float total) {
-        this.total = total;
+    public void setVentas(List<Venta> ventas) {
+        this.ventas = ventas;
     }
 
-    public List<Orden> getOrdenes() {
-        return ordenes;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setOrdenes(List<Orden> ordenes) {
-        this.ordenes = ordenes;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
-
-    public ReporteVenta getReporteV() {
-        return reporteV;
-    }
-
-    public void setReporteV(ReporteVenta reporteV) {
-        this.reporteV = reporteV;
-    }
-
     
     
+
     //OVERRIDE MÉTODOS
     
     @Override
@@ -120,10 +107,10 @@ public class Venta implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Venta)) {
+        if (!(object instanceof ReporteVenta)) {
             return false;
         }
-        Venta other = (Venta) object;
+        ReporteVenta other = (ReporteVenta) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -132,7 +119,7 @@ public class Venta implements Serializable {
 
     @Override
     public String toString() {
-        return "Dominio.Venta[ id=" + id + " ]";
+        return "Dominio.ReporteVenta[ id=" + id + " ]";
     }
     
 }
