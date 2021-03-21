@@ -66,6 +66,23 @@ public class OrdenDAO extends BaseDAO<Orden> {
         return new ArrayList<>(ordenes);
     }
 
+    public ArrayList<Orden> consultarPorNumOrden(int numOrden) {
+         EntityManager entityManager = this.createEntityManager();
+        entityManager.getTransaction().begin();
+        List<Orden> ordenes;
+        if (numOrden >= 0) {
+            /*Aquí está así por mera intuición, no sé como se llame la tabla ni la BD*/
+            String jpql = String.format("SELECT * FROM PVGC.ordenes WHERE PVGC.ordenes.numOrden LIKE '%%"+numOrden+"%%'");
+            ordenes = entityManager.createNativeQuery(jpql, Orden.class).getResultList();
+        } else {
+            String jpql = "SELECT * FROM PVGC.ordenes;";
+            ordenes = entityManager.createNativeQuery(jpql, Orden.class).getResultList();
+        }
+        entityManager.getTransaction().commit();
+
+        return new ArrayList<>(ordenes);
+    }
+    
     @Override
     public Orden buscarPorId(long id) {
         EntityManager entityManager = this.createEntityManager();

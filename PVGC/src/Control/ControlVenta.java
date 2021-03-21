@@ -55,4 +55,12 @@ public class ControlVenta {
         }
     }
    
+   public Venta buscarPorId(Long id){
+      if(id != null){
+          return this.ventaDao.buscarPorId(id);
+      }else{
+          return null;
+      }
+  }
+   
 }

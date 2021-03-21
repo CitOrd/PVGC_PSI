@@ -48,7 +48,7 @@ public class ControlProducto {
     
     public ArrayList<Producto> consultarProducto(Producto producto){
         if(producto != null){
-           return this.productoDao.consultarPorNombre(producto.getNombre());
+           return this.productoDao.consultarTodos();
             
         }else{
             System.out.println("No se pudo consultar el producto");
@@ -56,5 +56,20 @@ public class ControlProducto {
         }
     }
     
+    public ArrayList<Producto> consultarProductoPorNombre(String nombre){
+          if(nombre != ""){
+            return this.productoDao.consultarPorNombre(nombre);
+        }else{
+            System.out.println("No se pudo consultar el nombre del producto");
+            return null;
+        }
+     } 
+    public Producto buscarPorId(Long id){
+      if(id != null){
+          return this.productoDao.buscarPorId(id);
+      }else{
+          return null;
+      }
+  }
     
 }

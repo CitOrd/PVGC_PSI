@@ -63,6 +63,24 @@ public class CategoriaDAO extends BaseDAO<Categoria>{
         entityManager.getTransaction().commit();
         return new ArrayList<>(categorias);
     }
+    
+    
+    public ArrayList<Categoria> consultarPorNombre(String nombre){
+        EntityManager entityManager = this.createEntityManager();
+        entityManager.getTransaction().begin();
+        List<Categoria> categorias;
+        if (!nombre.equals("")) {
+            /*Aquí está así por mera intuición, no sé como se llame la tabla ni la BD*/
+            String jpql = String.format("SELECT * FROM PVGC.categorias WHERE PVGC.categorias.nombre LIKE '%%"+nombre+"%%'");
+            categorias = entityManager.createNativeQuery(jpql, Categoria.class).getResultList();
+        } else {
+            String jpql = "SELECT * FROM PVGC.categorias";
+            categorias = entityManager.createNativeQuery(jpql, Categoria.class).getResultList();
+        }
+        entityManager.getTransaction().commit();
+
+        return new ArrayList<>(categorias);
+    }
 
     @Override
     public Categoria buscarPorId(long id) {
