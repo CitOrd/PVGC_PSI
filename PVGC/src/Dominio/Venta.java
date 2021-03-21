@@ -49,6 +49,7 @@ public class Venta implements Serializable {
         this.ordenes = ordenes;
     }
     
+    
     //MÉTODOS
     
     public Long getId() {
@@ -59,6 +60,31 @@ public class Venta implements Serializable {
         this.id = id;
     }
 
+    public Calendar getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Calendar fecha) {
+        this.fecha = fecha;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public List<Orden> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrdenes(List<Orden> ordenes) {
+        this.ordenes = ordenes;
+    }
+
+    
     //OVERRIDE MÉTODOS
     
     @Override

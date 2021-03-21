@@ -33,6 +33,8 @@ public class Categoria implements Serializable {
     @Column(name = "descripcion", nullable = false, length = 200)
     private String descripcion;
     
+     @Column(name = "nombre", nullable = false, length = 200)
+    private String nombre;
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     private List<Producto> productos;
     
@@ -44,9 +46,10 @@ public class Categoria implements Serializable {
         productos = new ArrayList<>();
     }
     
-    public Categoria(Long id, String descripcion) {
+    public Categoria(Long id,String nombre, String descripcion) {
         this();
         this.id = id;
+        this.nombre= nombre;
         this.descripcion = descripcion;
     }
 
@@ -61,6 +64,15 @@ public class Categoria implements Serializable {
         this.id = id;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
     public String getDescripcion() {
         return descripcion;
     }

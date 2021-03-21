@@ -29,6 +29,9 @@ public class Empleado implements Serializable {
     
     @Column(name = "puesto", nullable = false, length = 50)
     private String puesto;
+     @Column(name = "nombre", nullable = false, length = 50)
+    private String nombre;
+    
     @Column(name = "correoE", nullable = false, length = 50)
     private String correoE;
     @Column(name = "RFC", nullable = false, length = 50)
@@ -41,9 +44,10 @@ public class Empleado implements Serializable {
     
     //CONSTRUCTORES
 
-    public Empleado(Long id, String puesto, String correoE, String RFC, String telefono, String direccion) {
+    public Empleado(Long id, String puesto,String nombre, String correoE, String RFC, String telefono, String direccion) {
         this.id = id;
         this.puesto = puesto;
+        this.nombre= nombre;
         this.correoE = correoE;
         this.RFC = RFC;
         this.telefono = telefono;
@@ -62,6 +66,15 @@ public class Empleado implements Serializable {
         this.id = id;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
     public String getPuesto() {
         return puesto;
     }

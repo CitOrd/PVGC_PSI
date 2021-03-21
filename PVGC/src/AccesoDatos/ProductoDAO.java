@@ -66,6 +66,23 @@ public class ProductoDAO extends BaseDAO<Producto> {
         return new ArrayList<>(productos);
     }
 
+    
+    public ArrayList<Producto> consultarPorNombre(String nombre){
+        EntityManager entityManager = this.createEntityManager();
+        entityManager.getTransaction().begin();
+        List<Producto> productos;
+        if (!nombre.equals("")) {
+            /*Aquí está así por mera intuición, no sé como se llame la tabla ni la BD*/
+            String jpql = String.format("SELECT * FROM PVGC.productos WHERE PVGC.productos.nombre LIKE '%%"+nombre+"%%'");
+            productos = entityManager.createNativeQuery(jpql, Producto.class).getResultList();
+        } else {
+            String jpql = "SELECT * FROM PVGC.productos;";
+            productos = entityManager.createNativeQuery(jpql, Producto.class).getResultList();
+        }
+        entityManager.getTransaction().commit();
+
+        return new ArrayList<>(productos);
+    }
     @Override
     public Producto buscarPorId(long id) {
         EntityManager entityManager = this.createEntityManager();
