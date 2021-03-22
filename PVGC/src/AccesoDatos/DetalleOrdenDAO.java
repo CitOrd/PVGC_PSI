@@ -63,6 +63,23 @@ public class DetalleOrdenDAO extends BaseDAO<DetalleOrden> {
         entityManager.getTransaction().commit();
         return new ArrayList<>(detalleOrds);
     }
+    
+     public ArrayList<DetalleOrden> consultarPorNumOrden(int numOrden) {
+         EntityManager entityManager = this.createEntityManager();
+        entityManager.getTransaction().begin();
+        List<DetalleOrden> detOrdenes;
+        if (numOrden >= 0) {
+            /*Aquí está así por mera intuición, no sé como se llame la tabla ni la BD*/
+            String jpql = String.format("SELECT * FROM PVGC.DetalleOrden WHERE PVGC.DetalleOrden.numOrden LIKE '%%"+numOrden+"%%'");
+            detOrdenes = entityManager.createNativeQuery(jpql, DetalleOrden.class).getResultList();
+        } else {
+            String jpql = "SELECT * FROM PVGC.DetalleOrden;";
+            detOrdenes = entityManager.createNativeQuery(jpql, DetalleOrden.class).getResultList();
+        }
+        entityManager.getTransaction().commit();
+
+        return new ArrayList<>(detOrdenes);
+    }
 
     @Override
     public DetalleOrden buscarPorId(long id) {
