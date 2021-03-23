@@ -63,10 +63,10 @@ public class EmpleadoDAO extends BaseDAO<Empleado> {
         List<Empleado> empleados;
         if (!nombre.equals("")) {
             /*Aquí está así por mera intuición, no sé como se llame la tabla ni la BD*/
-            String jpql = String.format("SELECT * FROM PVGC.empleado WHERE PVGC.empleado.nombre LIKE '%%"+nombre+"%%'");
+            String jpql = String.format("SELECT * FROM PVGC.empleados WHERE PVGC.empleados.nombre LIKE '%%"+nombre+"%%'");
             empleados = entityManager.createNativeQuery(jpql, Empleado.class).getResultList();
         } else {
-            String jpql = "SELECT * FROM PVGC.empleado;";
+            String jpql = "SELECT * FROM PVGC.productos;";
             empleados = entityManager.createNativeQuery(jpql, Empleado.class).getResultList();
         }
         entityManager.getTransaction().commit();

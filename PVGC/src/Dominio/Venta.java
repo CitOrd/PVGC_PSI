@@ -6,28 +6,20 @@
 package Dominio;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+import java.util.Locale;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author R2
  */
 @Entity
-@Table(name = "Venta")
 public class Venta implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,30 +29,24 @@ public class Venta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "fecha", nullable = false, length = 50)
-    @Temporal(TemporalType.DATE)
+    
     private Calendar fecha;
-    @Column(name = "total", nullable = false, length = 50)
+    
     private float total;
-    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
+    
     private List<Orden> ordenes;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "idReporteVenta")
-    private ReporteVenta reporteV;
 
     //CONSTRUCTORES
 
     public Venta() {
-        this.ordenes = new ArrayList<>();
+    
     }
 
-    public Venta(Long id, float total, List<Orden> ordenes, ReporteVenta reporteV) {
-        this();
+    public Venta(Long id, float total, List<Orden> ordenes) {
         this.id = id;
         this.fecha = Calendar.getInstance();
         this.total = total;
         this.ordenes = ordenes;
-        this.reporteV = reporteV;
     }
     
     
@@ -98,15 +84,6 @@ public class Venta implements Serializable {
         this.ordenes = ordenes;
     }
 
-    public ReporteVenta getReporteV() {
-        return reporteV;
-    }
-
-    public void setReporteV(ReporteVenta reporteV) {
-        this.reporteV = reporteV;
-    }
-
-    
     
     //OVERRIDE MÉTODOS
     

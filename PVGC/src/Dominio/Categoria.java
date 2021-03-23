@@ -15,14 +15,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  *  Clase que representa una categoría de un producto
  * @author R2
  */
 @Entity
-@Table(name = "Categoria")
 public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,8 +46,9 @@ public class Categoria implements Serializable {
         productos = new ArrayList<>();
     }
     
-    public Categoria(String nombre, String descripcion) {
+    public Categoria(Long id,String nombre, String descripcion) {
         this();
+        this.id = id;
         this.nombre= nombre;
         this.descripcion = descripcion;
     }
