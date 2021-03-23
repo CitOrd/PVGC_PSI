@@ -59,6 +59,14 @@ public class Producto implements Serializable {
         this.disponibilidad = true;
     }
 
+    public Producto(String nombre, float precio, boolean disponibilidad, Categoria categoria) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.disponibilidad = disponibilidad;
+        this.categoria = categoria;
+    }
+
+    
     public Producto() {
         detalleOrdenes = new ArrayList<>();
     }

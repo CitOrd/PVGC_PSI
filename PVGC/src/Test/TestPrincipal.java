@@ -16,6 +16,7 @@ import Control.ControlOrden;
 import Control.ControlProducto;
 import Control.ControlVenta;
 import Dominio.Categoria;
+import Dominio.Producto;
 
 /**
  *
@@ -32,7 +33,8 @@ public class TestPrincipal {
         ControlProducto cp = new ControlProducto();
         ControlVenta cv = new ControlVenta();
         
-        cc.agregarCategoria(new Categoria("furros", "dan asco"));
+        cc.agregarCategoria(new Categoria("Bebidas frias", " cosas frias carnal como su corazon"));
+        cp.agregarProducto(new Producto("cafe frio machin", 25f, true, new Categoria((long)1, "cosas frias carnal como su corazon", "Bebidas frias")));
         
     }
     
