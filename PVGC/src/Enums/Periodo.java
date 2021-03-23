@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package Enums;
 
 /**
  *
  * @author R2
  */
-public class Control {
-    
+public enum Periodo {
+    MATUTINO, VESPERTINO
 }

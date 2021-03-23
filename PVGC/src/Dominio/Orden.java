@@ -17,13 +17,17 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author R2
  */
 @Entity
+@Table(name = "Orden")
 public class Orden implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +46,9 @@ public class Orden implements Serializable {
     private Estado estado;
     @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL)
     private List<DetalleOrden> detalleOrdenes;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "idVenta")
+    private Venta venta;
 
     //CONSTRUCTORES
     
@@ -49,12 +56,13 @@ public class Orden implements Serializable {
         detalleOrdenes = new ArrayList<>();
     }
 
-    public Orden(Long id, int numMesa, int numOrden, Estado estado) {
+    public Orden(Long id, int numMesa, int numOrden, Estado estado, Venta venta) {
         this();
         this.id = id;
         this.numMesa = numMesa;
         this.numOrden = numOrden;
         this.estado = estado;
+        this.venta = venta;
     }
     
     //MÉTODOS
@@ -98,6 +106,16 @@ public class Orden implements Serializable {
     public void setDetalleOrdenes(List<DetalleOrden> detalleOrdenes) {
         this.detalleOrdenes = detalleOrdenes;
     }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+    
+    
     
     //OVERRIDE MÉTODOS
 

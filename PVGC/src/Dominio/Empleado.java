@@ -6,17 +6,22 @@
 package Dominio;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * 
  * @author R2
  */
 @Entity
+@Table(name = "Empleado")
 public class Empleado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,9 +34,8 @@ public class Empleado implements Serializable {
     
     @Column(name = "puesto", nullable = false, length = 50)
     private String puesto;
-     @Column(name = "nombre", nullable = false, length = 50)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
-    
     @Column(name = "correoE", nullable = false, length = 50)
     private String correoE;
     @Column(name = "RFC", nullable = false, length = 50)
@@ -40,7 +44,8 @@ public class Empleado implements Serializable {
     private String telefono;
     @Column(name = "direccion", nullable = false, length = 50)
     private String direccion;
-    
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
+    private List<ReporteVenta> reportes;
     
     //CONSTRUCTORES
 
@@ -114,6 +119,16 @@ public class Empleado implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public List<ReporteVenta> getReportes() {
+        return reportes;
+    }
+
+    public void setReportes(List<ReporteVenta> reportes) {
+        this.reportes = reportes;
+    }
+    
+    
     
     //OVERRIDE MÉTODOS
 

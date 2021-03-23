@@ -72,10 +72,10 @@ public class OrdenDAO extends BaseDAO<Orden> {
         List<Orden> ordenes;
         if (numOrden >= 0) {
             /*Aquí está así por mera intuición, no sé como se llame la tabla ni la BD*/
-            String jpql = String.format("SELECT * FROM PVGC.ordenes WHERE PVGC.ordenes.numOrden LIKE '%%"+numOrden+"%%'");
+            String jpql = String.format("SELECT * FROM PVGC.orden WHERE PVGC.orden.numOrden LIKE '%%"+numOrden+"%%'");
             ordenes = entityManager.createNativeQuery(jpql, Orden.class).getResultList();
         } else {
-            String jpql = "SELECT * FROM PVGC.ordenes;";
+            String jpql = "SELECT * FROM PVGC.orden;";
             ordenes = entityManager.createNativeQuery(jpql, Orden.class).getResultList();
         }
         entityManager.getTransaction().commit();

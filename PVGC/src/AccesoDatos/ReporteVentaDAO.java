@@ -5,8 +5,8 @@
  */
 package AccesoDatos;
 
-import AccesoDatos.BaseDAO;
-import Dominio.DetalleOrden;
+import Dominio.ReporteVenta;
+import Dominio.Venta;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -15,12 +15,12 @@ import javax.persistence.criteria.CriteriaQuery;
 
 /**
  *
- * @author Citlali Orduño
+ * @author R2
  */
-public class DetalleOrdenDAO extends BaseDAO<DetalleOrden> {
+public class ReporteVentaDAO extends BaseDAO<ReporteVenta>{
 
     @Override
-    public void agregar(DetalleOrden entidad) {
+    public void agregar(ReporteVenta entidad) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.persist(entidad);
@@ -31,46 +31,48 @@ public class DetalleOrdenDAO extends BaseDAO<DetalleOrden> {
     public void eliminar(Long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
-        DetalleOrden detalleOrden = entityManager.find(DetalleOrden.class, id);
-        if (detalleOrden != null) {
-            entityManager.remove(detalleOrden);
+        ReporteVenta ReporteVenta = entityManager.find(ReporteVenta.class, id);
+        if (ReporteVenta != null) {
+            entityManager.remove(ReporteVenta);
         }
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public void actualizar(DetalleOrden entidad) {
+    public void actualizar(ReporteVenta entidad) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
-        DetalleOrden detalleOrd = entityManager.find(DetalleOrden.class, entidad.getId());
-        if (detalleOrd != null) {
-            detalleOrd.setOrden(entidad.getOrden());
-            detalleOrd.setProducto(entidad.getProducto());
-
-            entityManager.merge(detalleOrd);
+        ReporteVenta reporte = entityManager.find(ReporteVenta.class, entidad.getId());
+        if (reporte != null) {
+            reporte.setPeriodo(entidad.getPeriodo());
+            reporte.setVentas(entidad.getVentas());
+            reporte.setEmpleado(entidad.getEmpleado());
+           
+            
+            entityManager.merge(reporte);
         }
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public ArrayList<DetalleOrden> consultarTodos() {
+    public ArrayList<ReporteVenta> consultarTodos() {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         CriteriaQuery criteria = entityManager.getCriteriaBuilder().createQuery();
-        criteria.select(criteria.from(DetalleOrden.class));
+        criteria.select(criteria.from(ReporteVenta.class));
         Query query = entityManager.createQuery(criteria);
-        List<DetalleOrden> detalleOrds = query.getResultList();
+        List<ReporteVenta> reporte = query.getResultList();
         entityManager.getTransaction().commit();
-        return new ArrayList<>(detalleOrds);
+        return new ArrayList<>(reporte);
     }
 
     @Override
-    public DetalleOrden buscarPorId(long id) {
+    public ReporteVenta buscarPorId(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
-        DetalleOrden detalleOrd = entityManager.find(DetalleOrden.class, id);
+        ReporteVenta reporte = entityManager.find(ReporteVenta.class, id);
         entityManager.getTransaction().commit();
-        return detalleOrd;
+        return reporte;
     }
     
 }
