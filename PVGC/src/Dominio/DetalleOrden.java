@@ -46,6 +46,11 @@ public class DetalleOrden implements Serializable {
         this.orden = orden;
         this.producto = producto;
     }
+
+    public DetalleOrden(Orden orden, Producto producto) {
+        this.orden = orden;
+        this.producto = producto;
+    }
     
     //MÉTODOS
 

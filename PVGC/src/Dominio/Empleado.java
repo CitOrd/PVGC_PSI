@@ -6,6 +6,7 @@
 package Dominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,6 +50,10 @@ public class Empleado implements Serializable {
     
     //CONSTRUCTORES
 
+    public Empleado() {
+     this.reportes= new ArrayList<>();
+    }
+    
     public Empleado(Long id, String puesto,String nombre, String correoE, String RFC, String telefono, String direccion) {
         this.id = id;
         this.puesto = puesto;
@@ -59,7 +64,26 @@ public class Empleado implements Serializable {
         this.direccion = direccion;
     }
 
-    public Empleado() {}
+    public Empleado(String puesto, String nombre, String correoE, String RFC, String telefono, String direccion) {
+        this.puesto = puesto;
+        this.nombre = nombre;
+        this.correoE = correoE;
+        this.RFC = RFC;
+        this.telefono = telefono;
+        this.direccion = direccion;
+    }
+
+    public Empleado(String puesto, String nombre, String correoE, String RFC, String telefono, String direccion, List<ReporteVenta> reportes) {
+        this.puesto = puesto;
+        this.nombre = nombre;
+        this.correoE = correoE;
+        this.RFC = RFC;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.reportes = reportes;
+    }
+
+    
     
     //MÉTODOS
     

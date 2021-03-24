@@ -24,6 +24,7 @@ public class ProductoDAO extends BaseDAO<Producto> {
         entityManager.getTransaction().begin();
         entityManager.persist(entidad);
         entityManager.getTransaction().commit();
+        System.out.println("Se agregó el producto");
     }
 
     @Override

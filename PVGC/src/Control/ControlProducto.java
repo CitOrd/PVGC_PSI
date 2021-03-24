@@ -23,6 +23,7 @@ public class ControlProducto {
         
         if(producto != null){
             this.productoDao.agregar(producto);
+            
         }else{
             System.out.println("No se pudo agregar el producto");
         }

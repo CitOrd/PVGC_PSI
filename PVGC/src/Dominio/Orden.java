@@ -56,6 +56,21 @@ public class Orden implements Serializable {
         detalleOrdenes = new ArrayList<>();
     }
 
+    public Orden(int numMesa, int numOrden, Estado estado, List<DetalleOrden> detalleOrdenes, Venta venta) {
+        this.numMesa = numMesa;
+        this.numOrden = numOrden;
+        this.estado = estado;
+        this.detalleOrdenes = detalleOrdenes;
+        this.venta = venta;
+    }
+
+    public Orden(int numMesa, int numOrden, List<DetalleOrden> detalleOrdenes) {
+        this.numMesa = numMesa;
+        this.numOrden = numOrden;
+        this.detalleOrdenes = detalleOrdenes;
+    }
+
+    
     public Orden(Long id, int numMesa, int numOrden, Estado estado, Venta venta) {
         this();
         this.id = id;

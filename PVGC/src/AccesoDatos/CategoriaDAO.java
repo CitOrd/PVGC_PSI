@@ -23,6 +23,7 @@ public class CategoriaDAO extends BaseDAO<Categoria>{
         entityManager.getTransaction().begin();
         entityManager.persist(entidad);
         entityManager.getTransaction().commit();
+        System.out.println("Se agregó la categoría");
     }
 
     @Override
