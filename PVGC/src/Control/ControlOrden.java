@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class ControlOrden {
     public OrdenDAO ordenDao;
 
-    public ControlOrden(OrdenDAO ordenDao) {
-        this.ordenDao = ordenDao;
+    public ControlOrden() {
+        this.ordenDao = new OrdenDAO();
     }
     
     public void agregarOrden(Orden orden){

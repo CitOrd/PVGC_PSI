@@ -55,6 +55,7 @@ public class Empleado implements Serializable {
     }
     
     public Empleado(Long id, String puesto,String nombre, String correoE, String RFC, String telefono, String direccion) {
+        this();
         this.id = id;
         this.puesto = puesto;
         this.nombre= nombre;
@@ -65,6 +66,7 @@ public class Empleado implements Serializable {
     }
 
     public Empleado(String puesto, String nombre, String correoE, String RFC, String telefono, String direccion) {
+        this();
         this.puesto = puesto;
         this.nombre = nombre;
         this.correoE = correoE;
@@ -74,6 +76,7 @@ public class Empleado implements Serializable {
     }
 
     public Empleado(String puesto, String nombre, String correoE, String RFC, String telefono, String direccion, List<ReporteVenta> reportes) {
+        this();
         this.puesto = puesto;
         this.nombre = nombre;
         this.correoE = correoE;

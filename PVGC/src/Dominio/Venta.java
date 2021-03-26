@@ -54,6 +54,12 @@ public class Venta implements Serializable {
         this.ordenes = new ArrayList<>();
     }
 
+    public Venta(Calendar fecha, float total, ReporteVenta reporteV) {
+        this.fecha = fecha;
+        this.total = total;
+        this.reporteV = reporteV;
+    }
+    
     public Venta(Calendar fecha, float total, List<Orden> ordenes) {
         this.fecha = fecha;
         this.total = total;

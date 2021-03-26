@@ -17,8 +17,8 @@ public class ControlEmpleado {
 
     EmpleadoDAO empDao;
 
-    public ControlEmpleado(EmpleadoDAO empDao) {
-        this.empDao = empDao;
+    public ControlEmpleado() {
+        this.empDao = new EmpleadoDAO();
     }
 
     public void agregarEmpleado(Empleado empleado) {

@@ -15,8 +15,8 @@ public class ControlDetalleOrden {
     
     DetalleOrdenDAO detalleOrd;
 
-    public ControlDetalleOrden(DetalleOrdenDAO detalleOrd) {
-        this.detalleOrd = detalleOrd;
+    public ControlDetalleOrden() {
+        this.detalleOrd = new DetalleOrdenDAO();
     }
     
     public void agregarDetalleOrden(DetalleOrden detOrden){

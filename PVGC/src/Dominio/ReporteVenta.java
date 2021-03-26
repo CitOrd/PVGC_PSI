@@ -52,7 +52,14 @@ public class ReporteVenta implements Serializable {
         this.ventas = new ArrayList<>();
     }
 
+    public ReporteVenta(Periodo periodo, Empleado empleado) {
+        this();
+        this.periodo = periodo;
+        this.empleado = empleado;
+    }
+    
     public ReporteVenta(Long id, Periodo periodo, Empleado empleado) {
+        this();
         this.id = id;
         this.periodo = periodo;
         this.empleado = empleado;

@@ -14,12 +14,17 @@ import Control.ControlDetalleOrden;
 import Control.ControlEmpleado;
 import Control.ControlOrden;
 import Control.ControlProducto;
+import Control.ControlReporteVenta;
 import Control.ControlVenta;
 import Dominio.Categoria;
 import Dominio.DetalleOrden;
+import Dominio.Empleado;
 import Dominio.Orden;
 import Dominio.Producto;
+import Dominio.ReporteVenta;
 import Dominio.Venta;
+import Enums.Estado;
+import Enums.Periodo;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -33,12 +38,13 @@ public class TestPrincipal {
     
     public static void main(String[] args) {
         
-        ControlCategoria cc = new ControlCategoria(new CategoriaDAO());
-        ControlDetalleOrden cdo = new ControlDetalleOrden(new DetalleOrdenDAO());
-        ControlEmpleado ce = new ControlEmpleado(new EmpleadoDAO());
-        ControlOrden co= new ControlOrden(new OrdenDAO());
+        ControlCategoria cc = new ControlCategoria();
+        ControlDetalleOrden cdo = new ControlDetalleOrden();
+        ControlEmpleado ce = new ControlEmpleado();
+        ControlOrden co= new ControlOrden();
         ControlProducto cp = new ControlProducto();
         ControlVenta cv = new ControlVenta();
+        ControlReporteVenta crv = new ControlReporteVenta();
         
         
         //Creación de categorias
@@ -61,33 +67,52 @@ public class TestPrincipal {
         cp.agregarProducto(prod3);
         
         
-       //Creación de orden 
-        Orden orden1 = new Orden();
-        orden1.setNumOrden(1);
-        orden1.setNumMesa(5);
+         
+        //Crear empleados
         
-        Orden orden2 = new Orden();
-        orden2.setNumOrden(2);
-        orden2.setNumMesa(3);
+        Empleado empleado1= new Empleado("Cajero", "Juan Jimenez Mercado", "juanJM_25@gmail.com", "a2asd123dasdasd", "6441923234", "de las mancha #456 entre blvd torre de la viena");
+        Empleado empleado2= new Empleado("Gerente", "Pedro Montes Jimenez", "PedroMJ_12@gmail.com", "gsgkfks244aksdk", "6442924235", "Fierro viejo #45 entre casa blanca y las fuentes");
         
-        Orden orden3 = new Orden();
-        orden3.setNumOrden(3);
-        orden3.setNumMesa(2);
+        //Registrarlos en BD
+        ce.agregarEmpleado(empleado1);
+        ce.agregarEmpleado(empleado2);
+        
+        //Crear reporte de venta
+        
+        ReporteVenta rv1 = new ReporteVenta(Periodo.VESPERTINO, empleado1);
+        ReporteVenta rv2 = new ReporteVenta(Periodo.MATUTINO, empleado2);
+        
+        //registrar en BD reporte de venta de empleados
+        crv.agregarReporteVenta(rv1);
+        crv.agregarReporteVenta(rv2);
+        
+        //Creación de venta
+        Calendar fecha = new GregorianCalendar();
        
+        Venta venta1= new Venta(fecha, 324f, rv1);
+        Venta venta2= new Venta(fecha, 200f, rv2);
+        
+        //Registro de venta
+        cv.agregarVenta(venta1);
+        cv.agregarVenta(venta2);
+        
+        
+       //Creación de orden 
+        Orden orden1 = new Orden(5, 1, Estado.CONCLUIDO, venta1);
+        
+        Orden orden2 = new Orden(5, 2, Estado.CONCLUIDO, venta1);
+        
+        Orden orden3 = new Orden(2, 3, Estado.PROCESANDO, venta2);
+       
+        //registro de ordenes
+       co.agregarOrden(orden1);
+       co.agregarOrden(orden2);
+       co.agregarOrden(orden3);
         
         //Creación de detalles de orden
-        DetalleOrden detOrd1 = new DetalleOrden();
-        DetalleOrden detOrd2 = new DetalleOrden();
-        DetalleOrden detOrd3 = new DetalleOrden();
-        
-        detOrd1.setOrden(orden1);
-        detOrd1.setProducto(prod1);
-        
-        detOrd2.setOrden(orden2);
-        detOrd2.setProducto(prod2);
-        
-        detOrd3.setOrden(orden3);
-        detOrd3.setProducto(prod3);
+        DetalleOrden detOrd1 = new DetalleOrden(orden1, prod2);
+        DetalleOrden detOrd2 = new DetalleOrden(orden2, prod2);
+        DetalleOrden detOrd3 = new DetalleOrden(orden3, prod3);
         
         //Creación de lista de detalles de orden para guardar en la orden 1
         List<DetalleOrden> detOrdenes1 = new ArrayList<DetalleOrden>();
@@ -106,32 +131,27 @@ public class TestPrincipal {
         detOrdenes3.add(detOrd1);
         detOrdenes3.add(detOrd2);
         
+        cdo.agregarDetalleOrden(detOrd1);
+        cdo.agregarDetalleOrden(detOrd2);
+        cdo.agregarDetalleOrden(detOrd3);
+        
         //Seteo de los detalle de orden
         orden1.setDetalleOrdenes(detOrdenes1);
         orden2.setDetalleOrdenes(detOrdenes2);
         orden3.setDetalleOrdenes(detOrdenes3);
         
         
-        //registro de ordenes
-       co.agregarOrden(orden1);
-       cdo.agregarDetalleOrden(detOrd1);
+        cdo.agregarDetalleOrden(detOrd1);
         
-        
-        //Creación de venta
-        Calendar fecha = new GregorianCalendar();
-        
+        //lista ordenes para venta
         List<Orden> ordenes1 = new ArrayList<Orden>();
         ordenes1.add(orden1);
         ordenes1.add(orden2);
         ordenes1.add(orden3);
-       
-        Venta venta1= new Venta(fecha, 324f, ordenes1);
-        Venta venta2= new Venta(fecha, 200f, ordenes1);
         
-        //Registro de venta
-        cv.agregarVenta(venta1);
-        cv.agregarVenta(venta2);
-     
+        //Actualizar las ventas con sus ordenes
+        venta1.setOrdenes(ordenes1);
+        cv.actualizarVenta(venta1);
     }
     
 }

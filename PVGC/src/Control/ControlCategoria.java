@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class ControlCategoria {
     CategoriaDAO categoriaDao;
 
-    public ControlCategoria(CategoriaDAO categoriaDao) {
-        this.categoriaDao = categoriaDao;
+    public ControlCategoria() {
+        this.categoriaDao = new CategoriaDAO();
     }
     
     public void agregarCategoria(Categoria categoria){

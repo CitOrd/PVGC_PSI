@@ -44,6 +44,7 @@ public class Orden implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "estado", nullable = false)
     private Estado estado;
+    
     @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL)
     private List<DetalleOrden> detalleOrdenes;
     @ManyToOne(optional = false)
@@ -56,6 +57,13 @@ public class Orden implements Serializable {
         detalleOrdenes = new ArrayList<>();
     }
 
+    public Orden(int numMesa, int numOrden, Estado estado, Venta venta) {
+        this.numMesa = numMesa;
+        this.numOrden = numOrden;
+        this.estado = estado;
+        this.venta = venta;
+    }
+    
     public Orden(int numMesa, int numOrden, Estado estado, List<DetalleOrden> detalleOrdenes, Venta venta) {
         this.numMesa = numMesa;
         this.numOrden = numOrden;
