@@ -66,6 +66,7 @@ public class TomarOrden extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -107,7 +108,7 @@ public class TomarOrden extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(90, 310, 260, 420);
+        jPanel2.setBounds(110, 280, 260, 420);
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -140,7 +141,7 @@ public class TomarOrden extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel4);
-        jPanel4.setBounds(750, 310, 260, 420);
+        jPanel4.setBounds(770, 280, 260, 420);
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -178,7 +179,7 @@ public class TomarOrden extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(420, 310, 260, 420);
+        jPanel3.setBounds(440, 280, 260, 420);
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -210,7 +211,7 @@ public class TomarOrden extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(1090, 310, 260, 420);
+        jPanel5.setBounds(1110, 280, 260, 420);
 
         jPanel7.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -243,7 +244,11 @@ public class TomarOrden extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel7);
-        jPanel7.setBounds(1430, 310, 260, 420);
+        jPanel7.setBounds(1450, 280, 260, 420);
+
+        jButton6.setText("Regresar");
+        jPanel1.add(jButton6);
+        jButton6.setBounds(40, 920, 120, 50);
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1920, 1080);
 
@@ -298,6 +303,7 @@ public class TomarOrden extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
