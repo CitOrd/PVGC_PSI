@@ -58,7 +58,7 @@ public class TestPrincipal {
         
         
         //Creacion de Productos
-        Producto prod1= new Producto("Panini de pollo", 30f, true, cat1);
+        Producto prod1= new Producto("Ensalada", 40f, true, cat1);
         Producto prod2= new Producto("Frape oreo", 30f, true, cat2);
         Producto prod3= new Producto("Pastel de Zanahoria rebanada", 20f, true, cat3);
         
@@ -77,7 +77,8 @@ public class TestPrincipal {
         ce.agregarEmpleado(empleado1);
         ce.agregarEmpleado(empleado2);
         
-        //Crear reporte de venta
+
+        // Crear reporte de venta
         
         ReporteVenta rv1 = new ReporteVenta(Periodo.VESPERTINO, empleado1);
         ReporteVenta rv2 = new ReporteVenta(Periodo.MATUTINO, empleado2);

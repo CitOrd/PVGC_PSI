@@ -25,8 +25,6 @@ import javax.persistence.Table;
 @Table(name = "Categoria")
 public class Categoria implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    
     //ATRIBUTOS
     
     @Id
@@ -35,8 +33,9 @@ public class Categoria implements Serializable {
     @Column(name = "descripcion", nullable = false, length = 200)
     private String descripcion;
     
-     @Column(name = "nombre", nullable = false, length = 200)
+    @Column(name = "nombre", nullable = false, length = 200)
     private String nombre;
+     
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     private List<Producto> productos;
     
