@@ -211,7 +211,7 @@ public class TomarOrden extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(1110, 280, 260, 420);
+        jPanel5.setBounds(1110, 280, 260, 419);
 
         jPanel7.setBackground(new java.awt.Color(204, 204, 204));
 
