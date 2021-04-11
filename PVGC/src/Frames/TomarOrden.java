@@ -70,7 +70,6 @@ public class TomarOrden extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
         setResizable(false);
         setSize(new java.awt.Dimension(1920, 1080));
         getContentPane().setLayout(null);
@@ -211,7 +210,7 @@ public class TomarOrden extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(1110, 280, 260, 419);
+        jPanel5.setBounds(1110, 280, 260, 420);
 
         jPanel7.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -247,6 +246,11 @@ public class TomarOrden extends javax.swing.JFrame {
         jPanel7.setBounds(1450, 280, 260, 420);
 
         jButton6.setText("Regresar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton6);
         jButton6.setBounds(40, 920, 120, 50);
         jPanel1.add(jLabel1);
@@ -261,6 +265,12 @@ public class TomarOrden extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        MenuAdministarVenta jFrm = new MenuAdministarVenta();
+        this.setVisible(false);
+        jFrm.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
