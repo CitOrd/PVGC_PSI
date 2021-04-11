@@ -54,21 +54,21 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
     private void initComponents() {
 
         JPConsultarOrden = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        BtnConsultarOrden = new javax.swing.JButton();
+        BnrConsultarOrden = new javax.swing.JLabel();
+        IconoConsultarOrden = new javax.swing.JLabel();
         JPModificarOrden = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        BtnModificarOrden = new javax.swing.JButton();
+        BnrModificarOrden = new javax.swing.JLabel();
+        IconoModificarOrden = new javax.swing.JLabel();
         JPEliminarOrden = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        BtnEliminarOrden = new javax.swing.JButton();
+        BnrEliminarOrden = new javax.swing.JLabel();
+        IconoEliminarOrden = new javax.swing.JLabel();
         JPTomarOrden = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        BtnTomarOrden = new javax.swing.JButton();
+        BnrTomarOrden = new javax.swing.JLabel();
+        IconoTomarOrden = new javax.swing.JLabel();
         BtnRegresar = new javax.swing.JButton();
         TituloMenuAdministarVenta = new javax.swing.JLabel();
         IcTitulo = new javax.swing.JLabel();
@@ -81,19 +81,19 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
         setName("MenuAdministarVenta"); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        JPConsultarOrden.setBackground(new java.awt.Color(206, 215, 231, 85));
+        JPConsultarOrden.setBackground(new java.awt.Color(206, 215, 231, 95));
 
-        jButton1.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
-        jButton1.setText("Consultar Orden");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtnConsultarOrden.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
+        BtnConsultarOrden.setText("Consultar Orden");
+        BtnConsultarOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnConsultarOrdenActionPerformed(evt);
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Banner Consultar Orden.png"))); // NOI18N
+        BnrConsultarOrden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Banner Consultar Orden.png"))); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Consultar Orden.png"))); // NOI18N
+        IconoConsultarOrden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Consultar Orden.png"))); // NOI18N
 
         javax.swing.GroupLayout JPConsultarOrdenLayout = new javax.swing.GroupLayout(JPConsultarOrden);
         JPConsultarOrden.setLayout(JPConsultarOrdenLayout);
@@ -101,46 +101,44 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
             JPConsultarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPConsultarOrdenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BnrConsultarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPConsultarOrdenLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(IconoConsultarOrden)
                 .addGap(80, 80, 80))
             .addGroup(JPConsultarOrdenLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnConsultarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JPConsultarOrdenLayout.setVerticalGroup(
             JPConsultarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPConsultarOrdenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BnrConsultarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(IconoConsultarOrden)
                 .addGap(40, 40, 40)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnConsultarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
 
         getContentPane().add(JPConsultarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 360, -1, -1));
 
-        JPModificarOrden.setBackground(new java.awt.Color(206, 215, 231, 85));
+        JPModificarOrden.setBackground(new java.awt.Color(206, 215, 231, 95));
 
-        jButton2.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
-        jButton2.setText("Modificar Orden");
-        jButton2.setContentAreaFilled(false);
-        jButton2.setOpaque(true);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BtnModificarOrden.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
+        BtnModificarOrden.setText("Modificar Orden");
+        BtnModificarOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BtnModificarOrdenActionPerformed(evt);
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Banner Modificar Orden.png"))); // NOI18N
+        BnrModificarOrden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Banner Modificar Orden.png"))); // NOI18N
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Modificar Orden.png"))); // NOI18N
+        IconoModificarOrden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Modificar Orden.png"))); // NOI18N
 
         javax.swing.GroupLayout JPModificarOrdenLayout = new javax.swing.GroupLayout(JPModificarOrden);
         JPModificarOrden.setLayout(JPModificarOrdenLayout);
@@ -148,44 +146,44 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
             JPModificarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPModificarOrdenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BnrModificarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPModificarOrdenLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addComponent(IconoModificarOrden)
                 .addGap(80, 80, 80))
             .addGroup(JPModificarOrdenLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnModificarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JPModificarOrdenLayout.setVerticalGroup(
             JPModificarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPModificarOrdenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BnrModificarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addComponent(IconoModificarOrden)
                 .addGap(40, 40, 40)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addComponent(BtnModificarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
 
         getContentPane().add(JPModificarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 360, -1, -1));
 
-        JPEliminarOrden.setBackground(new java.awt.Color(206, 215, 231, 85));
+        JPEliminarOrden.setBackground(new java.awt.Color(206, 215, 231, 95));
 
-        jButton3.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
-        jButton3.setText("Eliminar Orden");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BtnEliminarOrden.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
+        BtnEliminarOrden.setText("Eliminar Orden");
+        BtnEliminarOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BtnEliminarOrdenActionPerformed(evt);
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Eliminar Orden.png"))); // NOI18N
+        BnrEliminarOrden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BannerOpcionEliminarOrden.png"))); // NOI18N
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Eliminar Orden.png"))); // NOI18N
+        IconoEliminarOrden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/IconoOpciónEliminarOrden.png"))); // NOI18N
 
         javax.swing.GroupLayout JPEliminarOrdenLayout = new javax.swing.GroupLayout(JPEliminarOrden);
         JPEliminarOrden.setLayout(JPEliminarOrdenLayout);
@@ -193,44 +191,44 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
             JPEliminarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPEliminarOrdenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BnrEliminarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPEliminarOrdenLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
+                .addComponent(IconoEliminarOrden)
                 .addGap(80, 80, 80))
             .addGroup(JPEliminarOrdenLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnEliminarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JPEliminarOrdenLayout.setVerticalGroup(
             JPEliminarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPEliminarOrdenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BnrEliminarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jLabel8)
+                .addComponent(IconoEliminarOrden)
                 .addGap(40, 40, 40)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnEliminarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
 
         getContentPane().add(JPEliminarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, -1, -1));
 
-        JPTomarOrden.setBackground(new java.awt.Color(206, 215, 231, 85));
+        JPTomarOrden.setBackground(new java.awt.Color(206, 215, 231, 95));
 
-        jButton4.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
-        jButton4.setText("Tomar Orden");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        BtnTomarOrden.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
+        BtnTomarOrden.setText("Tomar Orden");
+        BtnTomarOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                BtnTomarOrdenActionPerformed(evt);
             }
         });
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BannerTomarPedido.png"))); // NOI18N
+        BnrTomarOrden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BannerTomarPedido.png"))); // NOI18N
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Tomar Orden.png"))); // NOI18N
+        IconoTomarOrden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Tomar Orden.png"))); // NOI18N
 
         javax.swing.GroupLayout JPTomarOrdenLayout = new javax.swing.GroupLayout(JPTomarOrden);
         JPTomarOrden.setLayout(JPTomarOrdenLayout);
@@ -238,34 +236,35 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
             JPTomarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPTomarOrdenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BnrTomarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPTomarOrdenLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10)
+                .addComponent(IconoTomarOrden)
                 .addGap(80, 80, 80))
             .addGroup(JPTomarOrdenLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnTomarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JPTomarOrdenLayout.setVerticalGroup(
             JPTomarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPTomarOrdenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BnrTomarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jLabel10)
+                .addComponent(IconoTomarOrden)
                 .addGap(40, 40, 40)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnTomarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
 
         getContentPane().add(JPTomarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, -1, -1));
 
-        BtnRegresar.setBackground(new java.awt.Color(255, 255, 255, 100));
-        BtnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnRegresar.png"))); // NOI18N
-        getContentPane().add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 990, -1, -1));
+        BtnRegresar.setBackground(new java.awt.Color(222, 143, 62, 100));
+        BtnRegresar.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 24)); // NOI18N
+        BtnRegresar.setText("REGRESAR");
+        getContentPane().add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 990, -1, -1));
 
         TituloMenuAdministarVenta.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 94)); // NOI18N
         TituloMenuAdministarVenta.setForeground(new java.awt.Color(206, 215, 231));
@@ -281,21 +280,29 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void BtnConsultarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsultarOrdenActionPerformed
+        ConsultarOrden jFrm = new ConsultarOrden();
+        this.setVisible(false);
+        jFrm.setVisible(true);
+    }//GEN-LAST:event_BtnConsultarOrdenActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void BtnModificarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarOrdenActionPerformed
+        ModificarOrden jFrm = new ModificarOrden();
+        this.setVisible(false);
+        jFrm.setVisible(true);
+    }//GEN-LAST:event_BtnModificarOrdenActionPerformed
+    
+    private void BtnEliminarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarOrdenActionPerformed
+        EliminarOrden jFrm = new EliminarOrden();
+        this.setVisible(false);
+        jFrm.setVisible(true);
+    }//GEN-LAST:event_BtnEliminarOrdenActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void BtnTomarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTomarOrdenActionPerformed
+        Categorias jFrm = new Categorias();
+        this.setVisible(false);
+        jFrm.setVisible(true);
+    }//GEN-LAST:event_BtnTomarOrdenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,24 +342,24 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundFrame;
+    private javax.swing.JLabel BnrConsultarOrden;
+    private javax.swing.JLabel BnrEliminarOrden;
+    private javax.swing.JLabel BnrModificarOrden;
+    private javax.swing.JLabel BnrTomarOrden;
+    private javax.swing.JButton BtnConsultarOrden;
+    private javax.swing.JButton BtnEliminarOrden;
+    private javax.swing.JButton BtnModificarOrden;
     private javax.swing.JButton BtnRegresar;
+    private javax.swing.JButton BtnTomarOrden;
     private javax.swing.JLabel IcTitulo;
+    private javax.swing.JLabel IconoConsultarOrden;
+    private javax.swing.JLabel IconoEliminarOrden;
+    private javax.swing.JLabel IconoModificarOrden;
+    private javax.swing.JLabel IconoTomarOrden;
     private javax.swing.JPanel JPConsultarOrden;
     private javax.swing.JPanel JPEliminarOrden;
     private javax.swing.JPanel JPModificarOrden;
     private javax.swing.JPanel JPTomarOrden;
     private javax.swing.JLabel TituloMenuAdministarVenta;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }
