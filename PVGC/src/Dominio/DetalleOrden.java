@@ -35,22 +35,39 @@ public class DetalleOrden implements Serializable {
     @ManyToOne(optional = false)
     @JoinColumn(name = "idProducto")
     private Producto producto;
+    @JoinColumn(name = "notas")
+    private String notas;
+    @JoinColumn(name = "cantidad")
+    private int cantidad;
+    @JoinColumn(name = "total")
+    private double total;
+    
+    
+    //notas, 
 
     //CONSTRUCTORES
     
     public DetalleOrden() {
     }
 
-    public DetalleOrden(Long id, Orden orden, Producto producto) {
+    public DetalleOrden(Long id, Orden orden, Producto producto, String notas, int cantidad, double total) {
         this.id = id;
         this.orden = orden;
         this.producto = producto;
+        this.notas = notas;
+        this.cantidad = cantidad;
+        this.total = total;
     }
 
-    public DetalleOrden(Orden orden, Producto producto) {
+    public DetalleOrden(Orden orden, Producto producto, String notas, int cantidad, double total) {
         this.orden = orden;
         this.producto = producto;
+        this.notas = notas;
+        this.cantidad = cantidad;
+        this.total = total;
     }
+
+    
     
     //MÉTODOS
 
@@ -78,6 +95,30 @@ public class DetalleOrden implements Serializable {
         this.producto = producto;
     }
 
+    public String getNotas() {
+        return notas;
+    }
+
+    public void setNotas(String notas) {
+        this.notas = notas;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
     //OVERRIDE MÉTODOS
     
     @Override

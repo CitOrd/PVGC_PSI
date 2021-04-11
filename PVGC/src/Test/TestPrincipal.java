@@ -111,48 +111,48 @@ public class TestPrincipal {
        co.agregarOrden(orden3);
         
         //Creación de detalles de orden
-        DetalleOrden detOrd1 = new DetalleOrden(orden1, prod2);
-        DetalleOrden detOrd2 = new DetalleOrden(orden2, prod2);
-        DetalleOrden detOrd3 = new DetalleOrden(orden3, prod3);
+//        DetalleOrden detOrd1 = new DetalleOrden(orden1, prod2);
+//        DetalleOrden detOrd2 = new DetalleOrden(orden2, prod2);
+//        DetalleOrden detOrd3 = new DetalleOrden(orden3, prod3);
         
         //Creación de lista de detalles de orden para guardar en la orden 1
-        List<DetalleOrden> detOrdenes1 = new ArrayList<DetalleOrden>();
-        detOrdenes1.add(detOrd1);
-        detOrdenes1.add(detOrd2);
-        detOrdenes1.add(detOrd3);
-        
-        //Detalle de orden para la orden 2
-        List<DetalleOrden> detOrdenes2 = new ArrayList<DetalleOrden>();
-        detOrdenes2.add(detOrd2);
-        detOrdenes2.add(detOrd1);
-        detOrdenes2.add(detOrd3);
-        
-        List<DetalleOrden> detOrdenes3 = new ArrayList<DetalleOrden>();
-        detOrdenes3.add(detOrd3);
-        detOrdenes3.add(detOrd1);
-        detOrdenes3.add(detOrd2);
-        
-        cdo.agregarDetalleOrden(detOrd1);
-        cdo.agregarDetalleOrden(detOrd2);
-        cdo.agregarDetalleOrden(detOrd3);
-        
-        //Seteo de los detalle de orden
-        orden1.setDetalleOrdenes(detOrdenes1);
-        orden2.setDetalleOrdenes(detOrdenes2);
-        orden3.setDetalleOrdenes(detOrdenes3);
-        
-        
-        cdo.agregarDetalleOrden(detOrd1);
-        
-        //lista ordenes para venta
-        List<Orden> ordenes1 = new ArrayList<Orden>();
-        ordenes1.add(orden1);
-        ordenes1.add(orden2);
-        ordenes1.add(orden3);
-        
-        //Actualizar las ventas con sus ordenes
-        venta1.setOrdenes(ordenes1);
-        cv.actualizarVenta(venta1);
+//        List<DetalleOrden> detOrdenes1 = new ArrayList<DetalleOrden>();
+//        detOrdenes1.add(detOrd1);
+//        detOrdenes1.add(detOrd2);
+//        detOrdenes1.add(detOrd3);
+//        
+//        //Detalle de orden para la orden 2
+//        List<DetalleOrden> detOrdenes2 = new ArrayList<DetalleOrden>();
+//        detOrdenes2.add(detOrd2);
+//        detOrdenes2.add(detOrd1);
+//        detOrdenes2.add(detOrd3);
+//        
+//        List<DetalleOrden> detOrdenes3 = new ArrayList<DetalleOrden>();
+//        detOrdenes3.add(detOrd3);
+//        detOrdenes3.add(detOrd1);
+//        detOrdenes3.add(detOrd2);
+//        
+//        cdo.agregarDetalleOrden(detOrd1);
+//        cdo.agregarDetalleOrden(detOrd2);
+//        cdo.agregarDetalleOrden(detOrd3);
+//        
+//        //Seteo de los detalle de orden
+//        orden1.setDetalleOrdenes(detOrdenes1);
+//        orden2.setDetalleOrdenes(detOrdenes2);
+//        orden3.setDetalleOrdenes(detOrdenes3);
+//        
+//        
+//        cdo.agregarDetalleOrden(detOrd1);
+//        
+//        //lista ordenes para venta
+//        List<Orden> ordenes1 = new ArrayList<Orden>();
+//        ordenes1.add(orden1);
+//        ordenes1.add(orden2);
+//        ordenes1.add(orden3);
+//        
+//        //Actualizar las ventas con sus ordenes
+//        venta1.setOrdenes(ordenes1);
+//        cv.actualizarVenta(venta1);
     }
     
 }
