@@ -81,7 +81,7 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
         setName("MenuAdministarVenta"); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        JPConsultarOrden.setBackground(new java.awt.Color(206, 215, 231, 85));
+        JPConsultarOrden.setBackground(new java.awt.Color(206, 215, 231, 95));
 
         BtnConsultarOrden.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
         BtnConsultarOrden.setText("Consultar Orden");
@@ -126,7 +126,7 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
 
         getContentPane().add(JPConsultarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 360, -1, -1));
 
-        JPModificarOrden.setBackground(new java.awt.Color(206, 215, 231, 85));
+        JPModificarOrden.setBackground(new java.awt.Color(206, 215, 231, 95));
 
         BtnModificarOrden.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
         BtnModificarOrden.setText("Modificar Orden");
@@ -171,7 +171,7 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
 
         getContentPane().add(JPModificarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 360, -1, -1));
 
-        JPEliminarOrden.setBackground(new java.awt.Color(206, 215, 231, 85));
+        JPEliminarOrden.setBackground(new java.awt.Color(206, 215, 231, 95));
 
         BtnEliminarOrden.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
         BtnEliminarOrden.setText("Eliminar Orden");
@@ -216,7 +216,7 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
 
         getContentPane().add(JPEliminarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, -1, -1));
 
-        JPTomarOrden.setBackground(new java.awt.Color(206, 215, 231, 85));
+        JPTomarOrden.setBackground(new java.awt.Color(206, 215, 231, 95));
 
         BtnTomarOrden.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 36)); // NOI18N
         BtnTomarOrden.setText("Tomar Orden");
@@ -261,9 +261,10 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
 
         getContentPane().add(JPTomarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, -1, -1));
 
-        BtnRegresar.setBackground(new java.awt.Color(255, 255, 255, 100));
-        BtnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnRegresar.png"))); // NOI18N
-        getContentPane().add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 990, -1, -1));
+        BtnRegresar.setBackground(new java.awt.Color(222, 143, 62, 100));
+        BtnRegresar.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 24)); // NOI18N
+        BtnRegresar.setText("REGRESAR");
+        getContentPane().add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 990, -1, -1));
 
         TituloMenuAdministarVenta.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 94)); // NOI18N
         TituloMenuAdministarVenta.setForeground(new java.awt.Color(206, 215, 231));
@@ -280,19 +281,27 @@ public class MenuAdministarVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnConsultarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsultarOrdenActionPerformed
-        // TODO add your handling code here:
+        ConsultarOrden jFrm = new ConsultarOrden();
+        this.setVisible(false);
+        jFrm.setVisible(true);
     }//GEN-LAST:event_BtnConsultarOrdenActionPerformed
 
     private void BtnModificarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarOrdenActionPerformed
-        // TODO add your handling code here:
+        ModificarOrden jFrm = new ModificarOrden();
+        this.setVisible(false);
+        jFrm.setVisible(true);
     }//GEN-LAST:event_BtnModificarOrdenActionPerformed
-
+    
     private void BtnEliminarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarOrdenActionPerformed
-        // TODO add your handling code here:
+        EliminarOrden jFrm = new EliminarOrden();
+        this.setVisible(false);
+        jFrm.setVisible(true);
     }//GEN-LAST:event_BtnEliminarOrdenActionPerformed
 
     private void BtnTomarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTomarOrdenActionPerformed
-        // TODO add your handling code here:
+        Categorias jFrm = new Categorias();
+        this.setVisible(false);
+        jFrm.setVisible(true);
     }//GEN-LAST:event_BtnTomarOrdenActionPerformed
 
     /**
