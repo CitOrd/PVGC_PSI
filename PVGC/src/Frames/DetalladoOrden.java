@@ -32,7 +32,9 @@ public class DetalladoOrden extends javax.swing.JFrame {
         
     }
     
-    
+    public void mostrarProductos(){
+        
+    }
     
 
     /**

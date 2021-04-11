@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 package Frames;
+
 import Control.ControlProducto;
 import Control.ControlOrden;
 import Dominio.Orden;
 import Dominio.Producto;
+import java.awt.Label;
+import java.awt.TextArea;
 import java.util.ArrayList;
-
 
 /**
  * Pantalla para poder agregar un producto a la orden.
+ *
  * @author Citlali Orduño
  */
 public class AgregarNotasProd extends javax.swing.JFrame {
@@ -23,27 +24,30 @@ public class AgregarNotasProd extends javax.swing.JFrame {
     public Orden orden;
     public ControlProducto ctrlProd;
     public Producto prod;
-    
-    /** Creates new form AgregarNotasProd */
+    public int cant = 1;
+    String numCantidad = "";
+
+    /**
+     * Creates new form AgregarNotasProd
+     */
     public AgregarNotasProd() {
-       this.ctrlOrden = new ControlOrden();
-       this.ctrlProd= new ControlProducto();
-       this.prod= prod;
-       this.orden= orden;
+        this.ctrlOrden = new ControlOrden();
+        this.ctrlProd = new ControlProducto();
+        this.prod = prod;
+        this.orden = orden;
         initComponents();
-        
+
     }
 
-    public void mostrarDetallesProducto(Producto producto){
-      ArrayList<Producto> productos = ctrlProd.consultarProducto(producto);
-        
-        
+    public void mostrarProducto(Producto producto) {
+        String nombre = producto.getNombre();
+        lblProducto.setText(nombre);
+        String numCantidad = String.valueOf(cant);
+        txtCantidad.setText(numCantidad);
+
     }
-    
-    
-    
-    
-       @SuppressWarnings("unchecked")
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -230,15 +234,33 @@ public class AgregarNotasProd extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCantidadActionPerformed
 
     private void btnMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasActionPerformed
-        // TODO add your handling code here:
+        cant = cant + 1;
+        numCantidad = String.valueOf(cant);
+        txtCantidad.setText(numCantidad);
+
+        for (int i = 1; i < cant; i++) {
+            Label lblProd = new Label();
+            lblProd.setText("Producto " + i);
+            TextArea txtNotas = new TextArea();
+           
+        }
     }//GEN-LAST:event_btnMasActionPerformed
 
     private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
-        // TODO add your handling code here:
+       cant = cant - 1;
+        numCantidad = String.valueOf(cant);
+        txtCantidad.setText(numCantidad);
+
+        for (int i = 1; i < cant; i--) {
+            Label lblProd = new Label();
+            lblProd.setText("Producto " + i);
+            TextArea txtNotas = new TextArea();
+        }    
+        
     }//GEN-LAST:event_btnMenosActionPerformed
 
     private void btnMenuProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuProdActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnMenuProdActionPerformed
 
     /**
