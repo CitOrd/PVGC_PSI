@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 package Frames;
+
 import Control.ControlDetalleOrden;
-import Control.ControlProducto;
 import Control.ControlOrden;
 import Dominio.DetalleOrden;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,26 +18,59 @@ import Dominio.DetalleOrden;
  */
 public class DetalladoOrden extends javax.swing.JFrame {
     
+   
     public ControlDetalleOrden ctrlDetOrden;
-    public ControlProducto ctrlProd;
-    public ControlOrden ctrlOrden;
     public DetalleOrden detOrden;
+    public ArrayList<DetalleOrden>detOrdenes;
     
     
     /**
      * Creates new form DetalladoOrden
      */
     public DetalladoOrden() {
-       this.ctrlOrden= new ControlOrden();
-       this.ctrlProd= new ControlProducto();
+      
        this.detOrden= new DetalleOrden();
+       this.detOrdenes= new ArrayList<>();
         initComponents();
+        this.mostrarIndicadores();
+        this.mostrarProductos();
         
     }
     
+    
+    public void mostrarIndicadores(){
+       int numMesa= detOrden.getOrden().getNumMesa();
+       int numOrden= detOrden.getOrden().getNumOrden();
+       lblOrden.setText(""+numOrden);
+       lblMesa.setText(""+numMesa);
+    }
     public void mostrarProductos(){
         
+        detOrdenes= ctrlDetOrden.consultarOrdenes(detOrden);
+        
+        for (DetalleOrden detOrdene : detOrdenes) {
+             String nombre= detOrdene.getProducto().getNombre();
+             int cantidad= detOrdene.getCantidad();
+             double precio= detOrdene.getTotal();
+             double total= (precio * cantidad);
+             
+//             String cantString= String.valueOf(cantidad);
+//             String totalString= String.valueOf(total);
+                    
+             String cadena= "      "+nombre+"     "+cantidad+"       "+total ;       
+                    
+            JTextField txtDetOrden= new JTextField();
+            txtDetOrden.setBounds(new Rectangle(25, 15, 250, 21));
+            txtDetOrden.setText(cadena);
+            
+            pnlProductos.add(txtDetOrden);
+            pnlProductos.updateUI();
+        }
+        
+        
     }
+    
+    
     
 
     /**
@@ -50,12 +86,12 @@ public class DetalladoOrden extends javax.swing.JFrame {
         lblOrden = new javax.swing.JLabel();
         lblMesa = new javax.swing.JLabel();
         scrllProductos = new javax.swing.JScrollPane();
+        pnlProductos = new javax.swing.JPanel();
         btnCobrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnPrincipal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1900, 1080));
         setSize(new java.awt.Dimension(1920, 1080));
 
         lbltitulo.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
@@ -66,6 +102,9 @@ public class DetalladoOrden extends javax.swing.JFrame {
 
         lblMesa.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblMesa.setText("Num. De Mesa");
+
+        pnlProductos.setLayout(new java.awt.GridLayout(0, 1));
+        scrllProductos.setViewportView(pnlProductos);
 
         btnCobrar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnCobrar.setText("Cobrar Orden ");
@@ -80,6 +119,11 @@ public class DetalladoOrden extends javax.swing.JFrame {
 
         btnPrincipal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnPrincipal.setText("Menu Principal");
+        btnPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrincipalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,6 +189,12 @@ public class DetalladoOrden extends javax.swing.JFrame {
         //en el CU "Cobrar Orden"
     }//GEN-LAST:event_btnCobrarActionPerformed
 
+    private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
+        MenuAdministarVenta jFrm = new MenuAdministarVenta();
+        this.setVisible(false);
+        jFrm.setVisible(true);
+    }//GEN-LAST:event_btnPrincipalActionPerformed
+
     
     
     
@@ -194,6 +244,7 @@ public class DetalladoOrden extends javax.swing.JFrame {
     private javax.swing.JLabel lblMesa;
     private javax.swing.JLabel lblOrden;
     private javax.swing.JLabel lbltitulo;
+    private javax.swing.JPanel pnlProductos;
     private javax.swing.JScrollPane scrllProductos;
     // End of variables declaration//GEN-END:variables
 }

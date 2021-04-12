@@ -5,6 +5,9 @@
  */
 package Frames;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Usuario
@@ -128,6 +131,7 @@ public class EliminarOrden extends javax.swing.JFrame {
         //Ok
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */

@@ -9,9 +9,13 @@ import Control.ControlProducto;
 import Control.ControlOrden;
 import Dominio.Orden;
 import Dominio.Producto;
+
 import java.awt.Label;
-import java.awt.TextArea;
+
 import java.util.ArrayList;
+
+import javax.swing.JTextField;
+
 
 /**
  * Pantalla para poder agregar un producto a la orden.
@@ -26,25 +30,40 @@ public class AgregarNotasProd extends javax.swing.JFrame {
     public Producto prod;
     public int cant = 1;
     String numCantidad = "";
-
+    public JTextField txtNotas = new JTextField();
+    public Label lblProd = new Label();
+    public ArrayList<String> notas; 
+    public ArrayList<Label> labels = null;
+    public ArrayList<JTextField> textsNotas = null; 
+    
     /**
      * Creates new form AgregarNotasProd
      */
     public AgregarNotasProd() {
         this.ctrlOrden = new ControlOrden();
         this.ctrlProd = new ControlProducto();
+        this.notas= new ArrayList<String>();
         this.prod = prod;
         this.orden = orden;
         initComponents();
+        this.txtCantidad.setText("" + cant);
+        lblProd.setSize(2, 6);
+        txtNotas.setSize(2,6);
+        pnlNotas.add(lblProd);
+        pnlNotas.add(txtNotas);
 
+        //  mostrarProducto(prod);
     }
 
     public void mostrarProducto(Producto producto) {
         String nombre = producto.getNombre();
         lblProducto.setText(nombre);
-        String numCantidad = String.valueOf(cant);
-        txtCantidad.setText(numCantidad);
+       
 
+    }
+    
+    public void agregarComponentes(){
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -52,49 +71,41 @@ public class AgregarNotasProd extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlDscr = new javax.swing.JPanel();
-        lblCantidad = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
-        btnMas = new javax.swing.JButton();
         btnMenos = new javax.swing.JButton();
-        lblNotas = new javax.swing.JLabel();
+        btnMas = new javax.swing.JButton();
         btnAgregarProdOrden = new javax.swing.JButton();
         scrllNotas = new javax.swing.JScrollPane();
         pnlNotas = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        lblNotas1 = new javax.swing.JLabel();
         btnMenuProd = new javax.swing.JButton();
         btnMnuPrincipal = new javax.swing.JButton();
         lblProducto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(1200, 800));
+        setSize(new java.awt.Dimension(1200, 900));
 
-        pnlDscr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0)));
+        pnlDscr.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0)), "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 36))); // NOI18N
 
-        lblCantidad.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblCantidad.setText("Cantidad");
-
-        txtCantidad.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        txtCantidad.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         txtCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCantidadActionPerformed(evt);
             }
         });
 
-        btnMas.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        btnMas.setText("-");
-        btnMas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasActionPerformed(evt);
+        btnMenos.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        btnMenos.setText("-");
+        btnMenos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMenosMouseClicked(evt);
             }
         });
 
-        btnMenos.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        btnMenos.setText("+");
-        btnMenos.addActionListener(new java.awt.event.ActionListener() {
+        btnMas.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        btnMas.setText("+");
+        btnMas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenosActionPerformed(evt);
+                btnMasActionPerformed(evt);
             }
         });
 
@@ -103,71 +114,39 @@ public class AgregarNotasProd extends javax.swing.JFrame {
         pnlDscrLayout.setHorizontalGroup(
             pnlDscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDscrLayout.createSequentialGroup()
-                .addContainerGap(169, Short.MAX_VALUE)
-                .addGroup(pnlDscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDscrLayout.createSequentialGroup()
-                        .addComponent(lblCantidad)
-                        .addGap(192, 192, 192))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDscrLayout.createSequentialGroup()
-                        .addComponent(btnMas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMenos)
-                        .addGap(163, 163, 163))))
+                .addContainerGap(125, Short.MAX_VALUE)
+                .addComponent(btnMenos, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(btnMas, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(138, 138, 138))
         );
         pnlDscrLayout.setVerticalGroup(
             pnlDscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDscrLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(lblCantidad)
-                .addGap(41, 41, 41)
-                .addGroup(pnlDscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMas)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMenos))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlDscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDscrLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addGroup(pnlDscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMas, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlDscrLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(btnMenos, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
-        lblNotas.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        lblNotas.setText("Notas");
-
-        btnAgregarProdOrden.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnAgregarProdOrden.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnAgregarProdOrden.setText("Agregar a orden");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        scrllNotas.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0)), "Notas", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 36), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        lblNotas1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblNotas1.setText("Producto 1");
-
-        javax.swing.GroupLayout pnlNotasLayout = new javax.swing.GroupLayout(pnlNotas);
-        pnlNotas.setLayout(pnlNotasLayout);
-        pnlNotasLayout.setHorizontalGroup(
-            pnlNotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNotasLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pnlNotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlNotasLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(lblNotas1)))
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        pnlNotasLayout.setVerticalGroup(
-            pnlNotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNotasLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(lblNotas1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
-        );
-
+        pnlNotas.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        pnlNotas.setLayout(new javax.swing.BoxLayout(pnlNotas, javax.swing.BoxLayout.Y_AXIS));
         scrllNotas.setViewportView(pnlNotas);
 
-        btnMenuProd.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnMenuProd.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnMenuProd.setText("Regresar");
         btnMenuProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,7 +154,7 @@ public class AgregarNotasProd extends javax.swing.JFrame {
             }
         });
 
-        btnMnuPrincipal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnMnuPrincipal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnMnuPrincipal.setText("Menu Principal");
 
         lblProducto.setFont(new java.awt.Font("Dialog", 1, 60)); // NOI18N
@@ -185,45 +164,51 @@ public class AgregarNotasProd extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(306, 306, 306)
+                .addComponent(lblProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(194, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgregarProdOrden)
+                .addGap(133, 133, 133)
+                .addComponent(btnMenuProd, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(232, 232, 232))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(463, 463, 463))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnMnuPrincipal)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(pnlDscr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(119, 119, 119)
-                                .addComponent(scrllNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(150, 150, 150))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnAgregarProdOrden)
-                                .addGap(80, 80, 80)
-                                .addComponent(btnMenuProd, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(231, 231, 231)))
-                        .addComponent(lblProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(btnMnuPrincipal))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(294, 294, 294)
+                        .addComponent(pnlDscr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91)
+                        .addComponent(scrllNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
+                .addGap(69, 69, 69)
                 .addComponent(lblProducto)
-                .addGap(18, 18, 18)
-                .addComponent(lblNotas)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlDscr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scrllNotas, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarProdOrden)
-                    .addComponent(btnMenuProd))
-                .addGap(52, 52, 52)
-                .addComponent(btnMnuPrincipal)
-                .addGap(169, 169, 169))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(pnlDscr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(scrllNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(249, 249, 249)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnMnuPrincipal)
+                        .addGap(349, 349, 349))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnMenuProd)
+                            .addComponent(btnAgregarProdOrden))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -234,34 +219,51 @@ public class AgregarNotasProd extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCantidadActionPerformed
 
     private void btnMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasActionPerformed
-        cant = cant + 1;
-        numCantidad = String.valueOf(cant);
-        txtCantidad.setText(numCantidad);
-
-        for (int i = 1; i < cant; i++) {
-            Label lblProd = new Label();
-            lblProd.setText("Producto " + i);
-            TextArea txtNotas = new TextArea();
-           
+        cant++;
+        txtCantidad.setText("" + cant);
+         for (int i = 0; i < cant; i++) {
+            lblProd.setText("Producto " + cant);
+            pnlNotas.add(lblProd);
+            pnlNotas.add(txtNotas);
+            labels.add(lblProd);
+            textsNotas.add(txtNotas);
+            pnlNotas.updateUI();
         }
+
     }//GEN-LAST:event_btnMasActionPerformed
-
-    private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
-       cant = cant - 1;
-        numCantidad = String.valueOf(cant);
-        txtCantidad.setText(numCantidad);
-
-        for (int i = 1; i < cant; i--) {
-            Label lblProd = new Label();
-            lblProd.setText("Producto " + i);
-            TextArea txtNotas = new TextArea();
-        }    
-        
-    }//GEN-LAST:event_btnMenosActionPerformed
 
     private void btnMenuProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuProdActionPerformed
         
     }//GEN-LAST:event_btnMenuProdActionPerformed
+
+    private void btnMenosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseClicked
+        cant--;
+        txtCantidad.setText("" + cant);
+        /* For que recorre los otros for para buscar cada componente 
+        txtField o label y eliminarlo*/
+        for (int i = 1; i < cant; i++) {
+            /*For que recorre la lista de los labels*/
+            for (int j = 0; j < labels.size(); j++) {
+               Label lblAux= labels.get(j);
+               if(lblAux.equals(lblProd)){
+                   pnlNotas.remove(lblAux);
+                   System.out.println("Si entró por acá");
+               }else{
+                   System.out.println("su perra madre no funciono");
+               }
+            }
+            /*For que recorre la lista de los textField*/
+            for (int j = 0; j < textsNotas.size(); j++) {
+                JTextField txtNAux= textsNotas.get(j);
+                if(txtNAux.equals(txtNotas)){
+                    pnlNotas.remove(txtNAux);
+                    System.out.println("Si entró por esta madre también");        
+                }
+            }
+            
+            pnlNotas.updateUI();
+        }
+    }//GEN-LAST:event_btnMenosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -304,11 +306,6 @@ public class AgregarNotasProd extends javax.swing.JFrame {
     private javax.swing.JButton btnMenos;
     private javax.swing.JButton btnMenuProd;
     private javax.swing.JButton btnMnuPrincipal;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel lblCantidad;
-    private javax.swing.JLabel lblNotas;
-    private javax.swing.JLabel lblNotas1;
     private javax.swing.JLabel lblProducto;
     private javax.swing.JPanel pnlDscr;
     private javax.swing.JPanel pnlNotas;
