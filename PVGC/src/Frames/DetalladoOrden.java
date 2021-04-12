@@ -21,12 +21,10 @@ public class DetalladoOrden extends javax.swing.JFrame {
    
     public ControlDetalleOrden ctrlDetOrden;
     public DetalleOrden detOrden;
-    public ArrayList<DetalleOrden>detOrdenes;
+    public ArrayList<DetalleOrden> detOrdenes;
     
     
-    /**
-     * Creates new form DetalladoOrden
-     */
+    
     public DetalladoOrden() {
       
        this.detOrden= new DetalleOrden();
@@ -45,28 +43,31 @@ public class DetalladoOrden extends javax.swing.JFrame {
        lblMesa.setText(""+numMesa);
     }
     public void mostrarProductos(){
-        
+        double total= 0 ;
         detOrdenes= ctrlDetOrden.consultarOrdenes(detOrden);
         
         for (DetalleOrden detOrdene : detOrdenes) {
              String nombre= detOrdene.getProducto().getNombre();
              int cantidad= detOrdene.getCantidad();
              double precio= detOrdene.getTotal();
-             double total= (precio * cantidad);
+             total= (precio * cantidad);
              
-//             String cantString= String.valueOf(cantidad);
-//             String totalString= String.valueOf(total);
+             String cantString= String.valueOf(cantidad);
+             String totalString= String.valueOf(total);
                     
-             String cadena= "      "+nombre+"     "+cantidad+"       "+total ;       
+             String cadena= "      "+nombre+"     "+cantString+"       "+totalString;       
                     
             JTextField txtDetOrden= new JTextField();
             txtDetOrden.setBounds(new Rectangle(25, 15, 250, 21));
             txtDetOrden.setText(cadena);
+            txtDetOrden.setEditable(false);
             
             pnlProductos.add(txtDetOrden);
             pnlProductos.updateUI();
         }
-        
+       total++;
+       txtTotal.setText(""+total);
+       txtTotal.setEditable(false);
         
     }
     
@@ -90,6 +91,8 @@ public class DetalladoOrden extends javax.swing.JFrame {
         btnCobrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnPrincipal = new javax.swing.JButton();
+        lblTotal = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1920, 1080));
@@ -125,6 +128,11 @@ public class DetalladoOrden extends javax.swing.JFrame {
             }
         });
 
+        lblTotal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblTotal.setText("Total: ");
+
+        txtTotal.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,6 +161,12 @@ public class DetalladoOrden extends javax.swing.JFrame {
                         .addComponent(lblMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(177, 177, 177)))
                 .addGap(207, 207, 207))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(349, 349, 349))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,11 +184,17 @@ public class DetalladoOrden extends javax.swing.JFrame {
                                 .addComponent(lblOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrllProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1))
+                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCobrar)
                             .addComponent(btnCancelar))
-                        .addGap(0, 131, Short.MAX_VALUE))
+                        .addGap(0, 113, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPrincipal)
@@ -243,8 +263,10 @@ public class DetalladoOrden extends javax.swing.JFrame {
     private javax.swing.JButton btnPrincipal;
     private javax.swing.JLabel lblMesa;
     private javax.swing.JLabel lblOrden;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lbltitulo;
     private javax.swing.JPanel pnlProductos;
     private javax.swing.JScrollPane scrllProductos;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,8 @@
 package Dominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,7 +38,7 @@ public class DetalleOrden implements Serializable {
     @JoinColumn(name = "idProducto")
     private Producto producto;
     @JoinColumn(name = "notas")
-    private String notas;
+    private List<String> notas;
     @JoinColumn(name = "cantidad")
     private int cantidad;
     @JoinColumn(name = "total")
@@ -50,19 +52,19 @@ public class DetalleOrden implements Serializable {
     public DetalleOrden() {
     }
 
-    public DetalleOrden(Long id, Orden orden, Producto producto, String notas, int cantidad, double total) {
+    public DetalleOrden(Long id, Orden orden, Producto producto,List<String> notas, int cantidad, double total) {
         this.id = id;
         this.orden = orden;
         this.producto = producto;
-        this.notas = notas;
+        this.notas = new ArrayList<>();
         this.cantidad = cantidad;
         this.total = total;
     }
 
-    public DetalleOrden(Orden orden, Producto producto, String notas, int cantidad, double total) {
+    public DetalleOrden(Orden orden, Producto producto, List<String> notas, int cantidad, double total) {
         this.orden = orden;
         this.producto = producto;
-        this.notas = notas;
+        this.notas = new ArrayList<>();
         this.cantidad = cantidad;
         this.total = total;
     }
@@ -95,13 +97,15 @@ public class DetalleOrden implements Serializable {
         this.producto = producto;
     }
 
-    public String getNotas() {
+    public List<String> getNotas() {
         return notas;
     }
 
-    public void setNotas(String notas) {
+    public void setNotas(List<String> notas) {
         this.notas = notas;
     }
+
+    
 
     public int getCantidad() {
         return cantidad;
@@ -143,7 +147,7 @@ public class DetalleOrden implements Serializable {
 
     @Override
     public String toString() {
-        return "Dominio.DetalleOrden[ id=" + id + " ]";
+        return "DetalleOrden id:" + id + " nombre Producto: "+producto.getNombre()+" Cantidad: "+cantidad+" precioTotal: "+total;
     }
     
 }

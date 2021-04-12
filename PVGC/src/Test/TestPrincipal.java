@@ -110,23 +110,35 @@ public class TestPrincipal {
        co.agregarOrden(orden2);
        co.agregarOrden(orden3);
         
+       List<String> notas = new ArrayList<String>();
+       String nota1= "Con mucha carne, queso y tocino";
+       String nota2= "Sin queso";
+       
+       notas.add(nota1);
+       notas.add(nota2);
         //Creación de detalles de orden
-//        DetalleOrden detOrd1 = new DetalleOrden(orden1, prod2);
-//        DetalleOrden detOrd2 = new DetalleOrden(orden2, prod2);
-//        DetalleOrden detOrd3 = new DetalleOrden(orden3, prod3);
+        DetalleOrden detOrd1 = new DetalleOrden(orden1, prod1, notas, 2, 80f);
+        DetalleOrden detOrd2 = new DetalleOrden(orden2, prod2,notas, 1, 35f );
+        DetalleOrden detOrd3 = new DetalleOrden(orden3, prod3,notas, 3, 120f);
         
-        //Creación de lista de detalles de orden para guardar en la orden 1
+        
+           List<DetalleOrden> detOrds= cdo.consultarOrdenes(detOrd3);
+           for (DetalleOrden detOrd : detOrds) {
+            System.out.println(detOrd);
+        }
+        
+//        //Creación de lista de detalles de orden para guardar en la orden 1
 //        List<DetalleOrden> detOrdenes1 = new ArrayList<DetalleOrden>();
 //        detOrdenes1.add(detOrd1);
 //        detOrdenes1.add(detOrd2);
 //        detOrdenes1.add(detOrd3);
-//        
-//        //Detalle de orden para la orden 2
+////        
+////        //Detalle de orden para la orden 2
 //        List<DetalleOrden> detOrdenes2 = new ArrayList<DetalleOrden>();
 //        detOrdenes2.add(detOrd2);
 //        detOrdenes2.add(detOrd1);
 //        detOrdenes2.add(detOrd3);
-//        
+////        
 //        List<DetalleOrden> detOrdenes3 = new ArrayList<DetalleOrden>();
 //        detOrdenes3.add(detOrd3);
 //        detOrdenes3.add(detOrd1);
@@ -135,12 +147,12 @@ public class TestPrincipal {
 //        cdo.agregarDetalleOrden(detOrd1);
 //        cdo.agregarDetalleOrden(detOrd2);
 //        cdo.agregarDetalleOrden(detOrd3);
-//        
-//        //Seteo de los detalle de orden
+////        
+////        //Seteo de los detalle de orden
 //        orden1.setDetalleOrdenes(detOrdenes1);
 //        orden2.setDetalleOrdenes(detOrdenes2);
 //        orden3.setDetalleOrdenes(detOrdenes3);
-//        
+        
 //        
 //        cdo.agregarDetalleOrden(detOrd1);
 //        
