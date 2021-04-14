@@ -21,25 +21,26 @@ import javax.swing.ImageIcon;
  *
  * @author R2
  */
-public class TomarOrden extends javax.swing.JFrame {
+public class TomarOrden extends FrmBase {
 
     /**
      * Creates new form TomarOrden
      */
     public TomarOrden() {
         initComponents();
-        this.resize();
+        adaptarPantalla();
+//        this.resize();
     }
 
-    private void resize() {
-        try {
-            BufferedImage img = ImageIO.read(new File("src/Img/BannerTomarPedido.png"));
-            Image img1 = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH);
-            jLabel1.setIcon(new ImageIcon(img1));
-        } catch (IOException ex) {
-            Logger.getLogger(TomarOrden.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    private void resize() {
+//        try {
+//            BufferedImage img = ImageIO.read(new File("src/Img/BannerTomarPedido.png"));
+//            Image img1 = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH);
+//            jLabel1.setIcon(new ImageIcon(img1));
+//        } catch (IOException ex) {
+//            Logger.getLogger(TomarOrden.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,227 +51,354 @@ public class TomarOrden extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        JPPrincipal = new javax.swing.JPanel();
+        JPComidas = new javax.swing.JPanel();
+        BtnComidas = new javax.swing.JButton();
+        BnrComida = new javax.swing.JLabel();
+        IconoComida = new javax.swing.JLabel();
+        JPDesayunos = new javax.swing.JPanel();
+        BtnDesayunos = new javax.swing.JButton();
+        BnrDesayunos = new javax.swing.JLabel();
+        IconoDesayunos = new javax.swing.JLabel();
+        JPBebidasFrias = new javax.swing.JPanel();
+        BtnBebidasFrias = new javax.swing.JButton();
+        BnrBebidasFrias = new javax.swing.JLabel();
+        IconoBebidasFrias = new javax.swing.JLabel();
+        JPBebidasCalientes = new javax.swing.JPanel();
+        BtnBebidasCalientes = new javax.swing.JButton();
+        BnrBebidasCalientes = new javax.swing.JLabel();
+        IconoBebidasCalientes = new javax.swing.JLabel();
+        JPPostres = new javax.swing.JPanel();
+        BtnPostres = new javax.swing.JButton();
+        BnrPostres = new javax.swing.JLabel();
+        IconoPostres = new javax.swing.JLabel();
+        BtnRegresar = new javax.swing.JButton();
+        TituloMenuTomarPedido = new javax.swing.JLabel();
+        IcTitulo = new javax.swing.JLabel();
+        BackgroundFrame = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(1920, 1080));
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(null);
+        JPComidas.setBackground(new java.awt.Color(206, 215, 231, 200));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-
-        jButton1.setText(" Bebidas calientes");
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Bebidas Calientes.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(110, 280, 260, 420);
-
-        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
-
-        jButton3.setText("Desayuno");
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Desayunos.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel4);
-        jPanel4.setBounds(770, 280, 260, 420);
-
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Bebidas Frias.png"))); // NOI18N
-
-        jButton2.setText(" Bebidas frías");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BtnComidas.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        BtnComidas.setText("Comidas");
+        BtnComidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BtnComidasActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+        BnrComida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BannerConsultarOrden.png"))); // NOI18N
+
+        IconoComida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Comidas.png"))); // NOI18N
+
+        javax.swing.GroupLayout JPComidasLayout = new javax.swing.GroupLayout(JPComidas);
+        JPComidas.setLayout(JPComidasLayout);
+        JPComidasLayout.setHorizontalGroup(
+            JPComidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPComidasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JPComidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPComidasLayout.createSequentialGroup()
+                        .addComponent(BnrComida, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPComidasLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(IconoComida)
+                        .addGap(42, 42, 42))
+                    .addGroup(JPComidasLayout.createSequentialGroup()
+                        .addComponent(BtnComidas, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        JPComidasLayout.setVerticalGroup(
+            JPComidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPComidasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BnrComida, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(IconoComida)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addComponent(BtnComidas, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(440, 280, 260, 420);
+        JPDesayunos.setBackground(new java.awt.Color(206, 215, 231, 200));
 
-        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
+        BtnDesayunos.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        BtnDesayunos.setText("Desayunos");
+        BtnDesayunos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDesayunosActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Comida");
+        BnrDesayunos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BannerModificarOrden.png"))); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Comidas.png"))); // NOI18N
+        IconoDesayunos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Desayunos.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+        javax.swing.GroupLayout JPDesayunosLayout = new javax.swing.GroupLayout(JPDesayunos);
+        JPDesayunos.setLayout(JPDesayunosLayout);
+        JPDesayunosLayout.setHorizontalGroup(
+            JPDesayunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPDesayunosLayout.createSequentialGroup()
+                .addGroup(JPDesayunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPDesayunosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(JPDesayunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BnrDesayunos, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnDesayunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(JPDesayunosLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(IconoDesayunos)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        JPDesayunosLayout.setVerticalGroup(
+            JPDesayunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPDesayunosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BnrDesayunos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(IconoDesayunos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addComponent(BtnDesayunos, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
 
-        jPanel1.add(jPanel5);
-        jPanel5.setBounds(1110, 280, 260, 420);
+        JPBebidasFrias.setBackground(new java.awt.Color(206, 215, 231, 200));
 
-        jPanel7.setBackground(new java.awt.Color(204, 204, 204));
-
-        jButton5.setText("Postres");
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Postres.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel7);
-        jPanel7.setBounds(1450, 280, 260, 420);
-
-        jButton6.setText("Regresar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        BtnBebidasFrias.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        BtnBebidasFrias.setText("Bebidas frías");
+        BtnBebidasFrias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                BtnBebidasFriasActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6);
-        jButton6.setBounds(40, 920, 120, 50);
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1920, 1080);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1920, 1080);
+        BnrBebidasFrias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BannerOpcionEliminarOrden.png"))); // NOI18N
+
+        IconoBebidasFrias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Bebidas Frias.png"))); // NOI18N
+
+        javax.swing.GroupLayout JPBebidasFriasLayout = new javax.swing.GroupLayout(JPBebidasFrias);
+        JPBebidasFrias.setLayout(JPBebidasFriasLayout);
+        JPBebidasFriasLayout.setHorizontalGroup(
+            JPBebidasFriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPBebidasFriasLayout.createSequentialGroup()
+                .addGroup(JPBebidasFriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPBebidasFriasLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BnrBebidasFrias, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 1, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPBebidasFriasLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BtnBebidasFrias, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPBebidasFriasLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(IconoBebidasFrias)
+                .addGap(33, 33, 33))
+        );
+        JPBebidasFriasLayout.setVerticalGroup(
+            JPBebidasFriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPBebidasFriasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BnrBebidasFrias, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(IconoBebidasFrias)
+                .addGap(18, 18, 18)
+                .addComponent(BtnBebidasFrias, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+        );
+
+        JPBebidasCalientes.setBackground(new java.awt.Color(206, 215, 231, 200));
+
+        BtnBebidasCalientes.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        BtnBebidasCalientes.setText("Bebidas calientes");
+        BtnBebidasCalientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBebidasCalientesActionPerformed(evt);
+            }
+        });
+
+        BnrBebidasCalientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BannerTomarPedido.png"))); // NOI18N
+
+        IconoBebidasCalientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Bebidas Calientes.png"))); // NOI18N
+
+        javax.swing.GroupLayout JPBebidasCalientesLayout = new javax.swing.GroupLayout(JPBebidasCalientes);
+        JPBebidasCalientes.setLayout(JPBebidasCalientesLayout);
+        JPBebidasCalientesLayout.setHorizontalGroup(
+            JPBebidasCalientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPBebidasCalientesLayout.createSequentialGroup()
+                .addGroup(JPBebidasCalientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPBebidasCalientesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(JPBebidasCalientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BtnBebidasCalientes, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                            .addComponent(BnrBebidasCalientes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addGroup(JPBebidasCalientesLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(IconoBebidasCalientes)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        JPBebidasCalientesLayout.setVerticalGroup(
+            JPBebidasCalientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPBebidasCalientesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BnrBebidasCalientes, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(IconoBebidasCalientes)
+                .addGap(18, 18, 18)
+                .addComponent(BtnBebidasCalientes, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+        );
+
+        JPPostres.setBackground(new java.awt.Color(206, 215, 231, 200));
+
+        BtnPostres.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        BtnPostres.setText("Postres");
+        BtnPostres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPostresActionPerformed(evt);
+            }
+        });
+
+        BnrPostres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BannerOpcionPostres.png"))); // NOI18N
+
+        IconoPostres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Postres.png"))); // NOI18N
+
+        javax.swing.GroupLayout JPPostresLayout = new javax.swing.GroupLayout(JPPostres);
+        JPPostres.setLayout(JPPostresLayout);
+        JPPostresLayout.setHorizontalGroup(
+            JPPostresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPPostresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JPPostresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BnrPostres, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnPostres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPPostresLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(IconoPostres)
+                .addGap(34, 34, 34))
+        );
+        JPPostresLayout.setVerticalGroup(
+            JPPostresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPPostresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BnrPostres, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(IconoPostres)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnPostres, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
+        );
+
+        BtnRegresar.setBackground(new java.awt.Color(222, 143, 62, 100));
+        BtnRegresar.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 24)); // NOI18N
+        BtnRegresar.setText("REGRESAR");
+        BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegresarActionPerformed(evt);
+            }
+        });
+
+        TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 94)); // NOI18N
+        TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
+        TituloMenuTomarPedido.setText("Tomar pedido");
+
+        IcTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/IconoTituloMenuAdministrarVenta.png"))); // NOI18N
+
+        BackgroundFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
+
+        javax.swing.GroupLayout JPPrincipalLayout = new javax.swing.GroupLayout(JPPrincipal);
+        JPPrincipal.setLayout(JPPrincipalLayout);
+        JPPrincipalLayout.setHorizontalGroup(
+            JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPPrincipalLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnRegresar)
+                    .addGroup(JPPrincipalLayout.createSequentialGroup()
+                        .addComponent(IcTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TituloMenuTomarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JPPrincipalLayout.createSequentialGroup()
+                        .addComponent(JPBebidasCalientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(JPBebidasFrias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(JPDesayunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(JPComidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(JPPostres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(750, Short.MAX_VALUE))
+            .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JPPrincipalLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(BackgroundFrame)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        JPPrincipalLayout.setVerticalGroup(
+            JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPPrincipalLayout.createSequentialGroup()
+                .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPPrincipalLayout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(TituloMenuTomarPedido))
+                    .addGroup(JPPrincipalLayout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(IcTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(108, 108, 108)
+                .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JPBebidasCalientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JPBebidasFrias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(JPPostres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JPComidas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JPDesayunos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(BtnRegresar)
+                .addContainerGap(214, Short.MAX_VALUE))
+            .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JPPrincipalLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(BackgroundFrame)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(JPPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BtnRegresarActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        MenuAdministarVenta jFrm = new MenuAdministarVenta();
-        this.setVisible(false);
-        jFrm.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void BtnBebidasCalientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBebidasCalientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnBebidasCalientesActionPerformed
+
+    private void BtnBebidasFriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBebidasFriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnBebidasFriasActionPerformed
+
+    private void BtnDesayunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDesayunosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnDesayunosActionPerformed
+
+    private void BtnComidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnComidasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnComidasActionPerformed
+
+    private void BtnPostresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPostresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnPostresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,23 +436,30 @@ public class TomarOrden extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel BackgroundFrame;
+    private javax.swing.JLabel BnrBebidasCalientes;
+    private javax.swing.JLabel BnrBebidasFrias;
+    private javax.swing.JLabel BnrComida;
+    private javax.swing.JLabel BnrDesayunos;
+    private javax.swing.JLabel BnrPostres;
+    private javax.swing.JButton BtnBebidasCalientes;
+    private javax.swing.JButton BtnBebidasFrias;
+    private javax.swing.JButton BtnComidas;
+    private javax.swing.JButton BtnDesayunos;
+    private javax.swing.JButton BtnPostres;
+    private javax.swing.JButton BtnRegresar;
+    private javax.swing.JLabel IcTitulo;
+    private javax.swing.JLabel IconoBebidasCalientes;
+    private javax.swing.JLabel IconoBebidasFrias;
+    private javax.swing.JLabel IconoComida;
+    private javax.swing.JLabel IconoDesayunos;
+    private javax.swing.JLabel IconoPostres;
+    private javax.swing.JPanel JPBebidasCalientes;
+    private javax.swing.JPanel JPBebidasFrias;
+    private javax.swing.JPanel JPComidas;
+    private javax.swing.JPanel JPDesayunos;
+    private javax.swing.JPanel JPPostres;
+    private javax.swing.JPanel JPPrincipal;
+    private javax.swing.JLabel TituloMenuTomarPedido;
     // End of variables declaration//GEN-END:variables
 }
