@@ -5,12 +5,26 @@
  */
 package Frames;
 
+import Control.ControlOrden;
+
+import Dominio.Orden;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.RowFilter;
+
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
- * @author Usuario
+ * @author Gildardo Ortega Proaño
  */
 public class ConsultarOrden extends javax.swing.JFrame {
-
+    ControlOrden controlOrden=new ControlOrden(); 
+    
     /**
      * Creates new form ConsultarOrden
      */
@@ -18,7 +32,51 @@ public class ConsultarOrden extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null); 
         this.setExtendedState(MAXIMIZED_BOTH);
+        controlOrden = new ControlOrden();
+        try{
+            this.cargarOrdenes();
+        }catch(SQLException ex){
+           // Logger.getLogger(ConsultarOrden.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        //mostrarDatos();
+        
+        
     }
+    
+    DefaultTableModel modelo;
+    TableRowSorter trs;
+    
+    
+    /*Connection conectar= null;
+    public Connection conexion(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conectar=DriverManager.getConnection("jdbc:mysql://localhost/pvgc","root","sesamo");
+            
+        }catch(Exception e){
+            System.out.println("e.getMessage");
+        }
+        return conectar;
+        
+    }
+    
+    
+    void mostrarDatos(){
+        DefaultTableModel modelo= new DefaultTableModel();
+        modelo.addColumn("ID ORDEN");
+        modelo.addColumn("ESTADO");
+        modelo.addColumn("NUM MESA");
+        modelo.addColumn("NUM ORDEN");
+        modelo.addColumn("ID VENTA");
+        tablaOrdenes.setModel(modelo);
+        
+        */
+        
+        
+        
+        
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,14 +90,13 @@ public class ConsultarOrden extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<String>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jtxtFiltro = new javax.swing.JTextField();
+        btnAceptar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<String>();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablaOrdenes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,34 +105,55 @@ public class ConsultarOrden extends javax.swing.JFrame {
 
         jLabel2.setText("_____________________________________________________________________________________");
 
-        jLabel3.setText("Ingresa el Numero de la Orden que deseas consultar:");
+        jLabel3.setText("Consultar por Num Orden:");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Orden 1", "Orden 2", "Orden 3", "Orden 4", "Orden 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        jtxtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtxtFiltroKeyTyped(evt);
+            }
         });
-        jScrollPane1.setViewportView(jList1);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Aceptar");
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
+            }
+        });
+
+        btnRegresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Ordenes Disponibles:");
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 902, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 601, Short.MAX_VALUE)
+        );
+
+        tablaOrdenes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Num Orden", "Estado", "Num Mesa"
+            }
+        ));
+        jScrollPane3.setViewportView(tablaOrdenes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,28 +162,29 @@ public class ConsultarOrden extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(102, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(183, 183, 183)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(229, 229, 229))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(356, 356, 356)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(238, 238, 238)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(265, 265, 265)
+                        .addComponent(jLabel3)
+                        .addGap(48, 48, 48)
+                        .addComponent(jtxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(btnAceptar)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnRegresar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,30 +193,120 @@ public class ConsultarOrden extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel4)
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jtxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAceptar)
+                                .addComponent(btnRegresar)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(245, 245, 245)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         MenuAdministarVenta jFrm = new MenuAdministarVenta();
-        this.setVisible(false);
         jFrm.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+        
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    
+    
+    public void cargarOrdenes() throws SQLException{
+        List<Orden> ordenes = this.controlOrden.consultarOrdenes();
+        if(ordenes != null){
+            modelo = (DefaultTableModel) tablaOrdenes.getModel();
+            modelo.setRowCount(0);
+            for(Orden orden : ordenes){
+                modelo.addRow(orden.toArray());
+                
+            }
+            
+        }
+      
+    
+      
+   
+               
+            
+        
+        
+    }
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+
+        
+        
+        
+        
+        
+        
+         /* ArrayList<Orden> nombreArrayList = new ArrayList<Orden>()
+
+        controlOrden.consultarOrdenes(orden);
+        
+                consultarOrdenPorNumOrden(int numOrden)
+        
+        
+        int  cantidad;
+         cantidad=ArrayLista.size();
+        ListaIterator = ArrayLista.listIterator();
+        Proceso dato;
+
+        while(ListaIterator.hasNext()){
+            dato = ListaIterator.next();
+            mitabla.addRow(dato.getNombremusica());
+            jmusica.setModel(mitabla);
+        }
+        
+*/
+
+
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    
+    
+    // TODO add your handling code here:
+
+        
+    private void jtxtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtFiltroKeyTyped
+        
+        
+        
+        
+       jtxtFiltro.addKeyListener(new KeyAdapter(){
+           
+           
+           @Override
+           public void keyReleased(KeyEvent ke) {
+              trs.setRowFilter(RowFilter.regexFilter(jtxtFiltro.getText(), 0));
+           }
+       
+       
+       });
+                  trs = new TableRowSorter(modelo);
+                  tablaOrdenes.setRowSorter(trs);
+            
+        
+      
+    }//GEN-LAST:event_jtxtFiltroKeyTyped
 
     /**
      * @param args the command line arguments
@@ -175,16 +344,15 @@ public class ConsultarOrden extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jtxtFiltro;
+    private javax.swing.JTable tablaOrdenes;
     // End of variables declaration//GEN-END:variables
 }
