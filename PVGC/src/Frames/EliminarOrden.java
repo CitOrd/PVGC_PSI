@@ -114,7 +114,7 @@ public class EliminarOrden extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblOrdenes);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 851, 230));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 851, 230));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("________________________________________________________________________________");
