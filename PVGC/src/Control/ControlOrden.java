@@ -26,14 +26,23 @@ public class ControlOrden {
         }
     }
     
-     public void eliminarOrden(Orden orden){
+   /*  public void eliminarOrden(Orden orden){
          if(orden != null){
             this.ordenDao.eliminar(orden.getId());
         }else{
             System.out.println("No se pudo eliminar la orden");
         }
+    }*/
+    
+    
+    public void eliminarOrden(Long numOrden){
+         if(numOrden != 0){
+            this.ordenDao.eliminar(numOrden);
+        }else{
+            System.out.println("No se pudo eliminar la orden");
+        }
     }
-     
+    
      public void actualizarOrden(Orden orden){
          if(orden != null){
             this.ordenDao.actualizar(orden);
@@ -52,14 +61,12 @@ public class ControlOrden {
         }
     }
     
-   public ArrayList<Orden> consultarOrdenes(Orden orden){
-        if(orden != null){
+   public ArrayList<Orden> consultarOrdenes(){
+        
             return this.ordenDao.consultarTodos();
-        }else{
-            System.out.println("No se pudo actualizar la orden");
-            return null;
-        }
+        
    } 
+   
    
    public Orden buscarPorId(Long id){
       if(id != null){

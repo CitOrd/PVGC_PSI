@@ -64,7 +64,11 @@ public class OrdenDAO extends BaseDAO<Orden> {
         List<Orden> ordenes = query.getResultList();
         entityManager.getTransaction().commit();
         return new ArrayList<>(ordenes);
+        
     }
+    
+       
+    
 
     public ArrayList<Orden> consultarPorNumOrden(int numOrden) {
          EntityManager entityManager = this.createEntityManager();

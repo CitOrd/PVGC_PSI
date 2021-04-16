@@ -148,7 +148,24 @@ public class Orden implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
+    
+    @Override
+    public String toString(){
+        return id + "(" + id + ")";
+    }    
+    
+   
+    
+     public Object [] toArray(){
+        return new Object[]{
+            this.getNumOrden(),
+            this.getEstado(),
+            this.getNumMesa(),
 
+           
+        };
+    }
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -162,9 +179,10 @@ public class Orden implements Serializable {
         return true;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Dominio.Orden[ id=" + id + " ]";
     }
+*/
     
 }
