@@ -5,6 +5,17 @@
  */
 package Frames;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import rojerusan.RSPanelsSlider;
+
 /**
  *
  * @author amacias
@@ -15,8 +26,22 @@ public class Categorias extends javax.swing.JFrame {
      * Creates new form Categorias
      */
     public Categorias() {
-        initComponents();
+         initComponents();
+        this.setExtendedState((int) JFrame.MAXIMIZED_BOTH);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.resize();
     }
+
+    private void resize() {
+        try {
+            BufferedImage img = ImageIO.read(new File("src/Img/fondoMenuAdministarVenta.png"));
+            Image img1 = img.getScaledInstance(BackgroundFrame.getWidth(), BackgroundFrame.getHeight(), Image.SCALE_SMOOTH);
+            BackgroundFrame.setIcon(new ImageIcon(img1));
+        } catch (IOException ex) {
+            Logger.getLogger(MenuAdministarVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,12 +52,48 @@ public class Categorias extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BtnRegresar = new javax.swing.JButton();
         Lytfondo = new javax.swing.JLabel();
+        BtnRegresar = new javax.swing.JButton();
+        contenedorOpciones = new javax.swing.JPanel();
+        btnCategoriaBebidasFrias = new javax.swing.JButton();
+        btnCategoriaPostres = new javax.swing.JButton();
+        btnCategoriaDesayuno = new javax.swing.JButton();
+        btnCategoriaComidas = new javax.swing.JButton();
+        btnCategoriaBebidasCalientes = new javax.swing.JButton();
+        rSPanelsSlider1 = new rojerusan.RSPanelsSlider();
+        pnlPostres = new javax.swing.JPanel();
+        ContenedorProducto2 = new javax.swing.JPanel();
+        ImgProducto2 = new javax.swing.JLabel();
+        btnSeleccionarProducto2 = new javax.swing.JButton();
+        pnlBCalientes = new javax.swing.JPanel();
+        ContenedorProducto3 = new javax.swing.JPanel();
+        ImgProducto3 = new javax.swing.JLabel();
+        btnSeleccionarProducto3 = new javax.swing.JButton();
+        pnlComidas = new javax.swing.JPanel();
+        ContenedorProducto = new javax.swing.JPanel();
+        ImgProducto = new javax.swing.JLabel();
+        btnSeleccionarProducto = new javax.swing.JButton();
+        pnlBFrias = new javax.swing.JPanel();
+        ContenedorProducto4 = new javax.swing.JPanel();
+        ImgProducto4 = new javax.swing.JLabel();
+        btnSeleccionarProducto4 = new javax.swing.JButton();
+        pnlDesayunos = new javax.swing.JPanel();
+        ContenedorProducto1 = new javax.swing.JPanel();
+        ImgProducto1 = new javax.swing.JLabel();
+        btnSeleccionarProducto1 = new javax.swing.JButton();
+        ContenedorProducto5 = new javax.swing.JPanel();
+        ImgProducto5 = new javax.swing.JLabel();
+        btnSeleccionarProducto5 = new javax.swing.JButton();
+        BackgroundFrame = new javax.swing.JLabel();
+
+        Lytfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
+        Lytfondo.setMaximumSize(new java.awt.Dimension(1200, 900));
+        Lytfondo.setMinimumSize(new java.awt.Dimension(1200, 900));
+        Lytfondo.setPreferredSize(new java.awt.Dimension(1200, 900));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setName("categorias"); // NOI18N
+        getContentPane().setLayout(null);
 
         BtnRegresar.setBackground(new java.awt.Color(222, 143, 62, 100));
         BtnRegresar.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 24)); // NOI18N
@@ -42,10 +103,379 @@ public class Categorias extends javax.swing.JFrame {
                 BtnRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 990, -1, -1));
+        getContentPane().add(BtnRegresar);
+        BtnRegresar.setBounds(20, 820, 138, 40);
 
-        Lytfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
-        getContentPane().add(Lytfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        contenedorOpciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnCategoriaBebidasFrias.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        btnCategoriaBebidasFrias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Bebidas Frias.png"))); // NOI18N
+        btnCategoriaBebidasFrias.setText("Bebidas Frias");
+        btnCategoriaBebidasFrias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoriaBebidasFriasActionPerformed(evt);
+            }
+        });
+        contenedorOpciones.add(btnCategoriaBebidasFrias, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 300, 140));
+
+        btnCategoriaPostres.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        btnCategoriaPostres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Postres.png"))); // NOI18N
+        btnCategoriaPostres.setText("Postres");
+        btnCategoriaPostres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoriaPostresActionPerformed(evt);
+            }
+        });
+        contenedorOpciones.add(btnCategoriaPostres, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 300, 140));
+
+        btnCategoriaDesayuno.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        btnCategoriaDesayuno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Desayunos.png"))); // NOI18N
+        btnCategoriaDesayuno.setText("Desayunos");
+        btnCategoriaDesayuno.setSelected(true);
+        btnCategoriaDesayuno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoriaDesayunoActionPerformed(evt);
+            }
+        });
+        contenedorOpciones.add(btnCategoriaDesayuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 300, 140));
+
+        btnCategoriaComidas.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        btnCategoriaComidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Comidas.png"))); // NOI18N
+        btnCategoriaComidas.setText("Comidas");
+        btnCategoriaComidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoriaComidasActionPerformed(evt);
+            }
+        });
+        contenedorOpciones.add(btnCategoriaComidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 300, 130));
+
+        btnCategoriaBebidasCalientes.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        btnCategoriaBebidasCalientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Bebidas Calientes.png"))); // NOI18N
+        btnCategoriaBebidasCalientes.setText("Bebidas Calientes");
+        btnCategoriaBebidasCalientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoriaBebidasCalientesActionPerformed(evt);
+            }
+        });
+        contenedorOpciones.add(btnCategoriaBebidasCalientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 300, -1));
+
+        getContentPane().add(contenedorOpciones);
+        contenedorOpciones.setBounds(20, 70, 320, 710);
+        contenedorOpciones.setBackground(new java.awt.Color(206, 215, 231, 95));
+
+        rSPanelsSlider1.setBackground(new java.awt.Color(238, 238, 238));
+
+        pnlPostres.setName("pnlPostres"); // NOI18N
+
+        ImgProducto2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Img Muffins.png"))); // NOI18N
+
+        btnSeleccionarProducto2.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 24)); // NOI18N
+        btnSeleccionarProducto2.setText("Muffins");
+        btnSeleccionarProducto2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarProducto2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ContenedorProducto2Layout = new javax.swing.GroupLayout(ContenedorProducto2);
+        ContenedorProducto2.setLayout(ContenedorProducto2Layout);
+        ContenedorProducto2Layout.setHorizontalGroup(
+            ContenedorProducto2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContenedorProducto2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ImgProducto2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorProducto2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccionarProducto2)
+                .addGap(16, 16, 16))
+        );
+        ContenedorProducto2Layout.setVerticalGroup(
+            ContenedorProducto2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorProducto2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ImgProducto2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccionarProducto2)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnlPostresLayout = new javax.swing.GroupLayout(pnlPostres);
+        pnlPostres.setLayout(pnlPostresLayout);
+        pnlPostresLayout.setHorizontalGroup(
+            pnlPostresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPostresLayout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(ContenedorProducto2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(595, Short.MAX_VALUE))
+        );
+        pnlPostresLayout.setVerticalGroup(
+            pnlPostresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPostresLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(ContenedorProducto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(487, Short.MAX_VALUE))
+        );
+
+        rSPanelsSlider1.add(pnlPostres, "card4");
+
+        pnlBCalientes.setName("pnlBCalientes"); // NOI18N
+
+        ImgProducto3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Img Café Americano.png"))); // NOI18N
+
+        btnSeleccionarProducto3.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 24)); // NOI18N
+        btnSeleccionarProducto3.setText("Americano");
+        btnSeleccionarProducto3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarProducto3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ContenedorProducto3Layout = new javax.swing.GroupLayout(ContenedorProducto3);
+        ContenedorProducto3.setLayout(ContenedorProducto3Layout);
+        ContenedorProducto3Layout.setHorizontalGroup(
+            ContenedorProducto3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContenedorProducto3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ContenedorProducto3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSeleccionarProducto3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ImgProducto3, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ContenedorProducto3Layout.setVerticalGroup(
+            ContenedorProducto3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorProducto3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ImgProducto3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccionarProducto3)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnlBCalientesLayout = new javax.swing.GroupLayout(pnlBCalientes);
+        pnlBCalientes.setLayout(pnlBCalientesLayout);
+        pnlBCalientesLayout.setHorizontalGroup(
+            pnlBCalientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBCalientesLayout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(ContenedorProducto3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(595, Short.MAX_VALUE))
+        );
+        pnlBCalientesLayout.setVerticalGroup(
+            pnlBCalientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBCalientesLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(ContenedorProducto3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(487, Short.MAX_VALUE))
+        );
+
+        rSPanelsSlider1.add(pnlBCalientes, "card5");
+
+        pnlComidas.setName("pnlComidas"); // NOI18N
+        pnlComidas.setPreferredSize(new java.awt.Dimension(1443, 8420));
+
+        ImgProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Img Haburguesas Clásica.png"))); // NOI18N
+
+        btnSeleccionarProducto.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 16)); // NOI18N
+        btnSeleccionarProducto.setText("Hamburguesa");
+        btnSeleccionarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarProductoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ContenedorProductoLayout = new javax.swing.GroupLayout(ContenedorProducto);
+        ContenedorProducto.setLayout(ContenedorProductoLayout);
+        ContenedorProductoLayout.setHorizontalGroup(
+            ContenedorProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContenedorProductoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ImgProducto)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorProductoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccionarProducto)
+                .addGap(16, 16, 16))
+        );
+        ContenedorProductoLayout.setVerticalGroup(
+            ContenedorProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorProductoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ImgProducto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccionarProducto)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnlComidasLayout = new javax.swing.GroupLayout(pnlComidas);
+        pnlComidas.setLayout(pnlComidasLayout);
+        pnlComidasLayout.setHorizontalGroup(
+            pnlComidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlComidasLayout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(ContenedorProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(595, Short.MAX_VALUE))
+        );
+        pnlComidasLayout.setVerticalGroup(
+            pnlComidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlComidasLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(ContenedorProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(494, Short.MAX_VALUE))
+        );
+
+        rSPanelsSlider1.add(pnlComidas, "card3");
+
+        pnlBFrias.setName("pnlBFrias"); // NOI18N
+
+        ImgProducto4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Img Frappé Frio.png"))); // NOI18N
+
+        btnSeleccionarProducto4.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 24)); // NOI18N
+        btnSeleccionarProducto4.setText("Frappé");
+        btnSeleccionarProducto4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarProducto4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ContenedorProducto4Layout = new javax.swing.GroupLayout(ContenedorProducto4);
+        ContenedorProducto4.setLayout(ContenedorProducto4Layout);
+        ContenedorProducto4Layout.setHorizontalGroup(
+            ContenedorProducto4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContenedorProducto4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ContenedorProducto4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSeleccionarProducto4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ImgProducto4, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ContenedorProducto4Layout.setVerticalGroup(
+            ContenedorProducto4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorProducto4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ImgProducto4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccionarProducto4)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnlBFriasLayout = new javax.swing.GroupLayout(pnlBFrias);
+        pnlBFrias.setLayout(pnlBFriasLayout);
+        pnlBFriasLayout.setHorizontalGroup(
+            pnlBFriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBFriasLayout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(ContenedorProducto4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(595, Short.MAX_VALUE))
+        );
+        pnlBFriasLayout.setVerticalGroup(
+            pnlBFriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBFriasLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(ContenedorProducto4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(487, Short.MAX_VALUE))
+        );
+
+        rSPanelsSlider1.add(pnlBFrias, "card6");
+
+        pnlDesayunos.setPreferredSize(new java.awt.Dimension(1443, 842));
+
+        ContenedorProducto1.setSize(new java.awt.Dimension(1443, 842));
+
+        ImgProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Img Huevos.png"))); // NOI18N
+
+        btnSeleccionarProducto1.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        btnSeleccionarProducto1.setText("Huevos");
+
+        javax.swing.GroupLayout ContenedorProducto1Layout = new javax.swing.GroupLayout(ContenedorProducto1);
+        ContenedorProducto1.setLayout(ContenedorProducto1Layout);
+        ContenedorProducto1Layout.setHorizontalGroup(
+            ContenedorProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContenedorProducto1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ImgProducto1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorProducto1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccionarProducto1)
+                .addGap(16, 16, 16))
+        );
+        ContenedorProducto1Layout.setVerticalGroup(
+            ContenedorProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorProducto1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ImgProducto1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccionarProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        ContenedorProducto5.setSize(new java.awt.Dimension(1443, 842));
+
+        ImgProducto5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Img Quesadillas.png"))); // NOI18N
+
+        btnSeleccionarProducto5.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        btnSeleccionarProducto5.setText("Quesadillas");
+        btnSeleccionarProducto5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarProducto5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ContenedorProducto5Layout = new javax.swing.GroupLayout(ContenedorProducto5);
+        ContenedorProducto5.setLayout(ContenedorProducto5Layout);
+        ContenedorProducto5Layout.setHorizontalGroup(
+            ContenedorProducto5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContenedorProducto5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ContenedorProducto5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContenedorProducto5Layout.createSequentialGroup()
+                        .addComponent(ImgProducto5)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnSeleccionarProducto5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        ContenedorProducto5Layout.setVerticalGroup(
+            ContenedorProducto5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorProducto5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ImgProducto5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccionarProducto5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout pnlDesayunosLayout = new javax.swing.GroupLayout(pnlDesayunos);
+        pnlDesayunos.setLayout(pnlDesayunosLayout);
+        pnlDesayunosLayout.setHorizontalGroup(
+            pnlDesayunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDesayunosLayout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(ContenedorProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ContenedorProducto5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(438, Short.MAX_VALUE))
+        );
+        pnlDesayunosLayout.setVerticalGroup(
+            pnlDesayunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDesayunosLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(pnlDesayunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ContenedorProducto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ContenedorProducto5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(494, Short.MAX_VALUE))
+        );
+
+        rSPanelsSlider1.add(pnlDesayunos, "card3");
+
+        getContentPane().add(rSPanelsSlider1);
+        rSPanelsSlider1.setBounds(370, 70, 810, 710);
+
+        BackgroundFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
+        BackgroundFrame.setMaximumSize(new java.awt.Dimension(1200, 900));
+        BackgroundFrame.setMinimumSize(new java.awt.Dimension(1200, 900));
+        BackgroundFrame.setName(""); // NOI18N
+        BackgroundFrame.setPreferredSize(new java.awt.Dimension(1200, 900));
+        getContentPane().add(BackgroundFrame);
+        BackgroundFrame.setBounds(0, 0, 1200, 900);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -55,6 +485,94 @@ public class Categorias extends javax.swing.JFrame {
         this.setVisible(false);
         jFrm.setVisible(true);
     }//GEN-LAST:event_BtnRegresarActionPerformed
+
+    private void btnCategoriaBebidasFriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaBebidasFriasActionPerformed
+        // TODO add your handling code here:
+        if(this.btnCategoriaBebidasFrias.isSelected()){
+            this.btnCategoriaDesayuno.setSelected(false);
+            this.btnCategoriaComidas.setSelected(false);
+            this.btnCategoriaPostres.setSelected(false);
+            this.btnCategoriaBebidasCalientes.setSelected(false);
+            this.btnCategoriaBebidasFrias.setSelected(true);
+
+            rSPanelsSlider1.setPanelSlider(20, pnlPostres, RSPanelsSlider.DIRECT.RIGHT);
+        }
+
+    }//GEN-LAST:event_btnCategoriaBebidasFriasActionPerformed
+
+    private void btnCategoriaPostresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaPostresActionPerformed
+        // TODO add your handling code here:
+        if(this.btnCategoriaPostres.isSelected()){
+            this.btnCategoriaDesayuno.setSelected(false);
+            this.btnCategoriaComidas.setSelected(false);
+            this.btnCategoriaPostres.setSelected(true);
+            this.btnCategoriaBebidasCalientes.setSelected(false);
+            this.btnCategoriaBebidasFrias.setSelected(false);
+
+            rSPanelsSlider1.setPanelSlider(20, pnlPostres, RSPanelsSlider.DIRECT.RIGHT);
+        }
+
+    }//GEN-LAST:event_btnCategoriaPostresActionPerformed
+
+    private void btnCategoriaDesayunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaDesayunoActionPerformed
+        // TODO add your handling code here:
+
+        if(this.btnCategoriaDesayuno.isSelected()){
+            this.btnCategoriaDesayuno.setSelected(true);
+            this.btnCategoriaComidas.setSelected(false);
+            this.btnCategoriaPostres.setSelected(false);
+            this.btnCategoriaBebidasCalientes.setSelected(false);
+            this.btnCategoriaBebidasFrias.setSelected(false);
+
+            rSPanelsSlider1.setPanelSlider(20, pnlPostres, RSPanelsSlider.DIRECT.RIGHT);
+        }
+    }//GEN-LAST:event_btnCategoriaDesayunoActionPerformed
+
+    private void btnCategoriaComidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaComidasActionPerformed
+        // TODO add your handling code here:
+        if(this.btnCategoriaComidas.isSelected()){
+            this.btnCategoriaDesayuno.setSelected(false);
+            this.btnCategoriaComidas.setSelected(true);
+            this.btnCategoriaPostres.setSelected(false);
+            this.btnCategoriaBebidasCalientes.setSelected(false);
+            this.btnCategoriaBebidasFrias.setSelected(false);
+
+            rSPanelsSlider1.setPanelSlider(20, pnlPostres, RSPanelsSlider.DIRECT.RIGHT);
+        }
+    }//GEN-LAST:event_btnCategoriaComidasActionPerformed
+
+    private void btnCategoriaBebidasCalientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaBebidasCalientesActionPerformed
+        // TODO add your handling code here:
+        if(this.btnCategoriaBebidasCalientes.isSelected()){
+            this.btnCategoriaDesayuno.setSelected(false);
+            this.btnCategoriaComidas.setSelected(true);
+            this.btnCategoriaPostres.setSelected(false);
+            this.btnCategoriaBebidasCalientes.setSelected(true);
+            this.btnCategoriaBebidasFrias.setSelected(false);
+
+            rSPanelsSlider1.setPanelSlider(20, pnlPostres, RSPanelsSlider.DIRECT.RIGHT);
+        }
+    }//GEN-LAST:event_btnCategoriaBebidasCalientesActionPerformed
+
+    private void btnSeleccionarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSeleccionarProductoActionPerformed
+
+    private void btnSeleccionarProducto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarProducto2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSeleccionarProducto2ActionPerformed
+
+    private void btnSeleccionarProducto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarProducto3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSeleccionarProducto3ActionPerformed
+
+    private void btnSeleccionarProducto4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarProducto4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSeleccionarProducto4ActionPerformed
+
+    private void btnSeleccionarProducto5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarProducto5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSeleccionarProducto5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,7 +610,38 @@ public class Categorias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BackgroundFrame;
     private javax.swing.JButton BtnRegresar;
+    private javax.swing.JPanel ContenedorProducto;
+    private javax.swing.JPanel ContenedorProducto1;
+    private javax.swing.JPanel ContenedorProducto2;
+    private javax.swing.JPanel ContenedorProducto3;
+    private javax.swing.JPanel ContenedorProducto4;
+    private javax.swing.JPanel ContenedorProducto5;
+    private javax.swing.JLabel ImgProducto;
+    private javax.swing.JLabel ImgProducto1;
+    private javax.swing.JLabel ImgProducto2;
+    private javax.swing.JLabel ImgProducto3;
+    private javax.swing.JLabel ImgProducto4;
+    private javax.swing.JLabel ImgProducto5;
     private javax.swing.JLabel Lytfondo;
+    private javax.swing.JButton btnCategoriaBebidasCalientes;
+    private javax.swing.JButton btnCategoriaBebidasFrias;
+    private javax.swing.JButton btnCategoriaComidas;
+    private javax.swing.JButton btnCategoriaDesayuno;
+    private javax.swing.JButton btnCategoriaPostres;
+    private javax.swing.JButton btnSeleccionarProducto;
+    private javax.swing.JButton btnSeleccionarProducto1;
+    private javax.swing.JButton btnSeleccionarProducto2;
+    private javax.swing.JButton btnSeleccionarProducto3;
+    private javax.swing.JButton btnSeleccionarProducto4;
+    private javax.swing.JButton btnSeleccionarProducto5;
+    private javax.swing.JPanel contenedorOpciones;
+    private javax.swing.JPanel pnlBCalientes;
+    private javax.swing.JPanel pnlBFrias;
+    private javax.swing.JPanel pnlComidas;
+    private javax.swing.JPanel pnlDesayunos;
+    private javax.swing.JPanel pnlPostres;
+    private rojerusan.RSPanelsSlider rSPanelsSlider1;
     // End of variables declaration//GEN-END:variables
 }
