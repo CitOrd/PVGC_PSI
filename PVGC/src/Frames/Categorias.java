@@ -163,7 +163,7 @@ public class Categorias extends javax.swing.JFrame {
         contenedorOpciones.setBounds(20, 70, 320, 710);
         contenedorOpciones.setBackground(new java.awt.Color(206, 215, 231, 95));
 
-        rSPanelsSlider1.setBackground(new java.awt.Color(238, 238, 238));
+        rSPanelsSlider1.setBackground(new java.awt.Color(206, 215, 231, 95));
 
         pnlPostres.setName("pnlPostres"); // NOI18N
 
