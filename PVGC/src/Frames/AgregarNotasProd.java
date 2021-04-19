@@ -9,10 +9,13 @@ import Control.ControlProducto;
 import Control.ControlOrden;
 import Dominio.Orden;
 import Dominio.Producto;
+import java.awt.Color;
+import java.awt.Font;
 
 import java.awt.Label;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 import javax.swing.JTextField;
 
@@ -22,7 +25,7 @@ import javax.swing.JTextField;
  *
  * @author Citlali Orduño
  */
-public class AgregarNotasProd extends javax.swing.JFrame {
+public class AgregarNotasProd extends FrmBase {
 
     public ControlOrden ctrlOrden;
     public Orden orden;
@@ -30,78 +33,111 @@ public class AgregarNotasProd extends javax.swing.JFrame {
     public Producto prod;
     public int cant = 1;
     String numCantidad = "";
-    public JTextField txtNotas = new JTextField();
-    public Label lblProd = new Label();
     public ArrayList<String> notas; 
-    public ArrayList<Label> labels = null;
-    public ArrayList<JTextField> textsNotas = null; 
+    public Label lblDescripcion;
+    public Font f;
     
+   
     /**
      * Creates new form AgregarNotasProd
      */
     public AgregarNotasProd() {
+        adaptarPantalla();
         this.ctrlOrden = new ControlOrden();
         this.ctrlProd = new ControlProducto();
         this.notas= new ArrayList<String>();
         this.prod = prod;
         this.orden = orden;
+        this.lblDescripcion= new Label();
+        this.f= new Font("Arial", Font.BOLD, 14);
+        
         initComponents();
+        lblDescripcion.setForeground(Color.DARK_GRAY);
+        lblDescripcion.setFont(f);
+        lblDescripcion.setSize(100, 50);
+        lblDescripcion.setText("por favor agregate alv");
         this.txtCantidad.setText("" + cant);
-        lblProd.setSize(2, 6);
-        txtNotas.setSize(2,6);
-        pnlNotas.add(lblProd);
-        pnlNotas.add(txtNotas);
+        lblProducto.setText("Producto "+cant);
+       
 
         //  mostrarProducto(prod);
     }
 
     public void mostrarProducto(Producto producto) {
         String nombre = producto.getNombre();
-        lblProducto.setText(nombre);
+        lblnotas.setText(nombre);
        
 
     }
     
-    public void agregarComponentes(){
-        
+    public void agregarNotas() {
+        String nota = txtNota.getText();
+        notas.add(nota);
+        txtNota.setText("");
+
     }
+    
+     public void quitarNota() {
+        disminuirCantidad();
+        notas.get(notas.size() - 1);
+    }
+    
+    public String intAString(int cantidad) {
+        cantidad = cant;
+        numCantidad = String.valueOf(cantidad);
+        return numCantidad;
+    }
+    
+     public void disminuirCantidad() {
+        cant--;
+        String cantidad = intAString(cant);
+        txtCantidad.setText("" + cant);
+        lblProducto.setText("Producto " + cantidad);
+        txtNota.setText("Producto " + cantidad);
+
+    }
+    
+   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        pnlDscr = new javax.swing.JPanel();
+        pnlFondo = new javax.swing.JPanel();
+        lblNombreProducto = new javax.swing.JLabel();
+        pnlCantidad = new javax.swing.JPanel();
+        btnMas = new javax.swing.JButton();
         txtCantidad = new javax.swing.JTextField();
         btnMenos = new javax.swing.JButton();
-        btnMas = new javax.swing.JButton();
-        btnAgregarProdOrden = new javax.swing.JButton();
-        scrllNotas = new javax.swing.JScrollPane();
-        pnlNotas = new javax.swing.JPanel();
-        btnMenuProd = new javax.swing.JButton();
-        btnMnuPrincipal = new javax.swing.JButton();
+        lblCantidad = new javax.swing.JLabel();
+        pnlnotas = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtNota = new javax.swing.JTextArea();
         lblProducto = new javax.swing.JLabel();
+        btnRegistrarOrden = new javax.swing.JButton();
+        btnGuardarNota = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        lblnotas1 = new javax.swing.JLabel();
+        btnMenuPrincipal = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pnlDescNotas = new javax.swing.JPanel();
+        lblnotas = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1200, 900));
 
-        pnlDscr.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0)), "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 36))); // NOI18N
+        pnlFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtCantidad.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadActionPerformed(evt);
-            }
-        });
+        lblNombreProducto.setFont(new java.awt.Font("Dialog", 1, 72)); // NOI18N
+        lblNombreProducto.setText("Café Americano");
+        pnlFondo.add(lblNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
 
-        btnMenos.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        btnMenos.setText("-");
-        btnMenos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMenosMouseClicked(evt);
-            }
-        });
+        pnlCantidad.setBackground(new java.awt.Color(204, 204, 204));
+        pnlCantidad.setForeground(new java.awt.Color(204, 204, 204));
 
-        btnMas.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        btnMas.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnMas.setText("+");
         btnMas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,161 +145,196 @@ public class AgregarNotasProd extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout pnlDscrLayout = new javax.swing.GroupLayout(pnlDscr);
-        pnlDscr.setLayout(pnlDscrLayout);
-        pnlDscrLayout.setHorizontalGroup(
-            pnlDscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDscrLayout.createSequentialGroup()
-                .addContainerGap(125, Short.MAX_VALUE)
-                .addComponent(btnMenos, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnMas, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138))
-        );
-        pnlDscrLayout.setVerticalGroup(
-            pnlDscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDscrLayout.createSequentialGroup()
-                .addGroup(pnlDscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDscrLayout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addGroup(pnlDscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnMas, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlDscrLayout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(btnMenos, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
-        );
+        txtCantidad.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
-        btnAgregarProdOrden.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        btnAgregarProdOrden.setText("Agregar a orden");
-
-        scrllNotas.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0)), "Notas", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 36), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        pnlNotas.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        pnlNotas.setLayout(new javax.swing.BoxLayout(pnlNotas, javax.swing.BoxLayout.Y_AXIS));
-        scrllNotas.setViewportView(pnlNotas);
-
-        btnMenuProd.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        btnMenuProd.setText("Regresar");
-        btnMenuProd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuProdActionPerformed(evt);
+        btnMenos.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnMenos.setText("-");
+        btnMenos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMenosMouseClicked(evt);
             }
         });
 
-        btnMnuPrincipal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        btnMnuPrincipal.setText("Menu Principal");
+        lblCantidad.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        lblCantidad.setForeground(new java.awt.Color(51, 51, 51));
+        lblCantidad.setText("Cantidad");
 
-        lblProducto.setFont(new java.awt.Font("Dialog", 1, 60)); // NOI18N
-        lblProducto.setText("Producto");
+        javax.swing.GroupLayout pnlCantidadLayout = new javax.swing.GroupLayout(pnlCantidad);
+        pnlCantidad.setLayout(pnlCantidadLayout);
+        pnlCantidadLayout.setHorizontalGroup(
+            pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCantidadLayout.createSequentialGroup()
+                .addGroup(pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCantidadLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(btnMenos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnMas, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlCantidadLayout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(lblCantidad)))
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+        pnlCantidadLayout.setVerticalGroup(
+            pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCantidadLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(lblCantidad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMenos)
+                    .addComponent(btnMas))
+                .addContainerGap(139, Short.MAX_VALUE))
+        );
+
+        pnlFondo.add(pnlCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 370, 280));
+
+        pnlnotas.setBackground(new java.awt.Color(204, 204, 204));
+        pnlnotas.setForeground(new java.awt.Color(204, 204, 204));
+
+        txtNota.setColumns(20);
+        txtNota.setRows(5);
+        jScrollPane2.setViewportView(txtNota);
+
+        lblProducto.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblProducto.setForeground(new java.awt.Color(51, 51, 51));
+        lblProducto.setText("Producto ");
+
+        btnRegistrarOrden.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnRegistrarOrden.setText("Terminar Orden");
+
+        btnGuardarNota.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnGuardarNota.setText("Guardar nota");
+        btnGuardarNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarNotaActionPerformed(evt);
+            }
+        });
+
+        btnRegresar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnRegresar.setText("Regresar");
+
+        lblnotas1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        lblnotas1.setForeground(new java.awt.Color(51, 51, 51));
+        lblnotas1.setText("Agregar nota");
+
+        javax.swing.GroupLayout pnlnotasLayout = new javax.swing.GroupLayout(pnlnotas);
+        pnlnotas.setLayout(pnlnotasLayout);
+        pnlnotasLayout.setHorizontalGroup(
+            pnlnotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlnotasLayout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(pnlnotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblProducto)
+                    .addGroup(pnlnotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pnlnotasLayout.createSequentialGroup()
+                            .addComponent(btnGuardarNota)
+                            .addGap(27, 27, 27)
+                            .addComponent(btnRegistrarOrden)
+                            .addGap(29, 29, 29)
+                            .addComponent(btnRegresar))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25))
+            .addGroup(pnlnotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlnotasLayout.createSequentialGroup()
+                    .addGap(132, 132, 132)
+                    .addComponent(lblnotas1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(147, Short.MAX_VALUE)))
+        );
+        pnlnotasLayout.setVerticalGroup(
+            pnlnotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlnotasLayout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(lblProducto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(pnlnotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistrarOrden)
+                    .addComponent(btnGuardarNota)
+                    .addComponent(btnRegresar))
+                .addContainerGap(33, Short.MAX_VALUE))
+            .addGroup(pnlnotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlnotasLayout.createSequentialGroup()
+                    .addGap(34, 34, 34)
+                    .addComponent(lblnotas1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(264, Short.MAX_VALUE)))
+        );
+
+        pnlFondo.add(pnlnotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, -1, 340));
+
+        btnMenuPrincipal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnMenuPrincipal.setText("Menu principal");
+        pnlFondo.add(btnMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 780, -1, -1));
+
+        pnlDescNotas.setBackground(new java.awt.Color(204, 204, 204));
+        pnlDescNotas.setForeground(new java.awt.Color(204, 204, 204));
+        pnlDescNotas.setLayout(new javax.swing.BoxLayout(pnlDescNotas, javax.swing.BoxLayout.Y_AXIS));
+
+        lblnotas.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        lblnotas.setForeground(new java.awt.Color(51, 51, 51));
+        lblnotas.setText("Nota");
+        pnlDescNotas.add(lblnotas);
+
+        jScrollPane1.setViewportView(pnlDescNotas);
+
+        pnlFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 270, 530, 340));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
+        pnlFondo.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1000));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(306, 306, 306)
-                .addComponent(lblProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgregarProdOrden)
-                .addGap(133, 133, 133)
-                .addComponent(btnMenuProd, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(232, 232, 232))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(btnMnuPrincipal))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(294, 294, 294)
-                        .addComponent(pnlDscr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91)
-                        .addComponent(scrllNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(289, Short.MAX_VALUE))
+            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(lblProducto)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(pnlDscr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(scrllNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(249, 249, 249)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnMnuPrincipal)
-                        .addGap(349, 349, 349))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnMenuProd)
-                            .addComponent(btnAgregarProdOrden))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 977, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadActionPerformed
-
     private void btnMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasActionPerformed
         cant++;
-        txtCantidad.setText("" + cant);
-         for (int i = 0; i < cant; i++) {
-            lblProd.setText("Producto " + cant);
-            pnlNotas.add(lblProd);
-            pnlNotas.add(txtNotas);
-            labels.add(lblProd);
-            textsNotas.add(txtNotas);
-            pnlNotas.updateUI();
-        }
-
+        String cantidad = intAString(cant);
+        txtCantidad.setText(cantidad);
     }//GEN-LAST:event_btnMasActionPerformed
 
-    private void btnMenuProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuProdActionPerformed
-        
-    }//GEN-LAST:event_btnMenuProdActionPerformed
-
     private void btnMenosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseClicked
-        cant--;
-        txtCantidad.setText("" + cant);
-        /* For que recorre los otros for para buscar cada componente 
-        txtField o label y eliminarlo*/
-        for (int i = 1; i < cant; i++) {
-            /*For que recorre la lista de los labels*/
-            for (int j = 0; j < labels.size(); j++) {
-               Label lblAux= labels.get(j);
-               if(lblAux.equals(lblProd)){
-                   pnlNotas.remove(lblAux);
-                   System.out.println("Si entró por acá");
-               }else{
-                   System.out.println("su perra madre no funciono");
-               }
-            }
-            /*For que recorre la lista de los textField*/
-            for (int j = 0; j < textsNotas.size(); j++) {
-                JTextField txtNAux= textsNotas.get(j);
-                if(txtNAux.equals(txtNotas)){
-                    pnlNotas.remove(txtNAux);
-                    System.out.println("Si entró por esta madre también");        
-                }
-            }
-            
-            pnlNotas.updateUI();
-        }
+        this.disminuirCantidad();
+        this.quitarNota();
+        
     }//GEN-LAST:event_btnMenosMouseClicked
+
+    private void btnGuardarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarNotaActionPerformed
+        this.agregarNotas();
+  
+        if (cant == notas.size()) {
+           int dialogo = JOptionPane.showConfirmDialog(this, "¿Desea finalizar su orden?",
+                        "Confirmación", JOptionPane.YES_NO_OPTION);
+           if(dialogo == JOptionPane.YES_OPTION ){
+               Categorias frmCategoria= new Categorias();
+               this.setVisible(false);
+               frmCategoria.setVisible(true);
+           }else{
+               System.out.println("jaja no sé que ponerle aquí");
+           }
+        }else{
+            int cantAux= cant;
+            
+            lblProducto.setText("Producto " + cantAux);
+            txtNota.setText("Producto " + cant);
+            agregarNotas();
+        }
+    }//GEN-LAST:event_btnGuardarNotaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,16 +372,26 @@ public class AgregarNotasProd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarProdOrden;
+    private javax.swing.JButton btnGuardarNota;
     private javax.swing.JButton btnMas;
     private javax.swing.JButton btnMenos;
-    private javax.swing.JButton btnMenuProd;
-    private javax.swing.JButton btnMnuPrincipal;
+    private javax.swing.JButton btnMenuPrincipal;
+    private javax.swing.JButton btnRegistrarOrden;
+    private javax.swing.JButton btnRegresar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblNombreProducto;
     private javax.swing.JLabel lblProducto;
-    private javax.swing.JPanel pnlDscr;
-    private javax.swing.JPanel pnlNotas;
-    private javax.swing.JScrollPane scrllNotas;
+    private javax.swing.JLabel lblnotas;
+    private javax.swing.JLabel lblnotas1;
+    private javax.swing.JPanel pnlCantidad;
+    private javax.swing.JPanel pnlDescNotas;
+    private javax.swing.JPanel pnlFondo;
+    private javax.swing.JPanel pnlnotas;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextArea txtNota;
     // End of variables declaration//GEN-END:variables
 
 }

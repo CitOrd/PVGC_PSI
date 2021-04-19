@@ -16,63 +16,56 @@ import javax.swing.JTextField;
  *
  * @author Citlali Orduño
  */
-public class DetalladoOrden extends javax.swing.JFrame {
-    
-   
+public class DetalladoOrden extends FrmBase {
+
     public ControlDetalleOrden ctrlDetOrden;
     public DetalleOrden detOrden;
     public ArrayList<DetalleOrden> detOrdenes;
-    
-    
-    
+
     public DetalladoOrden() {
-      
-       this.detOrden= new DetalleOrden();
-       this.detOrdenes= new ArrayList<>();
+        adaptarPantalla();
+        this.detOrden = new DetalleOrden();
+        this.detOrdenes = new ArrayList<>();
         initComponents();
         this.mostrarIndicadores();
         this.mostrarProductos();
-        
+
     }
-    
-    
-    public void mostrarIndicadores(){
-       int numMesa= detOrden.getOrden().getNumMesa();
-       int numOrden= detOrden.getOrden().getNumOrden();
-       lblOrden.setText(""+numOrden);
-       lblMesa.setText(""+numMesa);
+
+    public void mostrarIndicadores() {
+        int numMesa = detOrden.getOrden().getNumMesa();
+        int numOrden = detOrden.getOrden().getNumOrden();
+      
     }
-    public void mostrarProductos(){
-        double total= 0 ;
-        detOrdenes= ctrlDetOrden.consultarOrdenes(detOrden);
-        
+
+    public void mostrarProductos() {
+        double total = 0;
+        detOrdenes = ctrlDetOrden.consultarOrdenes(detOrden);
+
         for (DetalleOrden detOrdene : detOrdenes) {
-             String nombre= detOrdene.getProducto().getNombre();
-             int cantidad= detOrdene.getCantidad();
-             double precio= detOrdene.getTotal();
-             total= (precio * cantidad);
-             
-             String cantString= String.valueOf(cantidad);
-             String totalString= String.valueOf(total);
-                    
-             String cadena= "      "+nombre+"     "+cantString+"       "+totalString;       
-                    
-            JTextField txtDetOrden= new JTextField();
+            String nombre = detOrdene.getProducto().getNombre();
+            int cantidad = detOrdene.getCantidad();
+            double precio = detOrdene.getTotal();
+            total = (precio * cantidad);
+
+            String cantString = String.valueOf(cantidad);
+            String totalString = String.valueOf(total);
+
+            String cadena = "      " + nombre + "     " + cantString + "       " + totalString;
+
+            JTextField txtDetOrden = new JTextField();
             txtDetOrden.setBounds(new Rectangle(25, 15, 250, 21));
             txtDetOrden.setText(cadena);
             txtDetOrden.setEditable(false);
-            
-            pnlProductos.add(txtDetOrden);
-            pnlProductos.updateUI();
+
+            pnlPrincipal.add(txtDetOrden);
+            pnlPrincipal.updateUI();
         }
-       total++;
-       txtTotal.setText(""+total);
-       txtTotal.setEditable(false);
-        
+        total++;
+//        txtTotal.setText("" + total);
+//        txtTotal.setEditable(false);
+
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,145 +76,66 @@ public class DetalladoOrden extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbltitulo = new javax.swing.JLabel();
-        lblOrden = new javax.swing.JLabel();
-        lblMesa = new javax.swing.JLabel();
-        scrllProductos = new javax.swing.JScrollPane();
-        pnlProductos = new javax.swing.JPanel();
-        btnCobrar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
-        btnPrincipal = new javax.swing.JButton();
-        lblTotal = new javax.swing.JLabel();
-        txtTotal = new javax.swing.JTextField();
+        pnlFondo = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lblNumMesa = new javax.swing.JLabel();
+        lblNumOrden = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pnlPrincipal = new javax.swing.JPanel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1920, 1080));
 
-        lbltitulo.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        lbltitulo.setText("Detallado de Orden");
+        pnlFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblOrden.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblOrden.setText("Num. de Orden");
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 72)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Detallado de Orden");
+        pnlFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, -1));
 
-        lblMesa.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblMesa.setText("Num. De Mesa");
+        lblNumMesa.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        lblNumMesa.setForeground(new java.awt.Color(255, 255, 255));
+        lblNumMesa.setText("Num. Mesa");
+        pnlFondo.add(lblNumMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 190, -1, -1));
 
-        pnlProductos.setLayout(new java.awt.GridLayout(0, 1));
-        scrllProductos.setViewportView(pnlProductos);
+        lblNumOrden.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        lblNumOrden.setForeground(new java.awt.Color(255, 255, 255));
+        lblNumOrden.setText("Num. Orden");
+        pnlFondo.add(lblNumOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, -1));
 
-        btnCobrar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        btnCobrar.setText("Cobrar Orden ");
-        btnCobrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCobrarActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
+        pnlPrincipal.setLayout(pnlPrincipalLayout);
+        pnlPrincipalLayout.setHorizontalGroup(
+            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1237, Short.MAX_VALUE)
+        );
+        pnlPrincipalLayout.setVerticalGroup(
+            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 517, Short.MAX_VALUE)
+        );
 
-        btnCancelar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        btnCancelar.setText("Cancelar");
+        jScrollPane1.setViewportView(pnlPrincipal);
 
-        btnPrincipal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        btnPrincipal.setText("Menu Principal");
-        btnPrincipal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrincipalActionPerformed(evt);
-            }
-        });
+        pnlFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 1240, 520));
 
-        lblTotal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblTotal.setText("Total: ");
-
-        txtTotal.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
+        pnlFondo.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1660, 960));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(btnPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCobrar)
-                .addGap(65, 65, 65)
-                .addComponent(btnCancelar)
-                .addGap(227, 227, 227))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(230, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lbltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(302, 302, 302))
-                            .addComponent(scrllProductos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1207, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(lblOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(177, 177, 177)))
-                .addGap(207, 207, 207))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(349, 349, 349))
+            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(lbltitulo)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(lblOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrllProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1))
-                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCobrar)
-                            .addComponent(btnCancelar))
-                        .addGap(0, 113, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPrincipal)
-                        .addGap(91, 91, 91))))
+            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
-        // Este botón llamará a la pantalla de cobrar orden que se encuentra en
-        //en el CU "Cobrar Orden"
-    }//GEN-LAST:event_btnCobrarActionPerformed
-
-    private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
-        MenuAdministarVenta jFrm = new MenuAdministarVenta();
-        this.setVisible(false);
-        jFrm.setVisible(true);
-    }//GEN-LAST:event_btnPrincipalActionPerformed
-
-    
-    
-    
-    
-    
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -258,15 +172,12 @@ public class DetalladoOrden extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCobrar;
-    private javax.swing.JButton btnPrincipal;
-    private javax.swing.JLabel lblMesa;
-    private javax.swing.JLabel lblOrden;
-    private javax.swing.JLabel lblTotal;
-    private javax.swing.JLabel lbltitulo;
-    private javax.swing.JPanel pnlProductos;
-    private javax.swing.JScrollPane scrllProductos;
-    private javax.swing.JTextField txtTotal;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblNumMesa;
+    private javax.swing.JLabel lblNumOrden;
+    private javax.swing.JPanel pnlFondo;
+    private javax.swing.JPanel pnlPrincipal;
     // End of variables declaration//GEN-END:variables
 }
