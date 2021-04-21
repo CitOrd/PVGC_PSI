@@ -77,11 +77,16 @@ public class DetalladoOrden extends FrmBase {
     private void initComponents() {
 
         pnlFondo = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        TituloMenuTomarPedido = new javax.swing.JLabel();
+        pnlCantidad1 = new javax.swing.JPanel();
         lblNumMesa = new javax.swing.JLabel();
-        lblNumOrden = new javax.swing.JLabel();
+        txtNumOrden = new javax.swing.JTextField();
+        lblNumOrden1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        pnlPrincipal = new javax.swing.JPanel();
+        pnlCantidad = new javax.swing.JPanel();
+        btnCobrarOrden = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        brnPrincipal = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,59 +94,112 @@ public class DetalladoOrden extends FrmBase {
 
         pnlFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 72)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Detallado de Orden");
-        pnlFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, -1));
+        TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 60)); // NOI18N
+        TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
+        TituloMenuTomarPedido.setText("Detallado de orden");
+        pnlFondo.add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
 
-        lblNumMesa.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        lblNumMesa.setForeground(new java.awt.Color(255, 255, 255));
+        pnlCantidad1.setBackground(new java.awt.Color(206, 215, 231, 200));
+
+        lblNumMesa.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        lblNumMesa.setForeground(new java.awt.Color(153, 153, 153));
         lblNumMesa.setText("Num. Mesa");
-        pnlFondo.add(lblNumMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 190, -1, -1));
 
-        lblNumOrden.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        lblNumOrden.setForeground(new java.awt.Color(255, 255, 255));
-        lblNumOrden.setText("Num. Orden");
-        pnlFondo.add(lblNumOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, -1));
+        txtNumOrden.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
-        javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
-        pnlPrincipal.setLayout(pnlPrincipalLayout);
-        pnlPrincipalLayout.setHorizontalGroup(
-            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1237, Short.MAX_VALUE)
+        lblNumOrden1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        lblNumOrden1.setForeground(new java.awt.Color(153, 153, 153));
+        lblNumOrden1.setText("Num. Orden");
+
+        javax.swing.GroupLayout pnlCantidad1Layout = new javax.swing.GroupLayout(pnlCantidad1);
+        pnlCantidad1.setLayout(pnlCantidad1Layout);
+        pnlCantidad1Layout.setHorizontalGroup(
+            pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCantidad1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(lblNumMesa)
+                .addGap(18, 18, 18)
+                .addComponent(txtNumOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                .addComponent(lblNumOrden1)
+                .addGap(99, 99, 99))
         );
-        pnlPrincipalLayout.setVerticalGroup(
-            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 517, Short.MAX_VALUE)
+        pnlCantidad1Layout.setVerticalGroup(
+            pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCantidad1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCantidad1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(lblNumMesa))
+                    .addComponent(lblNumOrden1)
+                    .addComponent(txtNumOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setViewportView(pnlPrincipal);
+        pnlFondo.add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 880, 110));
 
-        pnlFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 1240, 520));
+        pnlCantidad.setBackground(new java.awt.Color(206, 215, 231, 200));
+
+        javax.swing.GroupLayout pnlCantidadLayout = new javax.swing.GroupLayout(pnlCantidad);
+        pnlCantidad.setLayout(pnlCantidadLayout);
+        pnlCantidadLayout.setHorizontalGroup(
+            pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 864, Short.MAX_VALUE)
+        );
+        pnlCantidadLayout.setVerticalGroup(
+            pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 440, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(pnlCantidad);
+
+        pnlFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 880, 420));
+
+        btnCobrarOrden.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnCobrarOrden.setText("Cobrar Orden");
+        pnlFondo.add(btnCobrarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 800, -1, -1));
+
+        btnRegresar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnRegresar.setText("Regresar");
+        pnlFondo.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 800, -1, -1));
+
+        brnPrincipal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        brnPrincipal.setText("Menu principal");
+        brnPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brnPrincipalActionPerformed(evt);
+            }
+        });
+        pnlFondo.add(brnPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 870, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
-        pnlFondo.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1660, 960));
+        pnlFondo.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1230, 950));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void brnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnPrincipalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_brnPrincipalActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        //<editotxtNumMesaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -172,12 +230,17 @@ public class DetalladoOrden extends FrmBase {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel TituloMenuTomarPedido;
+    private javax.swing.JButton brnPrincipal;
+    private javax.swing.JButton btnCobrarOrden;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblNumMesa;
-    private javax.swing.JLabel lblNumOrden;
+    private javax.swing.JLabel lblNumOrden1;
+    private javax.swing.JPanel pnlCantidad;
+    private javax.swing.JPanel pnlCantidad1;
     private javax.swing.JPanel pnlFondo;
-    private javax.swing.JPanel pnlPrincipal;
+    private javax.swing.JTextField txtNumOrden;
     // End of variables declaration//GEN-END:variables
 }
