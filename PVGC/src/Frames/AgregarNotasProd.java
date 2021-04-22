@@ -5,8 +5,10 @@
  */
 package Frames;
 
+import Control.ControlDetalleOrden;
 import Control.ControlProducto;
 import Control.ControlOrden;
+import Dominio.DetalleOrden;
 import Dominio.Orden;
 import Dominio.Producto;
 import java.awt.Color;
@@ -21,7 +23,7 @@ import javax.swing.JTextField;
 
 
 /**
- * Pantalla para poder agregar un producto a la orden.
+ * Pantalla para poder agregar detalles de la orden.
  *
  * @author Citlali Orduño
  */
@@ -36,6 +38,7 @@ public class AgregarNotasProd extends FrmBase {
     public ArrayList<String> notas; 
     public Label lblDescripcion;
     public Font f;
+    public ControlDetalleOrden ctrlDetOrden;
     
    
     /**
@@ -54,32 +57,20 @@ public class AgregarNotasProd extends FrmBase {
         initComponents();
         lblDescripcion.setForeground(Color.DARK_GRAY);
         lblDescripcion.setFont(f);
-        lblDescripcion.setSize(100, 50);
-        lblDescripcion.setText("por favor agregate alv");
+        lblDescripcion.setSize(300, 50);
+        
         this.txtCantidad.setText("" + cant);
         lblProducto.setText("Producto "+cant);
-       
+        
 
         //  mostrarProducto(prod);
     }
-
+    
+    
     public void mostrarProducto(Producto producto) {
         String nombre = producto.getNombre();
         lblNombreProducto.setText(nombre);
-       
 
-    }
-    
-    public void agregarNotas() {
-        String nota = txtNota.getText();
-        notas.add(nota);
-        txtNota.setText("");
-
-    }
-    
-     public void quitarNota() {
-        disminuirCantidad();
-        notas.get(notas.size() - 1);
     }
     
     public String intAString(int cantidad) {
@@ -93,11 +84,52 @@ public class AgregarNotasProd extends FrmBase {
         String cantidad = intAString(cant);
         txtCantidad.setText("" + cant);
         lblProducto.setText("Producto " + cantidad);
-        txtNota.setText("Producto " + cantidad);
 
     }
     
-   
+    public void agregarNotas() {
+        String nota = txtNota.getText();
+        String prod= lblProducto.getText();
+        lblDescripcion.setText(""+prod+" "+nota);
+        String desc=  lblDescripcion.getText();
+        notas.add(desc);
+        txtNota.setText("");
+    }
+    
+     public void quitarNota() {
+        disminuirCantidad();
+        notas.get(notas.size() - 1);
+    }
+  
+    public void mostrarNotas(){
+        
+        for (String nota : notas) {
+            lblDescripcion.setText(nota);
+            pnlNotasProducto.add(lblDescripcion);
+            pnlNotasProducto.updateUI();
+        }
+    } 
+    
+    public void guardarNotas(){
+          if (cant == notas.size()) {
+            mostrarNotas();
+            int dialogo = JOptionPane.showConfirmDialog(this, "¿Desea finalizar su orden?",
+                "Confirmación", JOptionPane.YES_NO_OPTION);
+                 
+            if(dialogo == JOptionPane.YES_OPTION ){
+                Categorias frmCategoria= new Categorias();
+                this.setVisible(false);
+                frmCategoria.setVisible(true);
+            }else{
+                System.out.println("jaja no sé que ponerle aquí");
+            }
+        }
+        else if(cant > notas.size()){
+            int cantAux= (notas.size()+1);
+            lblProducto.setText("Producto " + cantAux);
+            
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -122,8 +154,8 @@ public class AgregarNotasProd extends FrmBase {
         lblnotas2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlNotasProducto = new javax.swing.JPanel();
+        btnFinalizarDetallado = new javax.swing.JButton();
         btnEliminarNota = new javax.swing.JButton();
-        btnRegistrarOrden = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -133,11 +165,11 @@ public class AgregarNotasProd extends FrmBase {
 
         lblNombreProducto.setFont(new java.awt.Font("Dialog", 1, 72)); // NOI18N
         lblNombreProducto.setText("Café Americano");
-        pnlFondo.add(lblNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, -1));
+        pnlFondo.add(lblNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
 
         btnMenuPrincipal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnMenuPrincipal.setText("Menu principal");
-        pnlFondo.add(btnMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 900, -1, -1));
+        pnlFondo.add(btnMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 750, -1, -1));
 
         pnlCantidad.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -177,24 +209,24 @@ public class AgregarNotasProd extends FrmBase {
                         .addGap(18, 18, 18)
                         .addComponent(btnMas, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCantidadLayout.createSequentialGroup()
-                        .addGap(99, 99, 99)
+                        .addGap(98, 98, 98)
                         .addComponent(lblCantidad)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         pnlCantidadLayout.setVerticalGroup(
             pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCantidadLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(47, 47, 47)
                 .addComponent(lblCantidad)
-                .addGap(37, 37, 37)
+                .addGap(28, 28, 28)
                 .addGroup(pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMenos)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMas))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
-        pnlFondo.add(pnlCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 360, 310));
+        pnlFondo.add(pnlCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 360, 310));
 
         pnlAgregarNota.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -230,21 +262,17 @@ public class AgregarNotasProd extends FrmBase {
                 .addComponent(lblnotas1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(107, 107, 107))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgregarNotaLayout.createSequentialGroup()
-                .addGroup(pnlAgregarNotaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlAgregarNotaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlAgregarNotaLayout.createSequentialGroup()
-                        .addContainerGap(34, Short.MAX_VALUE)
-                        .addGroup(pnlAgregarNotaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(pnlAgregarNotaLayout.createSequentialGroup()
-                                .addComponent(btnGuardarNota)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnRegresar))
-                            .addGroup(pnlAgregarNotaLayout.createSequentialGroup()
-                                .addComponent(lblProducto)
-                                .addGap(332, 332, 332)))))
+                .addContainerGap(215, Short.MAX_VALUE)
+                .addComponent(btnGuardarNota)
+                .addGap(18, 18, 18)
+                .addComponent(btnRegresar)
                 .addGap(30, 30, 30))
+            .addGroup(pnlAgregarNotaLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(pnlAgregarNotaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblProducto)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlAgregarNotaLayout.setVerticalGroup(
             pnlAgregarNotaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,7 +290,7 @@ public class AgregarNotasProd extends FrmBase {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        pnlFondo.add(pnlAgregarNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, 480, 310));
+        pnlFondo.add(pnlAgregarNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 480, 310));
 
         pnlNotas.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -270,73 +298,73 @@ public class AgregarNotasProd extends FrmBase {
         lblnotas2.setForeground(new java.awt.Color(51, 51, 51));
         lblnotas2.setText("Notas del producto");
 
-        javax.swing.GroupLayout pnlNotasProductoLayout = new javax.swing.GroupLayout(pnlNotasProducto);
-        pnlNotasProducto.setLayout(pnlNotasProductoLayout);
-        pnlNotasProductoLayout.setHorizontalGroup(
-            pnlNotasProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
-        );
-        pnlNotasProductoLayout.setVerticalGroup(
-            pnlNotasProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 228, Short.MAX_VALUE)
-        );
-
+        pnlNotasProducto.setLayout(new javax.swing.BoxLayout(pnlNotasProducto, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(pnlNotasProducto);
+
+        btnFinalizarDetallado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnFinalizarDetallado.setText("Finalizar detallado");
+        btnFinalizarDetallado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarDetalladoActionPerformed(evt);
+            }
+        });
 
         btnEliminarNota.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnEliminarNota.setText("Eliminar nota");
-
-        btnRegistrarOrden.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnRegistrarOrden.setText("Terminar Orden");
+        btnEliminarNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarNotaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlNotasLayout = new javax.swing.GroupLayout(pnlNotas);
         pnlNotas.setLayout(pnlNotasLayout);
         pnlNotasLayout.setHorizontalGroup(
             pnlNotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlNotasLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(pnlNotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRegistrarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminarNota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGroup(pnlNotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlNotasLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(lblnotas2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlNotasLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNotasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblnotas2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(258, 258, 258))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnFinalizarDetallado)
+                .addGap(29, 29, 29)
+                .addComponent(btnEliminarNota, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         pnlNotasLayout.setVerticalGroup(
             pnlNotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlNotasLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addComponent(lblnotas2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(pnlNotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlNotasLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlNotasLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(btnRegistrarOrden)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminarNota)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlNotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFinalizarDetallado)
+                    .addComponent(btnEliminarNota))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        pnlFondo.add(pnlNotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 880, -1));
+        pnlFondo.add(pnlNotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 190, 520, 310));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
-        pnlFondo.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 1000));
+        pnlFondo.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 1590, 950));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 977, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -356,25 +384,18 @@ public class AgregarNotasProd extends FrmBase {
 
     private void btnGuardarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarNotaActionPerformed
         this.agregarNotas();
-
-        if (cant == notas.size()) {
-            int dialogo = JOptionPane.showConfirmDialog(this, "¿Desea finalizar su orden?",
-                "Confirmación", JOptionPane.YES_NO_OPTION);
-            if(dialogo == JOptionPane.YES_OPTION ){
-                Categorias frmCategoria= new Categorias();
-                this.setVisible(false);
-                frmCategoria.setVisible(true);
-            }else{
-                System.out.println("jaja no sé que ponerle aquí");
-            }
-        }else{
-            int cantAux= cant;
-
-            lblProducto.setText("Producto " + cantAux);
-            txtNota.setText("Producto " + cant);
-            agregarNotas();
-        }
+        this.guardarNotas();
     }//GEN-LAST:event_btnGuardarNotaActionPerformed
+
+    private void btnEliminarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarNotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarNotaActionPerformed
+
+    private void btnFinalizarDetalladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarDetalladoActionPerformed
+        DetalleOrden detOrden= new DetalleOrden(orden, prod, notas, cant);
+        ctrlDetOrden.agregarDetalleOrden(detOrden);
+        
+    }//GEN-LAST:event_btnFinalizarDetalladoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -413,11 +434,11 @@ public class AgregarNotasProd extends FrmBase {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminarNota;
+    private javax.swing.JButton btnFinalizarDetallado;
     private javax.swing.JButton btnGuardarNota;
     private javax.swing.JButton btnMas;
     private javax.swing.JButton btnMenos;
     private javax.swing.JButton btnMenuPrincipal;
-    private javax.swing.JButton btnRegistrarOrden;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

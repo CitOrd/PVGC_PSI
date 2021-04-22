@@ -58,8 +58,7 @@ public class DetalladoOrden extends FrmBase {
             txtDetOrden.setText(cadena);
             txtDetOrden.setEditable(false);
 
-            pnlPrincipal.add(txtDetOrden);
-            pnlPrincipal.updateUI();
+           
         }
         total++;
 //        txtTotal.setText("" + total);

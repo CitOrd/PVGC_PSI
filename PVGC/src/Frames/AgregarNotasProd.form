@@ -26,12 +26,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnlFondo" min="-2" max="-2" attributes="0"/>
+          <Component id="pnlFondo" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnlFondo" min="-2" pref="977" max="-2" attributes="0"/>
+          <Component id="pnlFondo" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -51,7 +51,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="80" width="-1" height="-1"/>
+              <AbsoluteConstraints x="130" y="70" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -64,7 +64,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="900" width="-1" height="-1"/>
+              <AbsoluteConstraints x="50" y="750" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -76,7 +76,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="100" y="200" width="360" height="310"/>
+              <AbsoluteConstraints x="90" y="190" width="360" height="310"/>
             </Constraint>
           </Constraints>
 
@@ -94,7 +94,7 @@
                               <Component id="btnMas" min="-2" pref="52" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                               <Component id="lblCantidad" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -105,15 +105,15 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Component id="lblCantidad" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnMenos" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnMas" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="123" max="32767" attributes="0"/>
+                      <EmptySpace pref="140" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -169,7 +169,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="500" y="200" width="480" height="310"/>
+              <AbsoluteConstraints x="480" y="190" width="480" height="310"/>
             </Constraint>
           </Constraints>
 
@@ -182,27 +182,19 @@
                       <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jScrollPane2" min="-2" pref="416" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace pref="34" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="btnGuardarNota" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnRegresar" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="lblProducto" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                      </Group>
+                      <EmptySpace pref="215" max="32767" attributes="0"/>
+                      <Component id="btnGuardarNota" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnRegresar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblProducto" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="416" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -292,7 +284,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="100" y="540" width="880" height="-1"/>
+              <AbsoluteConstraints x="1000" y="190" width="520" height="310"/>
             </Constraint>
           </Constraints>
 
@@ -300,19 +292,24 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="648" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnRegistrarOrden" max="32767" attributes="0"/>
-                          <Component id="btnEliminarNota" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                              <Component id="lblnotas2" min="-2" pref="343" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="440" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <EmptySpace pref="42" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lblnotas2" min="-2" pref="343" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnFinalizarDetallado" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="btnEliminarNota" min="-2" pref="140" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -321,19 +318,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="lblnotas2" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="231" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="btnRegistrarOrden" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnEliminarNota" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="171" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnFinalizarDetallado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEliminarNota" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <EmptySpace pref="13" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -356,21 +348,23 @@
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="pnlNotasProducto">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="680" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="228" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+                    <Property name="axis" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="btnFinalizarDetallado">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Finalizar detallado"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFinalizarDetalladoActionPerformed"/>
+              </Events>
+            </Component>
             <Component class="javax.swing.JButton" name="btnEliminarNota">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -378,14 +372,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Eliminar nota"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnRegistrarOrden">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Terminar Orden"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarNotaActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -397,7 +386,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="1150" height="1000"/>
+              <AbsoluteConstraints x="0" y="-50" width="1590" height="950"/>
             </Constraint>
           </Constraints>
         </Component>

@@ -24,7 +24,7 @@ import javax.persistence.Table;
 @Table(name = "DetalleOrden")
 public class DetalleOrden implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    
     
     //ATRIBUTOS
     
@@ -69,6 +69,14 @@ public class DetalleOrden implements Serializable {
         this.total = total;
     }
 
+    public DetalleOrden(Orden orden, Producto producto, List<String> notas, int cantidad) {
+        this.orden = orden;
+        this.producto = producto;
+        this.notas = notas;
+        this.cantidad = cantidad;
+    }
+
+     
     
     
     //MÉTODOS
