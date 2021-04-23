@@ -165,7 +165,12 @@ public class AgregarNotasProd extends FrmBase {
 
         btnMenuPrincipal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnMenuPrincipal.setText("Menu principal");
-        pnlFondo.add(btnMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 750, -1, -1));
+        btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuPrincipalActionPerformed(evt);
+            }
+        });
+        pnlFondo.add(btnMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 690, -1, -1));
 
         pnlCantidad.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -407,6 +412,12 @@ public class AgregarNotasProd extends FrmBase {
         }
 
     }//GEN-LAST:event_btnFinalizarDetalladoActionPerformed
+
+    private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
+        MenuAdministarVenta jFrm = new MenuAdministarVenta();
+        this.setVisible(false);
+        jFrm.setVisible(true);
+    }//GEN-LAST:event_btnMenuPrincipalActionPerformed
 
     /**
      * @param args the command line arguments

@@ -30,7 +30,7 @@ import javax.persistence.Table;
 @Table(name = "Orden")
 public class Orden implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    
     
     //ATRIBUTOS
     
