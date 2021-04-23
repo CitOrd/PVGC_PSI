@@ -61,8 +61,8 @@ public class DetalladoOrden extends FrmBase {
            
         }
         total++;
-//        txtTotal.setText("" + total);
-//        txtTotal.setEditable(false);
+     //   txtTotal.setText("" + total);
+       // txtTotal.setEditable(false);
 
     }
 

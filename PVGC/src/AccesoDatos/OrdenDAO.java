@@ -7,11 +7,17 @@ package AccesoDatos;
 
 import AccesoDatos.BaseDAO;
 import Dominio.Orden;
+import Enums.Estado;
+import Frames.EliminarOrden;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,7 +72,11 @@ public class OrdenDAO extends BaseDAO<Orden> {
         return new ArrayList<>(ordenes);
         
     }
-    
+    public void actualizarEstadoOrden(){
+        EntityManager entityManager = this.createEntityManager();
+        entityManager.getTransaction().begin();
+        
+    }
        
     
 
@@ -95,5 +105,39 @@ public class OrdenDAO extends BaseDAO<Orden> {
         entityManager.getTransaction().commit();
         return orden;
     }
+    
+    public  void  modificarEstadoOrden(long numOrden) {
+      
+             EntityManager em = this.createEntityManager();
+             Orden orden2 = em.find(Orden.class, numOrden);
+        
+        if (numOrden >= 0) {
+            try{  
+            
+                em.getTransaction().begin();
+                orden2.setEstado(Estado.CONCLUIDO);
+                em.getTransaction().commit();
+                
+            }catch(Exception e){
+                e.printStackTrace();
+        }finally{
+                em.close();
+            }
+            //entityManager.persist(orden2);
+           // String jpql = String.format("update pvgc.orden set pvgc.orden.estado='CONCLUIDO' WHERE PVGC.orden.numOrden='"+numOrden+"'");
+            
+              
+            //entityManager.getTransaction().commit();
+            //entityManager.close();
+            
+        } else {
+           // String jpql = "SELECT * FROM PVGC.orden;";
+           // ordenes = entityManager.createNativeQuery(jpql, Orden.class).getResultList();
+        }
+        
+
+        
+    }
+    
     
 }
