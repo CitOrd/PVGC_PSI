@@ -8,8 +8,9 @@ package Frames;
 import Control.ControlDetalleOrden;
 import Control.ControlOrden;
 import Dominio.DetalleOrden;
-import java.awt.Rectangle;
+import Dominio.Orden;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JTextField;
 
 /**
@@ -19,22 +20,25 @@ import javax.swing.JTextField;
 public class DetalladoOrden extends FrmBase {
 
     public ControlDetalleOrden ctrlDetOrden;
+    public Orden orden;
+    public ControlOrden ctrlOrden;
     public DetalleOrden detOrden;
-    public ArrayList<DetalleOrden> detOrdenes;
+    public List<DetalleOrden> detOrdenes;
 
+    //En este constructor debe de recibir la orden para poder plasmar los productos
     public DetalladoOrden() {
         adaptarPantalla();
-        this.detOrden = new DetalleOrden();
         this.detOrdenes = new ArrayList<>();
-        initComponents();
-        this.mostrarIndicadores();
-        this.mostrarProductos();
+       
+        initComponents(); 
+       
 
     }
 
+    
+
     public void mostrarIndicadores() {
-        int numMesa = detOrden.getOrden().getNumMesa();
-        int numOrden = detOrden.getOrden().getNumOrden();
+       
       
     }
 
@@ -53,8 +57,8 @@ public class DetalladoOrden extends FrmBase {
 
             String cadena = "      " + nombre + "     " + cantString + "       " + totalString;
 
-            JTextField txtDetOrden = new JTextField();
-            txtDetOrden.setBounds(new Rectangle(25, 15, 250, 21));
+            JTextField txtDetOrden = new JTextField(20);
+            
             txtDetOrden.setText(cadena);
             txtDetOrden.setEditable(false);
 
@@ -81,11 +85,11 @@ public class DetalladoOrden extends FrmBase {
         lblNumMesa = new javax.swing.JLabel();
         txtNumOrden = new javax.swing.JTextField();
         lblNumOrden1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        pnlCantidad = new javax.swing.JPanel();
         btnCobrarOrden = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         brnPrincipal = new javax.swing.JButton();
+        scrllDetalleOrdenes = new javax.swing.JScrollPane();
+        pnlCantidad2 = new javax.swing.JPanel();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,13 +100,13 @@ public class DetalladoOrden extends FrmBase {
         TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 60)); // NOI18N
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
         TituloMenuTomarPedido.setText("Detallado de orden");
-        pnlFondo.add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
+        pnlFondo.add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
 
         pnlCantidad1.setBackground(new java.awt.Color(206, 215, 231, 200));
 
         lblNumMesa.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         lblNumMesa.setForeground(new java.awt.Color(153, 153, 153));
-        lblNumMesa.setText("Num. Mesa");
+        lblNumMesa.setText("Num. Mesa: ");
 
         txtNumOrden.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
@@ -117,11 +121,11 @@ public class DetalladoOrden extends FrmBase {
             .addGroup(pnlCantidad1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lblNumMesa)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNumOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                 .addComponent(lblNumOrden1)
-                .addGap(99, 99, 99))
+                .addGap(128, 128, 128))
         );
         pnlCantidad1Layout.setVerticalGroup(
             pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,37 +135,21 @@ public class DetalladoOrden extends FrmBase {
                     .addGroup(pnlCantidad1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(lblNumMesa))
-                    .addComponent(lblNumOrden1)
-                    .addComponent(txtNumOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNumOrden1)
+                        .addComponent(txtNumOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        pnlFondo.add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 880, 110));
-
-        pnlCantidad.setBackground(new java.awt.Color(206, 215, 231, 200));
-
-        javax.swing.GroupLayout pnlCantidadLayout = new javax.swing.GroupLayout(pnlCantidad);
-        pnlCantidad.setLayout(pnlCantidadLayout);
-        pnlCantidadLayout.setHorizontalGroup(
-            pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 864, Short.MAX_VALUE)
-        );
-        pnlCantidadLayout.setVerticalGroup(
-            pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(pnlCantidad);
-
-        pnlFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 880, 420));
+        pnlFondo.add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 880, 110));
 
         btnCobrarOrden.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnCobrarOrden.setText("Cobrar Orden");
-        pnlFondo.add(btnCobrarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 800, -1, -1));
+        pnlFondo.add(btnCobrarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 770, -1, -1));
 
         btnRegresar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnRegresar.setText("Regresar");
-        pnlFondo.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 800, -1, -1));
+        pnlFondo.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 770, -1, -1));
 
         brnPrincipal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         brnPrincipal.setText("Menu principal");
@@ -172,8 +160,25 @@ public class DetalladoOrden extends FrmBase {
         });
         pnlFondo.add(brnPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 870, -1, -1));
 
+        pnlCantidad2.setBackground(new java.awt.Color(206, 215, 231, 200));
+
+        javax.swing.GroupLayout pnlCantidad2Layout = new javax.swing.GroupLayout(pnlCantidad2);
+        pnlCantidad2.setLayout(pnlCantidad2Layout);
+        pnlCantidad2Layout.setHorizontalGroup(
+            pnlCantidad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 946, Short.MAX_VALUE)
+        );
+        pnlCantidad2Layout.setVerticalGroup(
+            pnlCantidad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        scrllDetalleOrdenes.setViewportView(pnlCantidad2);
+
+        pnlFondo.add(scrllDetalleOrdenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 868, 370));
+
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
-        pnlFondo.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1230, 950));
+        pnlFondo.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 950));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,13 +238,13 @@ public class DetalladoOrden extends FrmBase {
     private javax.swing.JButton brnPrincipal;
     private javax.swing.JButton btnCobrarOrden;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblNumMesa;
     private javax.swing.JLabel lblNumOrden1;
-    private javax.swing.JPanel pnlCantidad;
     private javax.swing.JPanel pnlCantidad1;
+    private javax.swing.JPanel pnlCantidad2;
     private javax.swing.JPanel pnlFondo;
+    private javax.swing.JScrollPane scrllDetalleOrdenes;
     private javax.swing.JTextField txtNumOrden;
     // End of variables declaration//GEN-END:variables
 }
