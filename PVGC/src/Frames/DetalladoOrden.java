@@ -9,10 +9,12 @@ import Control.ControlDetalleOrden;
 import Control.ControlOrden;
 import Dominio.DetalleOrden;
 import Dominio.Orden;
+import Enums.Estado;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -20,40 +22,39 @@ import javax.swing.JTextField;
  */
 public class DetalladoOrden extends FrmBase {
 
-    public ControlDetalleOrden ctrlDetOrden;
+  
     public Orden orden;
     public ControlOrden ctrlOrden;
     public DetalleOrden detOrden;
     public List<DetalleOrden> detOrdenes;
-    public Font f, fProds;
+    public Font f;
 
     //En este constructor debe de recibir la orden para poder plasmar los productos
     public DetalladoOrden() {
-        
-       
-
-    }
-
-    public DetalladoOrden(DetalleOrden detalleOrden) {
         this.detOrden = detOrden;
         adaptarPantalla();
         this.detOrdenes = new ArrayList<>();
-        
-        initComponents(); 
+        f= new Font("Arial", Font.ITALIC, 18);
+        initComponents();
+        txtProductos.setFont(f);
     }
 
     
+    public DetalladoOrden(Orden ords) {
+        this.orden = ords;
+    }
     
-
+    
     public void mostrarIndicadores() {
         
        Long numOrden= detOrden.getOrden().getId();
-       lblNumMesa.setText("Num. mesa: "+numOrden);
+       lblNumOrden.setText("Num. Orden: "+numOrden);
     }
 
+    
     public void mostrarProductos() {
         double total = 0;
-        detOrdenes = ctrlDetOrden.consultarOrdenes(detOrden);
+        detOrdenes = orden.getDetalleOrdenes();
         
         String titulo= "    Producto                Cantidad                     Total       \n";
         txtProductos.append(titulo);
@@ -73,8 +74,8 @@ public class DetalladoOrden extends FrmBase {
            
         }
         
-//        txtTotal.setText("" + total);
-//        txtTotal.setEditable(false);
+        txtTotal.setText("" + total);
+        txtTotal.setEditable(false);
 
     }
 
@@ -92,12 +93,15 @@ public class DetalladoOrden extends FrmBase {
         pnlCantidad1 = new javax.swing.JPanel();
         lblNumMesa = new javax.swing.JLabel();
         txtNumOrden = new javax.swing.JTextField();
-        lblNumOrden1 = new javax.swing.JLabel();
+        lblNumOrden = new javax.swing.JLabel();
         btnRegistrarOrden = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         brnPrincipal = new javax.swing.JButton();
         scrllDetalleOrdenes = new javax.swing.JScrollPane();
         txtProductos = new javax.swing.JTextArea();
+        pnlCantidad2 = new javax.swing.JPanel();
+        lblTotal = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JTextField();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,46 +122,48 @@ public class DetalladoOrden extends FrmBase {
 
         txtNumOrden.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
-        lblNumOrden1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        lblNumOrden1.setForeground(new java.awt.Color(51, 51, 51));
-        lblNumOrden1.setText("Num. Orden");
+        lblNumOrden.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        lblNumOrden.setForeground(new java.awt.Color(51, 51, 51));
+        lblNumOrden.setText("Num. Orden");
 
         javax.swing.GroupLayout pnlCantidad1Layout = new javax.swing.GroupLayout(pnlCantidad1);
         pnlCantidad1.setLayout(pnlCantidad1Layout);
         pnlCantidad1Layout.setHorizontalGroup(
             pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCantidad1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(16, 16, 16)
                 .addComponent(lblNumMesa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNumOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                .addComponent(lblNumOrden1)
-                .addGap(146, 146, 146))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addComponent(lblNumOrden)
+                .addGap(88, 88, 88))
         );
         pnlCantidad1Layout.setVerticalGroup(
             pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCantidad1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCantidad1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(lblNumMesa))
-                    .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblNumOrden1)
-                        .addComponent(txtNumOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNumMesa)
+                    .addComponent(txtNumOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNumOrden))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        pnlFondo.add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 870, 110));
+        pnlFondo.add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 870, 100));
 
         btnRegistrarOrden.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnRegistrarOrden.setText("Registrar orden");
-        pnlFondo.add(btnRegistrarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 730, -1, -1));
+        btnRegistrarOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarOrdenActionPerformed(evt);
+            }
+        });
+        pnlFondo.add(btnRegistrarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 670, -1, -1));
 
         btnRegresar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnRegresar.setText("Regresar");
-        pnlFondo.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 730, -1, -1));
+        pnlFondo.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 670, -1, -1));
 
         brnPrincipal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         brnPrincipal.setText("Menu principal");
@@ -166,13 +172,44 @@ public class DetalladoOrden extends FrmBase {
                 brnPrincipalActionPerformed(evt);
             }
         });
-        pnlFondo.add(brnPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 870, -1, -1));
+        pnlFondo.add(brnPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 770, -1, -1));
 
         txtProductos.setColumns(20);
         txtProductos.setRows(5);
         scrllDetalleOrdenes.setViewportView(txtProductos);
 
-        pnlFondo.add(scrllDetalleOrdenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 330, 870, 370));
+        pnlFondo.add(scrllDetalleOrdenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 870, 340));
+
+        pnlCantidad2.setBackground(new java.awt.Color(206, 215, 231, 200));
+
+        lblTotal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(51, 51, 51));
+        lblTotal.setText("Total:");
+
+        txtTotal.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+
+        javax.swing.GroupLayout pnlCantidad2Layout = new javax.swing.GroupLayout(pnlCantidad2);
+        pnlCantidad2.setLayout(pnlCantidad2Layout);
+        pnlCantidad2Layout.setHorizontalGroup(
+            pnlCantidad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCantidad2Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(lblTotal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
+        pnlCantidad2Layout.setVerticalGroup(
+            pnlCantidad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCantidad2Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(pnlCantidad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotal))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        pnlFondo.add(pnlCantidad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 660, 200, 60));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
         pnlFondo.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 950));
@@ -196,6 +233,19 @@ public class DetalladoOrden extends FrmBase {
         this.setVisible(false);
         jFrm.setVisible(true);
     }//GEN-LAST:event_brnPrincipalActionPerformed
+
+    private void btnRegistrarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarOrdenActionPerformed
+        String numM= txtNumOrden.getText();
+        int numMesa= Integer.parseInt(numM);
+        
+        orden.setNumMesa(numMesa);
+        orden.setEstado(Estado.ESPERA);
+        ctrlOrden.agregarOrden(orden);
+        
+        JOptionPane.showMessageDialog(this, "Registro de orden exitoso",
+                "Exito", JOptionPane.INFORMATION_MESSAGE);
+        
+    }//GEN-LAST:event_btnRegistrarOrdenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,11 +289,14 @@ public class DetalladoOrden extends FrmBase {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblNumMesa;
-    private javax.swing.JLabel lblNumOrden1;
+    private javax.swing.JLabel lblNumOrden;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel pnlCantidad1;
+    private javax.swing.JPanel pnlCantidad2;
     private javax.swing.JPanel pnlFondo;
     private javax.swing.JScrollPane scrllDetalleOrdenes;
     private javax.swing.JTextField txtNumOrden;
     private javax.swing.JTextArea txtProductos;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
