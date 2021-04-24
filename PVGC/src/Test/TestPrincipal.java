@@ -25,6 +25,7 @@ import Dominio.ReporteVenta;
 import Dominio.Venta;
 import Enums.Estado;
 import Enums.Periodo;
+import Frames.EliminarOrden;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -97,6 +98,9 @@ public class TestPrincipal {
         cv.agregarVenta(venta1);
         cv.agregarVenta(venta2);
         
+        
+        EliminarOrden eliminarorden = new EliminarOrden();
+        EliminarOrden.main(args);
         
        //Creación de orden 
         Orden orden1 = new Orden(5, 1, Estado.CONCLUIDO, venta1);

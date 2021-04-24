@@ -7,6 +7,7 @@ package Control;
 import AccesoDatos.OrdenDAO;
 import Dominio.Orden;
 import java.util.ArrayList;
+
 /**
  *
  * @author Citlali Orduño
@@ -50,6 +51,16 @@ public class ControlOrden {
             System.out.println("No se pudo actualizar la orden");
         }
     } 
+     public void modificarEstadoOrden(long numOrden){
+        if(numOrden >= 0){
+            this.ordenDao.modificarEstadoOrden(numOrden);
+             
+            
+        }else{
+            System.out.println("No se pudo modificar la orden ");
+     
+        }
+    }
      
     public ArrayList<Orden> consultarOrdenPorNumOrden(int numOrden){
         if(numOrden >= 0){
@@ -75,4 +86,9 @@ public class ControlOrden {
           return null;
       }
   }
+   
+   
+   
+   
+   
 }
