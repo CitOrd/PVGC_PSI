@@ -158,7 +158,9 @@ public class TestPrincipal {
 //        orden3.setDetalleOrdenes(detOrdenes3);
         
 //        
-//        cdo.agregarDetalleOrden(detOrd1);
+        cdo.agregarDetalleOrden(detOrd1);
+        cdo.agregarDetalleOrden(detOrd2);
+        cdo.agregarDetalleOrden(detOrd3);
 //        
 //        //lista ordenes para venta
 //        List<Orden> ordenes1 = new ArrayList<Orden>();
