@@ -120,6 +120,9 @@ public class EliminarOrden extends javax.swing.JFrame {
             }
         ));
         jScrollPane2.setViewportView(tblOrdenes);
+        if (tblOrdenes.getColumnModel().getColumnCount() > 0) {
+            tblOrdenes.getColumnModel().getColumn(0).setHeaderValue("Numero Orden");
+        }
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 851, 230));
 

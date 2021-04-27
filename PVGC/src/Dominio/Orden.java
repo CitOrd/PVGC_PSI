@@ -145,6 +145,7 @@ public class Orden implements Serializable {
     
      public Object [] toArray(){
         return new Object[]{
+            this.getId(),
             this.getEstado(),
             this.getNumMesa(),
 
