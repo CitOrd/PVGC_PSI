@@ -62,9 +62,9 @@ public class ControlOrden {
         }
     }
      
-    public ArrayList<Orden> consultarOrdenPorNumOrden(int numOrden){
+    public Orden consultarOrdenPorNumOrden(int numOrden){
         if(numOrden >= 0){
-           return this.ordenDao.consultarPorNumOrden(numOrden);
+           return this.ordenDao.buscarPorId(numOrden);
             
         }else{
             System.out.println("No se pudo consultar el producto");

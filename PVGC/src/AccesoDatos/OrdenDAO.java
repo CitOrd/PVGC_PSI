@@ -50,7 +50,6 @@ public class OrdenDAO extends BaseDAO<Orden> {
         entityManager.getTransaction().begin();
         Orden orden = entityManager.find(Orden.class, entidad.getId());
         if (orden != null) {
-            orden.setNumOrden(entidad.getNumOrden());
             orden.setNumMesa(entidad.getNumMesa());
             orden.setEstado(entidad.getEstado());
             orden.setDetalleOrdenes(entidad.getDetalleOrdenes());
@@ -86,7 +85,7 @@ public class OrdenDAO extends BaseDAO<Orden> {
         List<Orden> ordenes;
         if (numOrden >= 0) {
             /*Aquí está así por mera intuición, no sé como se llame la tabla ni la BD*/
-            String jpql = String.format("SELECT * FROM PVGC.orden WHERE PVGC.orden.numOrden LIKE '%%"+numOrden+"%%'");
+            String jpql = String.format("SELECT * FROM PVGC.orden WHERE PVGC.id. LIKE '%%"+numOrden+"%%'");
             ordenes = entityManager.createNativeQuery(jpql, Orden.class).getResultList();
         } else {
             String jpql = "SELECT * FROM PVGC.orden;";

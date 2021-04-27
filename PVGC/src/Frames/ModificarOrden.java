@@ -5,6 +5,7 @@
  */
 package Frames;
 
+import Control.ControlDetalleOrden;
 import Control.ControlOrden;
 import Dominio.DetalleOrden;
 import Dominio.Orden;
@@ -13,6 +14,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.RowFilter;
@@ -25,6 +28,8 @@ public class ModificarOrden extends FrmBase {
 
     DefaultListModel modeloLista;
     ControlOrden controlOrden;
+    Orden ultimaOrdenSeleccionada;
+    ControlDetalleOrden controlDO;
 
     /**
      * Creates new form ModificarOrden
@@ -32,6 +37,7 @@ public class ModificarOrden extends FrmBase {
     public ModificarOrden() {
         initComponents();
         controlOrden = new ControlOrden();
+        controlDO = new ControlDetalleOrden();
         adaptarPantalla();
         cargarCbModel();
 
@@ -147,6 +153,11 @@ public class ModificarOrden extends FrmBase {
         btnAgregar.setText("Agregar");
 
         btnQuitar.setText("Quitar");
+        btnQuitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
 
@@ -261,13 +272,13 @@ public class ModificarOrden extends FrmBase {
                 tfBusqueda.setText(tfBusqueda.getText().replaceAll("\\p{javaSpaceChar}{2,}", " "));
 
                 if (!tfBusqueda.getText().equals("")) {
-                    List<Orden> ordenes = controlOrden.consultarOrdenPorNumOrden(Integer.parseInt(tfBusqueda.getText()));
+                    Orden ordenes = controlOrden.consultarOrdenPorNumOrden(Integer.parseInt(tfBusqueda.getText()));
                     if (ordenes != null) {
                         modeloLista = new DefaultListModel();
-                        for (Orden orden : ordenes) {
-                            modeloLista.addElement("Orden: " + orden.getNumOrden() + "       estado: " + orden.getEstado().toString());
-                        }
+                        
+                        modeloLista.addElement("Orden: " + ordenes.getId() + "       estado: " + ordenes.getEstado().toString());
                         ListOrdenes.setModel(modeloLista);
+                        
                     }
                 } else {
 
@@ -284,38 +295,59 @@ public class ModificarOrden extends FrmBase {
     }//GEN-LAST:event_tfBusquedaKeyTyped
 
     private void ListOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListOrdenesMouseClicked
-        String index = ListOrdenes.getSelectedValue();
-        int numOrden = Integer.parseInt(index.charAt(7)+"");
-        
-        List<Orden> ordenes = controlOrden.consultarOrdenPorNumOrden(numOrden);
-        Orden orden = ordenes.get(0);
-        lblTitulo1.setText("Detalles de orden "+orden.getNumOrden());
-        tfNumMesa.setText(orden.getNumMesa()+"");
-        tfNumOrdenes.setText(orden.getNumOrden()+"");
-        cbEstado.setSelectedItem(orden.getEstado());
-        List<DetalleOrden> detalles = orden.getDetalleOrdenes();
-        
-        DefaultListModel modelo2 = new DefaultListModel();
-        
-        for (DetalleOrden detalle : detalles) {
-            modelo2.addElement(detalle.getProducto().getNombre());
-        }
-        detalleOrdenList.setModel(modelo2);
-        
+        listOrdenesMethod();
     }//GEN-LAST:event_ListOrdenesMouseClicked
+
+    private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
+        int index = detalleOrdenList.getSelectedIndex();
+        List<DetalleOrden> detalles = ultimaOrdenSeleccionada.getDetalleOrdenes();
+        if (index < 0) {
+            return;
+        }
+        System.out.println(detalles.get(index));
+        controlDO.eliminarDetalleOrden(detalles.get(index));
+        detalleOrdenList.remove(index);
+        detalles.remove(index);
+        ((DefaultListModel) detalleOrdenList.getModel()).remove(index);
+        try {
+            cargarOrdenes();
+        } catch (SQLException ex) {
+            Logger.getLogger(ModificarOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnQuitarActionPerformed
 
     private void cargarOrdenes() throws SQLException {
         List<Orden> ordenes = this.controlOrden.consultarOrdenes();
         if (ordenes != null) {
             modeloLista = new DefaultListModel();
             for (Orden orden : ordenes) {
-                modeloLista.addElement("Orden: " + orden.getNumOrden() + "       estado: " + orden.getEstado().toString());
+                modeloLista.addElement("Orden: " + orden.getId() + "       estado: " + orden.getEstado().toString());
             }
             ListOrdenes.setModel(modeloLista);
         }
     }
-    
-    private void cargarCbModel(){
+
+    private void listOrdenesMethod() {
+        String index = ListOrdenes.getSelectedValue();
+        int numOrden = Integer.parseInt(index.charAt(7) + "");
+
+        Orden orden = controlOrden.consultarOrdenPorNumOrden(numOrden);
+        ultimaOrdenSeleccionada = orden;
+        lblTitulo1.setText("Detalles de orden " + orden.getId());
+        tfNumMesa.setText(orden.getNumMesa() + "");
+        tfNumOrdenes.setText(orden.getId() + "");
+        cbEstado.setSelectedItem(orden.getEstado());
+        List<DetalleOrden> detalles = orden.getDetalleOrdenes();
+
+        DefaultListModel modelo2 = new DefaultListModel();
+
+        for (DetalleOrden detalle : detalles) {
+            modelo2.addElement(detalle.getProducto().getNombre());
+        }
+        detalleOrdenList.setModel(modelo2);
+    }
+
+    private void cargarCbModel() {
         cbEstado.setModel(new DefaultComboBoxModel(Estado.values()));
     }
 

@@ -39,8 +39,6 @@ public class Orden implements Serializable {
     private Long id;
     @Column(name = "numMesa", nullable = false)
     private int numMesa;
-    @Column(name = "numOrden", nullable = false)
-    private int numOrden;
     @Enumerated(EnumType.STRING)
     @Column(name = "estado", nullable = false)
     private Estado estado;
@@ -57,16 +55,14 @@ public class Orden implements Serializable {
         detalleOrdenes = new ArrayList<>();
     }
 
-    public Orden(int numMesa, int numOrden, Estado estado, Venta venta) {
+    public Orden(int numMesa, Estado estado, Venta venta) {
         this.numMesa = numMesa;
-        this.numOrden = numOrden;
         this.estado = estado;
         this.venta = venta;
     }
     
-    public Orden(int numMesa, int numOrden, Estado estado, List<DetalleOrden> detalleOrdenes, Venta venta) {
+    public Orden(int numMesa, Estado estado, List<DetalleOrden> detalleOrdenes, Venta venta) {
         this.numMesa = numMesa;
-        this.numOrden = numOrden;
         this.estado = estado;
         this.detalleOrdenes = detalleOrdenes;
         this.venta = venta;
@@ -74,7 +70,6 @@ public class Orden implements Serializable {
 
     public Orden(int numMesa, int numOrden, List<DetalleOrden> detalleOrdenes) {
         this.numMesa = numMesa;
-        this.numOrden = numOrden;
         this.detalleOrdenes = detalleOrdenes;
     }
 
@@ -83,7 +78,6 @@ public class Orden implements Serializable {
         this();
         this.id = id;
         this.numMesa = numMesa;
-        this.numOrden = numOrden;
         this.estado = estado;
         this.venta = venta;
     }
@@ -106,13 +100,6 @@ public class Orden implements Serializable {
         this.numMesa = numMesa;
     }
 
-    public int getNumOrden() {
-        return numOrden;
-    }
-
-    public void setNumOrden(int numOrden) {
-        this.numOrden = numOrden;
-    }
 
     public Estado getEstado() {
         return estado;
@@ -158,7 +145,6 @@ public class Orden implements Serializable {
     
      public Object [] toArray(){
         return new Object[]{
-            this.getNumOrden(),
             this.getEstado(),
             this.getNumMesa(),
 

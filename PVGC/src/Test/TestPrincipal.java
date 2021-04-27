@@ -103,11 +103,11 @@ public class TestPrincipal {
         EliminarOrden.main(args);
         
        //Creación de orden 
-        Orden orden1 = new Orden(5, 1, Estado.CONCLUIDO, venta1);
+        Orden orden1 = new Orden(5, Estado.CONCLUIDO, venta1);
         
-        Orden orden2 = new Orden(5, 2, Estado.CONCLUIDO, venta1);
+        Orden orden2 = new Orden(5,Estado.CONCLUIDO, venta1);
         
-        Orden orden3 = new Orden(2, 3, Estado.PROCESANDO, venta2);
+        Orden orden3 = new Orden(2, Estado.PROCESANDO, venta2);
        
         //registro de ordenes
        co.agregarOrden(orden1);
