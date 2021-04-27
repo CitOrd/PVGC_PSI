@@ -105,12 +105,12 @@ public class OrdenDAO extends BaseDAO<Orden> {
         return orden;
     }
     
-    public  void  modificarEstadoOrden(long numOrden) {
+    public  void  modificarEstadoOrden(long id) {
       
              EntityManager em = this.createEntityManager();
-             Orden orden2 = em.find(Orden.class, numOrden);
+             Orden orden2 = em.find(Orden.class, id);
         
-        if (numOrden >= 0) {
+        if (id >= 0) {
             try{  
             
                 em.getTransaction().begin();

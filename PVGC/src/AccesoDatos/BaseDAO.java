@@ -23,6 +23,7 @@ public abstract class BaseDAO <T> {
         return entityManager;
     }
     
+    
     public abstract void agregar(T entidad);
     
     public abstract void eliminar(Long id);

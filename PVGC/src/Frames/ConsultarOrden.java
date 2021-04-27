@@ -84,6 +84,11 @@ public class ConsultarOrden extends javax.swing.JFrame {
         });
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, -1, -1));
 
+        jtxtFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtFiltroActionPerformed(evt);
+            }
+        });
         jtxtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtxtFiltroKeyTyped(evt);
@@ -102,6 +107,11 @@ public class ConsultarOrden extends javax.swing.JFrame {
                 "Num Orden", "Estado", "Num Mesa"
             }
         ));
+        tablaOrdenes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaOrdenesMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tablaOrdenes);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 865, 186));
@@ -179,6 +189,19 @@ public class ConsultarOrden extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jtxtFiltroKeyTyped
+
+    private void jtxtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtFiltroActionPerformed
+
+    private void tablaOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaOrdenesMouseClicked
+        // TODO add your handling code here:
+        
+        int seleccionar =tablaOrdenes.rowAtPoint(evt.getPoint());
+        jtxtFiltro.setText(String.valueOf(tablaOrdenes.getValueAt(seleccionar, 0)));
+        
+      
+    }//GEN-LAST:event_tablaOrdenesMouseClicked
 
     /**
      * @param args the command line arguments

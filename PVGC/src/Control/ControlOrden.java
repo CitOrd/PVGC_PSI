@@ -51,9 +51,9 @@ public class ControlOrden {
             System.out.println("No se pudo actualizar la orden");
         }
     } 
-     public void modificarEstadoOrden(long numOrden){
-        if(numOrden >= 0){
-            this.ordenDao.modificarEstadoOrden(numOrden);
+     public void modificarEstadoOrden(long id){
+        if(id >= 0){
+            this.ordenDao.modificarEstadoOrden(id);
              
             
         }else{

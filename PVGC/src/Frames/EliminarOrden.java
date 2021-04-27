@@ -119,10 +119,12 @@ public class EliminarOrden extends javax.swing.JFrame {
                 "Numero Orden", "Estado", "Numero Mesa"
             }
         ));
+        tblOrdenes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOrdenesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblOrdenes);
-        if (tblOrdenes.getColumnModel().getColumnCount() > 0) {
-            tblOrdenes.getColumnModel().getColumn(0).setHeaderValue("Numero Orden");
-        }
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 851, 230));
 
@@ -191,7 +193,7 @@ public class EliminarOrden extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtOrdenEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrdenEliminarActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtOrdenEliminarActionPerformed
 
     private void txtOrdenEliminarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrdenEliminarKeyTyped
@@ -210,6 +212,14 @@ public class EliminarOrden extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_txtOrdenEliminarKeyTyped
+
+    private void tblOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrdenesMouseClicked
+        // TODO add your handling code here:
+        
+        
+          int seleccionar =tblOrdenes.rowAtPoint(evt.getPoint());
+        txtOrdenEliminar.setText(String.valueOf(tblOrdenes.getValueAt(seleccionar, 0)));
+    }//GEN-LAST:event_tblOrdenesMouseClicked
 
     /**
      * @param args the command line arguments
