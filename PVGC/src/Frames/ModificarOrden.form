@@ -170,25 +170,25 @@
                           <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tfNumOrdenes" alignment="0" pref="326" max="32767" attributes="0"/>
+                              <Component id="tfNumMesa" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnModificar" min="-2" pref="101" max="-2" attributes="0"/>
+                              <Component id="cbEstado" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane2" min="-2" pref="237" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnAgregar" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnQuitar" min="-2" pref="71" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btnAgregar" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnQuitar" max="32767" attributes="0"/>
+                                  <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="tfNumOrdenes" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tfNumMesa" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cbEstado" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="btnModificar" min="-2" pref="101" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnCancelar" min="-2" pref="101" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnCancelar" alignment="1" min="-2" pref="101" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="428" max="32767" attributes="0"/>
@@ -226,7 +226,9 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Component id="btnQuitar" min="-2" max="-2" attributes="0"/>
@@ -349,6 +351,11 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Notas"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

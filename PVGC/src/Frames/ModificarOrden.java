@@ -80,6 +80,7 @@ public class ModificarOrden extends FrmBase {
         btnModificar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         cbEstado = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -170,6 +171,8 @@ public class ModificarOrden extends FrmBase {
 
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EN" }));
 
+        jButton1.setText("Notas");
+
         javax.swing.GroupLayout JPModificarLayout = new javax.swing.GroupLayout(JPModificar);
         JPModificar.setLayout(JPModificarLayout);
         JPModificarLayout.setHorizontalGroup(
@@ -182,21 +185,21 @@ public class ModificarOrden extends FrmBase {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JPModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(JPModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(tfNumOrdenes, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                        .addComponent(tfNumMesa)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(JPModificarLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(JPModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAgregar)
-                            .addComponent(btnQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(tfNumOrdenes)
-                    .addComponent(tfNumMesa)
-                    .addComponent(cbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(JPModificarLayout.createSequentialGroup()
-                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(JPModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnQuitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(107, 107, 107))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPModificarLayout.createSequentialGroup()
                 .addContainerGap(428, Short.MAX_VALUE)
                 .addComponent(lblTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,7 +229,9 @@ public class ModificarOrden extends FrmBase {
                             .addComponent(jLabel4)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(JPModificarLayout.createSequentialGroup()
-                        .addGap(87, 87, 87)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton1)
+                        .addGap(27, 27, 27)
                         .addComponent(btnAgregar)
                         .addGap(38, 38, 38)
                         .addComponent(btnQuitar)))
@@ -396,6 +401,7 @@ public class ModificarOrden extends FrmBase {
     private javax.swing.JButton btnQuitar;
     private javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JList<String> detalleOrdenList;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

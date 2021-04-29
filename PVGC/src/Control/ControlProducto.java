@@ -47,14 +47,8 @@ public class ControlProducto {
         }
     }
     
-    public ArrayList<Producto> consultarProducto(Producto producto){
-        if(producto != null){
+    public ArrayList<Producto> consultarProducto(){
            return this.productoDao.consultarTodos();
-            
-        }else{
-            System.out.println("No se pudo consultar el producto");
-        return null;
-        }
     }
     
     public ArrayList<Producto> consultarProductoPorNombre(String nombre){

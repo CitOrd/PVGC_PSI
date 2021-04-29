@@ -37,12 +37,33 @@ public class AgregarNotasProd extends FrmBase {
     String numCantidad = "";
     public ArrayList<String> notas;
     public List<DetalleOrden> detOrdenes;
+    public List<Producto> pedidos;
     public Label lblDescripcion;
     public Font f;
 
     /**
      * Creates new form AgregarNotasProd
      */
+    public AgregarNotasProd(List<Producto> pedido, List<DetalleOrden> detalles) {
+        adaptarPantalla();
+        this.ctrlOrden = new ControlOrden();
+        this.notas = new ArrayList<>();
+        this.detOrdenes = detalles;
+        this.pedidos = pedido;
+        this.prod = prod;
+        this.orden = orden;
+        this.lblDescripcion = new Label();
+        this.f = new Font("Arial", Font.BOLD, 14);
+
+        initComponents();
+        txtDescripcion.setForeground(Color.DARK_GRAY);
+        txtDescripcion.setFont(f);
+
+        this.txtCantidad.setText("" + cant);
+        lblProducto.setText("Producto " + cant);
+
+        //  mostrarProducto(prod);
+    }
     public AgregarNotasProd() {
         adaptarPantalla();
         this.ctrlOrden = new ControlOrden();
