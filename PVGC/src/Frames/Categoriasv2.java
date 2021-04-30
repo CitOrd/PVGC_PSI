@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,7 +42,8 @@ public class Categoriasv2 extends FrmBase {
         adaptarPantalla();
         controlProducto = new ControlProducto();
         pedido = new ArrayList<>();
-        
+        detalles = new ArrayList<>();
+
         modeloListaPedido = new DefaultListModel();
         try {
             cargarOrdenes();
@@ -49,8 +51,8 @@ public class Categoriasv2 extends FrmBase {
             Logger.getLogger(Categoriasv2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public Categoriasv2(List<Producto> pedido, List<DetalleOrden> detalles){
+
+    public Categoriasv2(List<Producto> pedido, List<DetalleOrden> detalles) {
         initComponents();
         adaptarPantalla();
         controlProducto = new ControlProducto();
@@ -62,8 +64,8 @@ public class Categoriasv2 extends FrmBase {
         } catch (SQLException ex) {
             Logger.getLogger(Categoriasv2.class.getName()).log(Level.SEVERE, null, ex);
         }
+        agregarPedidos();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,6 +89,7 @@ public class Categoriasv2 extends FrmBase {
         lblListaOrdenes = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListProductos = new javax.swing.JList<>();
+        btnFinalizarOrden = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -158,6 +161,14 @@ public class Categoriasv2 extends FrmBase {
 
         JPPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 270, 606));
 
+        btnFinalizarOrden.setText("Finalizar orden");
+        btnFinalizarOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarOrdenActionPerformed(evt);
+            }
+        });
+        JPPrincipal.add(btnFinalizarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(953, 813, 120, 40));
+
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
         JPPrincipal.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -90, 1490, 1270));
 
@@ -217,14 +228,36 @@ public class Categoriasv2 extends FrmBase {
     }//GEN-LAST:event_btnQuitarActionPerformed
 
     private void btnAddNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNotaActionPerformed
-        this.dispose();
+        boolean contiene = false;
+        int index = 0;
         String nombre = ListPedido.getSelectedValue();
-        Producto producto = controlProducto.consultarProductoPorNombre(nombre).get(0);
-        DetalleOrden detalle = new DetalleOrden();
-        detalle.setProducto(producto);
-        this.detalles.add(detalle);
-        new AgregarNotasProd(pedido, detalles).setVisible(true);
+
+        for (DetalleOrden detalle : detalles) {
+
+            if (detalle.getProducto().getNombre().equals(nombre)) {
+                contiene = true;
+                break;
+            }
+            index++;
+        }
+
+        if (!contiene) {
+            this.dispose();
+            Producto producto = controlProducto.consultarProductoPorNombre(nombre).get(0);
+            DetalleOrden detalle = new DetalleOrden();
+            detalle.setProducto(producto);
+            this.detalles.add(detalle);
+            new AgregarNotasProd(pedido, detalles).setVisible(true);
+        } else {
+            this.dispose();
+            new AgregarNotasProd(pedido, detalles, index).setVisible(true);
+        }
     }//GEN-LAST:event_btnAddNotaActionPerformed
+
+    private void btnFinalizarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarOrdenActionPerformed
+        llenarDetOrdenes();
+        new DetalladoOrden(pedido,detalles).setVisible(true);
+    }//GEN-LAST:event_btnFinalizarOrdenActionPerformed
 
     private void cargarOrdenes() throws SQLException {
         List<Producto> productos = this.controlProducto.consultarProducto();
@@ -249,6 +282,17 @@ public class Categoriasv2 extends FrmBase {
 
     }
 
+    private void agregarPedidos() {
+
+        if (!pedido.isEmpty()) {
+            for (Producto producto : pedido) {
+                modeloListaPedido.addElement(producto.getNombre());
+            }
+            ListPedido.setModel(modeloListaPedido);
+        }
+
+    }
+
     private void quitarPedido() {
         String nombre = ListPedido.getSelectedValue();
         int index = ListPedido.getSelectedIndex();
@@ -256,6 +300,43 @@ public class Categoriasv2 extends FrmBase {
         pedido.remove(producto);
         modeloListaPedido.remove(index);
         ListPedido.setModel(modeloListaPedido);
+    }
+
+    private void llenarDetOrdenes() {
+
+        if (detalles.size() >= 1) {
+            
+            int size = detalles.size();
+
+            for (int i = 0; i < pedido.size(); i++) {
+
+                for (int j = 0; j < size; j++) {
+                    
+                    if (!(detalles.get(j).getProducto().getNombre().equals(pedido.get(i).getNombre()))) {
+                        DetalleOrden detalle = new DetalleOrden();
+                        detalle.setCantidad(1);
+                        detalle.setProducto(pedido.get(i));
+                        detalle.setNotas(null);
+                        detalle.setTotal(pedido.get(i).getPrecio());
+                        detalles.add(detalle);
+                        break;
+                    }
+
+                }
+
+            }
+
+        } else {
+
+            for (int i = 0; i < pedido.size(); i++) {
+                DetalleOrden detalle = new DetalleOrden();
+                detalle.setCantidad(1);
+                detalle.setProducto(pedido.get(i));
+                detalle.setNotas(null);
+                detalle.setTotal(pedido.get(i).getPrecio());
+                detalles.add(detalle);
+            }
+        }
     }
 
     /**
@@ -298,6 +379,7 @@ public class Categoriasv2 extends FrmBase {
     private javax.swing.JList<String> ListPedido;
     private javax.swing.JList<String> ListProductos;
     private javax.swing.JButton btnAddNota;
+    private javax.swing.JButton btnFinalizarOrden;
     private javax.swing.JButton btnQuitar;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;

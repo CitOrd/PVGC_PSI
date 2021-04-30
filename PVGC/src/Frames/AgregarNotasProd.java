@@ -36,11 +36,12 @@ public class AgregarNotasProd extends FrmBase {
     Producto prod;
     int cant = 1;
     String numCantidad = "";
-    ArrayList<String> notas;
+    List<String> notas;
     List<DetalleOrden> detOrdenes;
     List<Producto> pedidos;
     Label lblDescripcion;
     Font f;
+    boolean actualizar = false;
 
     /**
      * Creates new form AgregarNotasProd
@@ -52,7 +53,7 @@ public class AgregarNotasProd extends FrmBase {
         this.notas = new ArrayList<>();
         this.detOrdenes = detalles;
         this.pedidos = pedido;
-        this.prod = pedido.get(pedido.size() - 1);
+        this.prod = detalles.get(detalles.size() - 1).getProducto();
         this.orden = orden;
         this.lblDescripcion = new Label();
         this.f = new Font("Arial", Font.BOLD, 14);
@@ -64,6 +65,30 @@ public class AgregarNotasProd extends FrmBase {
         lblProducto.setText("Producto " + cant);
 
         mostrarProducto(prod);
+    }
+
+    public AgregarNotasProd(List<Producto> pedido, List<DetalleOrden> detalles, int index) {
+        initComponents();
+        adaptarPantalla();
+        this.detOrdenes = detalles;
+        this.notas = detOrdenes.get(index).getNotas();
+        if (notas == null) {
+            this.notas = new ArrayList<>();
+        }
+        this.pedidos = pedido;
+        this.prod = detalles.get(index).getProducto();
+        this.lblDescripcion = new Label();
+        this.f = new Font("Arial", Font.BOLD, 14);
+
+        txtDescripcion.setForeground(Color.DARK_GRAY);
+        txtDescripcion.setFont(f);
+        cant = detOrdenes.get(index).getCantidad();
+        this.txtCantidad.setText("" + cant);
+        lblProducto.setText("Producto " + cant);
+        actualizar = true;
+
+        mostrarProducto(prod);
+        mostrarNotas();
     }
 
     public AgregarNotasProd() {
@@ -119,15 +144,16 @@ public class AgregarNotasProd extends FrmBase {
                     "Confirmación", JOptionPane.YES_NO_OPTION);
 
             if (dialogo == JOptionPane.YES_OPTION) {
-               // Orden ords = this.guardarDetalleEnOrden();
+                // Orden ords = this.guardarDetalleEnOrden();
 
                 /*manda la orden con solo los detalles de ordenes seteados*/
-                DetalladoOrden detOrd = new DetalladoOrden();
-                detOrd.setVisible(true);
+                guardaDetalles();
+                new Categoriasv2(pedidos, detOrdenes).setVisible(true);
                 this.setVisible(false);
 
             } else if (dialogo == JOptionPane.NO_OPTION) {
-                 Categoriasv2 cat = new Categoriasv2(pedidos, detOrdenes);
+                guardaDetalles();
+                Categoriasv2 cat = new Categoriasv2(pedidos, detOrdenes);
                 cat.setVisible(true);
                 this.setVisible(false);
 
@@ -149,12 +175,12 @@ public class AgregarNotasProd extends FrmBase {
 
     /*Este metodo guarda pero no regresa la orden*/
     public void guardaDetalles() {
-        DetalleOrden detOrden = detOrdenes.get(detOrdenes.size()-1);
+        DetalleOrden detOrden = detOrdenes.get(detOrdenes.size() - 1);
         detOrden.setCantidad(cant);
         detOrden.setNotas(notas);
 
-        double precio= prod.getPrecio();
-        double total = cant* precio;
+        double precio = prod.getPrecio();
+        double total = cant * precio;
         detOrden.setTotal(total);
     }
 
@@ -168,11 +194,14 @@ public class AgregarNotasProd extends FrmBase {
             cat.setVisible(true);
             this.dispose();
         } else if (dlg == JOptionPane.NO_OPTION) {
+            guardaDetalles();
+            Categoriasv2 cat = new Categoriasv2(pedidos, detOrdenes);
+            cat.setVisible(true);
+            this.dispose();
             //Orden ords = this.guardarDetalleEnOrden();
             /*manda la orden con solo los detalles de ordenes seteados*/
             //DetalladoOrden detOrd = new DetalladoOrden(ords);
-           // detOrd.setVisible(true);
-            this.dispose();
+            // detOrd.setVisible(true);
         }
     }
 
@@ -432,8 +461,13 @@ public class AgregarNotasProd extends FrmBase {
     }//GEN-LAST:event_btnMenosMouseClicked
 
     private void btnGuardarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarNotaActionPerformed
-        this.agregarNotas();
-        this.guardarNotas();
+        if (!actualizar) {
+            this.agregarNotas();
+            this.guardarNotas();
+        }else if(actualizar){
+            
+        }
+
     }//GEN-LAST:event_btnGuardarNotaActionPerformed
 
     private void btnEliminarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarNotaActionPerformed

@@ -9,6 +9,7 @@ import Control.ControlDetalleOrden;
 import Control.ControlOrden;
 import Dominio.DetalleOrden;
 import Dominio.Orden;
+import Dominio.Producto;
 import Enums.Estado;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -22,26 +23,29 @@ import javax.swing.JOptionPane;
  */
 public class DetalladoOrden extends FrmBase {
 
-  
-    public Orden orden;
     public ControlOrden ctrlOrden;
     public DetalleOrden detOrden;
     public List<DetalleOrden> detOrdenes;
+    private List<Producto> pedido;
     public Font f;
 
     //En este constructor debe de recibir la orden para poder plasmar los productos
     public DetalladoOrden() {
-        this.detOrden = detOrden;
         adaptarPantalla();
         this.detOrdenes = new ArrayList<>();
         f= new Font("Arial", Font.ITALIC, 18);
         initComponents();
         txtProductos.setFont(f);
     }
-
     
-    public DetalladoOrden(Orden ords) {
-        this.orden = ords;
+    public DetalladoOrden(List<Producto> pedido,List<DetalleOrden> detalles) {
+        initComponents();
+        this.detOrdenes = detalles;
+        this.pedido = pedido;
+        adaptarPantalla();
+        f= new Font("Arial", Font.ITALIC, 18);
+        txtProductos.setFont(f);
+        mostrarProductos();
     }
     
     
@@ -54,8 +58,6 @@ public class DetalladoOrden extends FrmBase {
     
     public void mostrarProductos() {
         double total = 0;
-        detOrdenes = orden.getDetalleOrdenes();
-        
         String titulo= "    Producto                Cantidad                     Total       \n";
         txtProductos.append(titulo);
         for (DetalleOrden detOrdene : detOrdenes) {
@@ -163,6 +165,11 @@ public class DetalladoOrden extends FrmBase {
 
         btnRegresar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
         pnlFondo.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 670, -1, -1));
 
         brnPrincipal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -238,14 +245,19 @@ public class DetalladoOrden extends FrmBase {
         String numM= txtNumOrden.getText();
         int numMesa= Integer.parseInt(numM);
         
-        orden.setNumMesa(numMesa);
-        orden.setEstado(Estado.ESPERA);
-        ctrlOrden.agregarOrden(orden);
+//        orden.setNumMesa(numMesa);
+//        orden.setEstado(Estado.ESPERA);
+//        ctrlOrden.agregarOrden(orden);
         
         JOptionPane.showMessageDialog(this, "Registro de orden exitoso",
                 "Exito", JOptionPane.INFORMATION_MESSAGE);
         
     }//GEN-LAST:event_btnRegistrarOrdenActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        this.dispose();
+        new Categoriasv2(pedido, detOrdenes).setVisible(true);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
