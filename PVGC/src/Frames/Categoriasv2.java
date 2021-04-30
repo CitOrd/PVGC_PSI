@@ -256,6 +256,7 @@ public class Categoriasv2 extends FrmBase {
 
     private void btnFinalizarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarOrdenActionPerformed
         llenarDetOrdenes();
+        this.dispose();
         new DetalladoOrden(pedido,detalles).setVisible(true);
     }//GEN-LAST:event_btnFinalizarOrdenActionPerformed
 

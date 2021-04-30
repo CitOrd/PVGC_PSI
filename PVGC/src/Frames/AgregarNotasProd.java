@@ -6,7 +6,7 @@
 package Frames;
 
 import Control.ControlDetalleOrden;
-import Control.ControlProducto;
+
 import Control.ControlOrden;
 import Dominio.DetalleOrden;
 import Dominio.Orden;
@@ -18,9 +18,10 @@ import java.awt.Label;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-import javax.swing.JTextField;
+
 
 /**
  * Pantalla para poder agregar detalles de la orden.
@@ -32,14 +33,15 @@ public class AgregarNotasProd extends FrmBase {
     ControlOrden ctrlOrden;
     ControlDetalleOrden ctrlDetOrden;
     Orden orden;
-
+    DefaultListModel modeloNotas;
     Producto prod;
     int cant = 1;
     String numCantidad = "";
     List<String> notas;
+    DetalleOrden detOrden;
     List<DetalleOrden> detOrdenes;
     List<Producto> pedidos;
-    Label lblDescripcion;
+    
     Font f;
     boolean actualizar = false;
 
@@ -50,16 +52,16 @@ public class AgregarNotasProd extends FrmBase {
         initComponents();
         adaptarPantalla();
         this.ctrlOrden = new ControlOrden();
+        this.detOrden= new DetalleOrden();
         this.notas = new ArrayList<>();
         this.detOrdenes = detalles;
         this.pedidos = pedido;
         this.prod = detalles.get(detalles.size() - 1).getProducto();
         this.orden = orden;
-        this.lblDescripcion = new Label();
-        this.f = new Font("Arial", Font.BOLD, 14);
+        
+        
 
-        txtDescripcion.setForeground(Color.DARK_GRAY);
-        txtDescripcion.setFont(f);
+        
 
         this.txtCantidad.setText("" + cant);
         lblProducto.setText("Producto " + cant);
@@ -77,11 +79,11 @@ public class AgregarNotasProd extends FrmBase {
         }
         this.pedidos = pedido;
         this.prod = detalles.get(index).getProducto();
-        this.lblDescripcion = new Label();
-        this.f = new Font("Arial", Font.BOLD, 14);
-
-        txtDescripcion.setForeground(Color.DARK_GRAY);
-        txtDescripcion.setFont(f);
+       
+        this.f = new Font("Arial", Font.BOLD, 18);
+        
+        jlistNotas.setForeground(Color.DARK_GRAY);
+        jlistNotas.setFont(f);
         cant = detOrdenes.get(index).getCantidad();
         this.txtCantidad.setText("" + cant);
         lblProducto.setText("Producto " + cant);
@@ -98,6 +100,7 @@ public class AgregarNotasProd extends FrmBase {
     public void mostrarProducto(Producto producto) {
         String nombre = producto.getNombre();
         lblNombreProducto.setText(nombre);
+        lblProducto.setText(nombre);
 
     }
 
@@ -123,17 +126,27 @@ public class AgregarNotasProd extends FrmBase {
     public void agregarNotas() {
         String nota = txtNota.getText();
         String prod = lblProducto.getText();
-        lblDescripcion.setText("" + prod + " " + nota);
-        String desc = lblDescripcion.getText();
+        String  desc= ""+prod+" "+nota;
         notas.add(desc);
         txtNota.setText("");
     }
 
     public void mostrarNotas() {
-        for (String nota : notas) {
-            txtDescripcion.append(nota + "\n");
-
+        
+        
+       if(detOrdenes != null && !detOrdenes.isEmpty()){
+             modeloNotas= new DefaultListModel();
+             
+            for (String nota : notas) {
+                modeloNotas.addElement(nota);
         }
+            jlistNotas.setModel(modeloNotas);
+       }else{
+           
+           JOptionPane.showConfirmDialog(this, "No hay ninguna nota",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+       }
+        
     }
 
     /*Guarda las notas en una lista*/
@@ -172,6 +185,14 @@ public class AgregarNotasProd extends FrmBase {
 //        orden.setDetalleOrdenes(detOrdenes);
 //        return orden;
 //    }
+    
+    public void actualizarDetalle(){
+        String nota = jlistNotas.getSelectedValue();
+        txtNota.setText(nota);
+        txtNota.setText("Holi");
+        agregarNotas();
+        
+    }
 
     /*Este metodo guarda pero no regresa la orden*/
     public void guardaDetalles() {
@@ -227,7 +248,7 @@ public class AgregarNotasProd extends FrmBase {
         pnlNotas = new javax.swing.JPanel();
         lblnotas2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtDescripcion = new javax.swing.JTextArea();
+        jlistNotas = new javax.swing.JList<>();
         btnFinalizarDetallado = new javax.swing.JButton();
         btnEliminarNota = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
@@ -377,9 +398,18 @@ public class AgregarNotasProd extends FrmBase {
         lblnotas2.setForeground(new java.awt.Color(51, 51, 51));
         lblnotas2.setText("Notas del producto");
 
-        txtDescripcion.setColumns(20);
-        txtDescripcion.setRows(5);
-        jScrollPane1.setViewportView(txtDescripcion);
+        jlistNotas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jlistNotas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jlistNotas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlistNotasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jlistNotas);
 
         btnFinalizarDetallado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnFinalizarDetallado.setText("Finalizar detallado");
@@ -464,8 +494,10 @@ public class AgregarNotasProd extends FrmBase {
         if (!actualizar) {
             this.agregarNotas();
             this.guardarNotas();
-        }else if(actualizar){
             
+        }else if(actualizar){
+            this.actualizarDetalle();
+            this.guardarNotas();
         }
 
     }//GEN-LAST:event_btnGuardarNotaActionPerformed
@@ -486,6 +518,10 @@ public class AgregarNotasProd extends FrmBase {
         this.setVisible(false);
         jFrm.setVisible(true);
     }//GEN-LAST:event_btnMenuPrincipalActionPerformed
+
+    private void jlistNotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlistNotasMouseClicked
+        actualizarDetalle();
+    }//GEN-LAST:event_jlistNotasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -532,6 +568,7 @@ public class AgregarNotasProd extends FrmBase {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> jlistNotas;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblNombreProducto;
@@ -543,7 +580,6 @@ public class AgregarNotasProd extends FrmBase {
     private javax.swing.JPanel pnlFondo;
     private javax.swing.JPanel pnlNotas;
     private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextArea txtNota;
     // End of variables declaration//GEN-END:variables
 
