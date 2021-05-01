@@ -30,15 +30,27 @@ public class DetalladoOrden extends FrmBase {
     public List<DetalleOrden> detOrdenes;
     private List<Producto> pedido;
     public Font f;
+    private Orden orden;
 
     //En este constructor debe de recibir la orden para poder plasmar los productos
     public DetalladoOrden() {
-         initComponents();
+        initComponents();
         adaptarPantalla();
         this.detOrdenes = new ArrayList<>();
         f = new Font("Arial", Font.ITALIC, 18);
-       
-        
+
+    }
+
+    public DetalladoOrden(List<Producto> pedido, List<DetalleOrden> detalles, Orden orden) {
+        initComponents();
+        this.orden = orden;
+        this.detOrdenes = detalles;
+        this.pedido = pedido;
+        this.ctrlDetalleOrden = new ControlDetalleOrden();
+        this.ctrlOrden = new ControlOrden();
+        adaptarPantalla();
+        f = new Font("Arial", Font.ITALIC, 18);
+        mostrarProductos();
     }
 
     public DetalladoOrden(List<Producto> pedido, List<DetalleOrden> detalles) {
@@ -49,7 +61,7 @@ public class DetalladoOrden extends FrmBase {
         this.ctrlOrden = new ControlOrden();
         adaptarPantalla();
         f = new Font("Arial", Font.ITALIC, 18);
-        
+
         mostrarProductos();
     }
 
@@ -62,25 +74,22 @@ public class DetalladoOrden extends FrmBase {
     public void mostrarProductos() {
         double total = 0;
         double tot = 0;
-        DefaultTableModel modelo = (DefaultTableModel) this.tblDetalles.getModel();     
+        DefaultTableModel modelo = (DefaultTableModel) this.tblDetalles.getModel();
         for (DetalleOrden detOrdene : detOrdenes) {
             String nombre = detOrdene.getProducto().getNombre();
             int cantidad = detOrdene.getCantidad();
             double precio = detOrdene.getTotal();
             total = (precio * cantidad);
 
-           
-        
             Object[] fila = new Object[4];
             fila[0] = nombre;
             fila[1] = cantidad;
             fila[3] = precio;
             fila[2] = total;
             modelo.addRow(fila);
-                    
+
             tot += total;
         }
-        
 
         txtTotal.setText("" + tot);
         txtTotal.setEditable(false);
@@ -255,31 +264,52 @@ public class DetalladoOrden extends FrmBase {
     }//GEN-LAST:event_brnPrincipalActionPerformed
 
     private void btnRegistrarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarOrdenActionPerformed
-        String numM = txtNumMesa.getText();
-        if (!txtNumMesa.getText().equals("")) {
-            int numMesa = Integer.parseInt(numM);
+        if (orden == null) {
+            String numM = txtNumMesa.getText();
+            if (!txtNumMesa.getText().equals("")) {
+                int numMesa = Integer.parseInt(numM);
 
-            Orden orden = new Orden(numMesa, Estado.ESPERA, detOrdenes);
+                Orden orden = new Orden(numMesa, Estado.ESPERA, detOrdenes);
 
-            for (DetalleOrden detOrdene : detOrdenes) {
-                detOrdene.setOrden(orden);
+                for (DetalleOrden detOrdene : detOrdenes) {
+                    detOrdene.setOrden(orden);
+                }
+
+                orden.setDetalleOrdenes(detOrdenes);
+
+                ctrlOrden.agregarOrden(orden);
+
+                JOptionPane.showMessageDialog(this, "Registro de orden exitoso",
+                        "Exito", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                new MenuAdministrarVentas().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Registro de orden no exitoso. Ingrese el número de mesa",
+                        "Fallo", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            String numM = txtNumMesa.getText();
+            if (!txtNumMesa.getText().equals("")) {
+                int numMesa = Integer.parseInt(numM);
+
+                for (DetalleOrden detOrdene : detOrdenes) {
+                    detOrdene.setOrden(orden);
+                }
+
+                orden.setDetalleOrdenes(detOrdenes);
+
+                ctrlOrden.actualizarOrden(orden);
+                JOptionPane.showMessageDialog(this, "Actualización de orden exitoso",
+                        "Exito", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                new MenuAdministrarVentas().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Actualización de orden no exitoso. Ingrese el número de mesa",
+                        "Fallo", JOptionPane.INFORMATION_MESSAGE);
             }
 
-            orden.setDetalleOrdenes(detOrdenes);
-
-            ctrlOrden.agregarOrden(orden);
-//        orden.setNumMesa(numMesa);
-//        orden.setEstado(Estado.ESPERA);
-//        ctrlOrden.agregarOrden(orden);
-
-            JOptionPane.showMessageDialog(this, "Registro de orden exitoso",
-                    "Exito", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
-            new MenuAdministrarVentas().setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(this, "Registro de orden no exitoso. Ingrese el número de mesa",
-                    "Fallo", JOptionPane.INFORMATION_MESSAGE);
         }
+
     }//GEN-LAST:event_btnRegistrarOrdenActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -304,13 +334,17 @@ public class DetalladoOrden extends FrmBase {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DetalleOrden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleOrden.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DetalleOrden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleOrden.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DetalleOrden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleOrden.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DetalleOrden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleOrden.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

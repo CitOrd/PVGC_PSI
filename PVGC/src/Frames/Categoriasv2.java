@@ -33,6 +33,7 @@ public class Categoriasv2 extends FrmBase {
     ControlProducto controlProducto;
     List<Producto> pedido;
     List<DetalleOrden> detalles;
+    Orden orden;//en caso de actualizar
 
     /**
      * Creates new form Categoriasv2
@@ -59,6 +60,41 @@ public class Categoriasv2 extends FrmBase {
         this.pedido = pedido;
         this.detalles = detalles;
         modeloListaPedido = new DefaultListModel();
+        try {
+            cargarOrdenes();
+        } catch (SQLException ex) {
+            Logger.getLogger(Categoriasv2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        agregarPedidos();
+    }
+
+    public Categoriasv2(List<Producto> pedido, List<DetalleOrden> detalles, Orden orden) {
+        initComponents();
+        adaptarPantalla();
+        controlProducto = new ControlProducto();
+        this.pedido = pedido;
+        this.detalles = detalles;
+        modeloListaPedido = new DefaultListModel();
+        this.orden = orden;
+        try {
+            cargarOrdenes();
+        } catch (SQLException ex) {
+            Logger.getLogger(Categoriasv2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        agregarPedidos();
+    }
+
+    public Categoriasv2(Orden orden) {
+        initComponents();
+        adaptarPantalla();
+        controlProducto = new ControlProducto();
+        detalles = orden.getDetalleOrdenes();
+        pedido = new ArrayList<>();
+        for (DetalleOrden detalle : detalles) {
+            pedido.add(detalle.getProducto());
+        }
+        modeloListaPedido = new DefaultListModel();
+        this.orden = orden;
         try {
             cargarOrdenes();
         } catch (SQLException ex) {
@@ -228,36 +264,72 @@ public class Categoriasv2 extends FrmBase {
     }//GEN-LAST:event_btnQuitarActionPerformed
 
     private void btnAddNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNotaActionPerformed
-        boolean contiene = false;
-        int index = 0;
-        String nombre = ListPedido.getSelectedValue();
 
-        for (DetalleOrden detalle : detalles) {
+        if (orden == null) {
+            boolean contiene = false;
+            int index = 0;
+            String nombre = ListPedido.getSelectedValue();
 
-            if (detalle.getProducto().getNombre().equals(nombre)) {
-                contiene = true;
-                break;
+            for (DetalleOrden detalle : detalles) {
+
+                if (detalle.getProducto().getNombre().equals(nombre)) {
+                    contiene = true;
+                    break;
+                }
+                index++;
             }
-            index++;
+
+            if (!contiene) {
+                this.dispose();
+                Producto producto = controlProducto.consultarProductoPorNombre(nombre).get(0);
+                DetalleOrden detalle = new DetalleOrden();
+                detalle.setProducto(producto);
+                this.detalles.add(detalle);
+                new AgregarNotasProd(pedido, detalles, orden).setVisible(true);
+            } else {
+                this.dispose();
+                new AgregarNotasProd(pedido, detalles, index, orden).setVisible(true);
+            }
+
+        } else {
+
+            boolean contiene = false;
+            int index = 0;
+            String nombre = ListPedido.getSelectedValue();
+
+            for (DetalleOrden detalle : detalles) {
+
+                if (detalle.getProducto().getNombre().equals(nombre)) {
+                    contiene = true;
+                    break;
+                }
+                index++;
+            }
+            if (!contiene) {
+                this.dispose();
+                Producto producto = controlProducto.consultarProductoPorNombre(nombre).get(0);
+                DetalleOrden detalle = new DetalleOrden();
+                detalle.setProducto(producto);
+                this.detalles.add(detalle);
+                new AgregarNotasProd(pedido, detalles, orden).setVisible(true);
+            } else {
+                this.dispose();
+                new AgregarNotasProd(pedido, detalles, index, orden).setVisible(true);
+            }
         }
 
-        if (!contiene) {
-            this.dispose();
-            Producto producto = controlProducto.consultarProductoPorNombre(nombre).get(0);
-            DetalleOrden detalle = new DetalleOrden();
-            detalle.setProducto(producto);
-            this.detalles.add(detalle);
-            new AgregarNotasProd(pedido, detalles).setVisible(true);
-        } else {
-            this.dispose();
-            new AgregarNotasProd(pedido, detalles, index).setVisible(true);
-        }
     }//GEN-LAST:event_btnAddNotaActionPerformed
 
     private void btnFinalizarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarOrdenActionPerformed
-        llenarDetOrdenes();
-        this.dispose();
-        new DetalladoOrden(pedido,detalles).setVisible(true);
+        if (orden == null) {
+            llenarDetOrdenes();
+            this.dispose();
+            new DetalladoOrden(pedido, detalles).setVisible(true);
+        } else {
+            llenarDetOrdenes();
+            this.dispose();
+            new DetalladoOrden(pedido, detalles, orden).setVisible(true);
+        }
     }//GEN-LAST:event_btnFinalizarOrdenActionPerformed
 
     private void cargarOrdenes() throws SQLException {
@@ -301,32 +373,40 @@ public class Categoriasv2 extends FrmBase {
         pedido.remove(producto);
         modeloListaPedido.remove(index);
         ListPedido.setModel(modeloListaPedido);
+        for (DetalleOrden detalle : detalles) {
+            if (detalle.getProducto().getNombre().equals(producto.getNombre())) {
+                detalles.remove(detalle);
+                break;
+            }
+        }
     }
 
     private void llenarDetOrdenes() {
 
-        if (detalles.size() >= 1) {
-            
+        if (detalles.size() == pedido.size()) {
+            return;
+        }
+
+        if (!detalles.isEmpty()) {
             int size = detalles.size();
-
+            int contador = 0;
             for (int i = 0; i < pedido.size(); i++) {
-
+                contador = 0;
                 for (int j = 0; j < size; j++) {
-                    
-                    if (!(detalles.get(j).getProducto().getNombre().equals(pedido.get(i).getNombre()))) {
-                        DetalleOrden detalle = new DetalleOrden();
-                        detalle.setCantidad(1);
-                        detalle.setProducto(pedido.get(i));
-                        detalle.setNotas(null);
-                        detalle.setTotal(pedido.get(i).getPrecio());
-                        detalles.add(detalle);
+                    if (pedido.get(i).getNombre().equals(detalles.get(j).getProducto().getNombre())) {
+                        contador++;
                         break;
                     }
-
                 }
-
+                if (contador == 0) {
+                    DetalleOrden detalle = new DetalleOrden();
+                    detalle.setCantidad(1);
+                    detalle.setProducto(pedido.get(i));
+                    detalle.setNotas(null);
+                    detalle.setTotal(pedido.get(i).getPrecio());
+                    detalles.add(detalle);
+                }
             }
-
         } else {
 
             for (int i = 0; i < pedido.size(); i++) {

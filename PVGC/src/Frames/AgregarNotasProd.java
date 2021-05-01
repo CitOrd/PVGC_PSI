@@ -21,8 +21,6 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-
-
 /**
  * Pantalla para poder agregar detalles de la orden.
  *
@@ -41,27 +39,23 @@ public class AgregarNotasProd extends FrmBase {
     DetalleOrden detOrden;
     List<DetalleOrden> detOrdenes;
     List<Producto> pedidos;
-    
+
     Font f;
     boolean actualizar = false;
 
     /**
      * Creates new form AgregarNotasProd
      */
-    public AgregarNotasProd(List<Producto> pedido, List<DetalleOrden> detalles) {
+    public AgregarNotasProd(List<Producto> pedido, List<DetalleOrden> detalles, Orden orden) {
         initComponents();
         adaptarPantalla();
         this.ctrlOrden = new ControlOrden();
-        this.detOrden= new DetalleOrden();
+        this.detOrden = new DetalleOrden();
         this.notas = new ArrayList<>();
         this.detOrdenes = detalles;
         this.pedidos = pedido;
         this.prod = detalles.get(detalles.size() - 1).getProducto();
         this.orden = orden;
-        
-        
-
-        
 
         this.txtCantidad.setText("" + cant);
         lblProducto.setText("Producto " + cant);
@@ -69,19 +63,20 @@ public class AgregarNotasProd extends FrmBase {
         mostrarProducto(prod);
     }
 
-    public AgregarNotasProd(List<Producto> pedido, List<DetalleOrden> detalles, int index) {
+    public AgregarNotasProd(List<Producto> pedido, List<DetalleOrden> detalles, int index, Orden orden) {
         initComponents();
         adaptarPantalla();
         this.detOrdenes = detalles;
+        this.orden = orden;
         this.notas = detOrdenes.get(index).getNotas();
         if (notas == null) {
             this.notas = new ArrayList<>();
         }
         this.pedidos = pedido;
         this.prod = detalles.get(index).getProducto();
-       
+
         this.f = new Font("Arial", Font.BOLD, 18);
-        
+
         jlistNotas.setForeground(Color.DARK_GRAY);
         jlistNotas.setFont(f);
         cant = detOrdenes.get(index).getCantidad();
@@ -126,36 +121,35 @@ public class AgregarNotasProd extends FrmBase {
     public void agregarNotas() {
         String nota = txtNota.getText();
         String prod = lblProducto.getText();
-        String  desc= ""+prod+" "+nota;
+        String desc = "" + prod + " " + nota;
         notas.add(desc);
         txtNota.setText("");
     }
-    
-    public void editarNotas(){
-        
+
+    public void editarNotas() {
+
         String textoNota = jlistNotas.getSelectedValue();
         notas.remove(textoNota);
-        
+
         agregarNotas();
         mostrarNotas();
     }
 
     public void mostrarNotas() {
-        
-         modeloNotas= new DefaultListModel();
-       if(detOrdenes != null && !detOrdenes.isEmpty()){
-            
-             
+
+        modeloNotas = new DefaultListModel();
+        if (detOrdenes != null && !detOrdenes.isEmpty()) {
+
             for (String nota : notas) {
                 modeloNotas.addElement(nota);
-        }
+            }
             jlistNotas.setModel(modeloNotas);
-       }else{
-           
-           JOptionPane.showConfirmDialog(this, "No hay ninguna nota",
+        } else {
+
+            JOptionPane.showConfirmDialog(this, "No hay ninguna nota",
                     "Warning", JOptionPane.WARNING_MESSAGE);
-       }
-        
+        }
+
     }
 
     /*Guarda las notas en una lista*/
@@ -165,21 +159,29 @@ public class AgregarNotasProd extends FrmBase {
             int dialogo = JOptionPane.showConfirmDialog(this, "¿Desea finalizar su orden?",
                     "Confirmación", JOptionPane.YES_NO_OPTION);
 
-            if (dialogo == JOptionPane.YES_OPTION) {
-                // Orden ords = this.guardarDetalleEnOrden();
+            if (orden == null) {
+                if (dialogo == JOptionPane.YES_OPTION) {
+                    // Orden ords = this.guardarDetalleEnOrden();
 
-                /*manda la orden con solo los detalles de ordenes seteados*/
-                guardaDetalles();
-                new Categoriasv2(pedidos, detOrdenes).setVisible(true);
-                this.setVisible(false);
+                    /*manda la orden con solo los detalles de ordenes seteados*/
+                    guardaDetalles();
+                    new Categoriasv2(pedidos, detOrdenes).setVisible(true);
+                    this.setVisible(false);
 
-            } else if (dialogo == JOptionPane.NO_OPTION) {
-                guardaDetalles();
-                DetalladoOrden detOrd= new DetalladoOrden(pedidos, detOrdenes);
-                detOrd.setVisible(true);
-                this.setVisible(false);
+                }
 
+            } else {
+                if (dialogo == JOptionPane.YES_OPTION) {
+                    // Orden ords = this.guardarDetalleEnOrden();
+
+                    /*manda la orden con solo los detalles de ordenes seteados*/
+                    guardaDetalles();
+                    new Categoriasv2(pedidos, detOrdenes, orden).setVisible(true);
+                    this.setVisible(false);
+
+                }
             }
+
         } else if (cant > notas.size()) {
             int cantAux = (notas.size() + 1);
             lblProducto.setText("Producto " + cantAux);
@@ -194,15 +196,23 @@ public class AgregarNotasProd extends FrmBase {
 //        orden.setDetalleOrdenes(detOrdenes);
 //        return orden;
 //    }
-    
-    public void actualizarDetalle(){
+    public void actualizarDetalle() {
         String nota = jlistNotas.getSelectedValue();
         txtNota.setText(nota);
     }
 
     /*Este metodo guarda pero no regresa la orden*/
     public void guardaDetalles() {
-        DetalleOrden detOrden = detOrdenes.get(detOrdenes.size() - 1);
+        DetalleOrden detOrden=null;
+        detOrden = detOrdenes.get(detOrdenes.size() - 1);
+        for (DetalleOrden detOrdene : detOrdenes) {
+            System.out.println(detOrdene.getProducto().getNombre());
+            if (detOrdene.getProducto().getNombre().equals(prod.getNombre())) {
+                detOrden = detOrdene;
+                break;
+            }
+        }
+
         detOrden.setCantidad(cant);
         detOrden.setNotas(notas);
 
@@ -215,20 +225,30 @@ public class AgregarNotasProd extends FrmBase {
         int dlg = JOptionPane.showConfirmDialog(this, "¿Desea ordenar más?",
                 "Confirmación", JOptionPane.YES_NO_OPTION);
 
-        if (dlg == JOptionPane.YES_OPTION) {
-            guardaDetalles();
-            Categoriasv2 cat = new Categoriasv2(pedidos, detOrdenes);
-            cat.setVisible(true);
-            this.dispose();
-        } else if (dlg == JOptionPane.NO_OPTION) {
-            guardaDetalles();
-            Categoriasv2 cat = new Categoriasv2(pedidos, detOrdenes);
-            cat.setVisible(true);
-            this.dispose();
-            //Orden ords = this.guardarDetalleEnOrden();
-            /*manda la orden con solo los detalles de ordenes seteados*/
-            //DetalladoOrden detOrd = new DetalladoOrden(ords);
-            // detOrd.setVisible(true);
+        if (orden == null) {
+            if (dlg == JOptionPane.YES_OPTION) {
+                guardaDetalles();
+                Categoriasv2 cat = new Categoriasv2(pedidos, detOrdenes);
+                cat.setVisible(true);
+                this.dispose();
+            } else if (dlg == JOptionPane.NO_OPTION) {
+                guardaDetalles();
+                Categoriasv2 cat = new Categoriasv2(pedidos, detOrdenes);
+                cat.setVisible(true);
+                this.dispose();
+            }
+        } else {
+            if (dlg == JOptionPane.YES_OPTION) {
+                guardaDetalles();
+                Categoriasv2 cat = new Categoriasv2(pedidos, detOrdenes, orden);
+                cat.setVisible(true);
+                this.dispose();
+            } else if (dlg == JOptionPane.NO_OPTION) {
+                guardaDetalles();
+                Categoriasv2 cat = new Categoriasv2(pedidos, detOrdenes, orden);
+                cat.setVisible(true);
+                this.dispose();
+            }
         }
     }
 
@@ -492,11 +512,15 @@ public class AgregarNotasProd extends FrmBase {
     }//GEN-LAST:event_btnMenosMouseClicked
 
     private void btnGuardarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarNotaActionPerformed
-        if (!actualizar) {
-            this.agregarNotas();
-            this.guardarNotas();
-            
-        }else if(actualizar){
+        if (orden == null) {
+            if (!actualizar) {
+                this.agregarNotas();
+                this.guardarNotas();
+
+            } else if (actualizar) {
+                this.editarNotas();
+            }
+        } else {
             this.editarNotas();
         }
 
