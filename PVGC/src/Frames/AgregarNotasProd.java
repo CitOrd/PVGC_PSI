@@ -130,6 +130,15 @@ public class AgregarNotasProd extends FrmBase {
         notas.add(desc);
         txtNota.setText("");
     }
+    
+    public void editarNotas(){
+        
+        String textoNota = jlistNotas.getSelectedValue();
+        notas.remove(textoNota);
+        
+        agregarNotas();
+        mostrarNotas();
+    }
 
     public void mostrarNotas() {
         
@@ -189,9 +198,6 @@ public class AgregarNotasProd extends FrmBase {
     public void actualizarDetalle(){
         String nota = jlistNotas.getSelectedValue();
         txtNota.setText(nota);
-        txtNota.setText("Holi");
-        agregarNotas();
-        
     }
 
     /*Este metodo guarda pero no regresa la orden*/
@@ -399,11 +405,6 @@ public class AgregarNotasProd extends FrmBase {
         lblnotas2.setText("Notas del producto");
 
         jlistNotas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jlistNotas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jlistNotas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlistNotasMouseClicked(evt);
@@ -496,8 +497,7 @@ public class AgregarNotasProd extends FrmBase {
             this.guardarNotas();
             
         }else if(actualizar){
-            this.actualizarDetalle();
-            this.guardarNotas();
+            this.editarNotas();
         }
 
     }//GEN-LAST:event_btnGuardarNotaActionPerformed
