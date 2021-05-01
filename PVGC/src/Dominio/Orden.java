@@ -55,6 +55,12 @@ public class Orden implements Serializable {
         detalleOrdenes = new ArrayList<>();
     }
 
+    public Orden(int numMesa, Estado estado, List<DetalleOrden> detalleOrdenes) {
+        this.numMesa = numMesa;
+        this.estado = estado;
+        this.detalleOrdenes = detalleOrdenes;
+    }
+
     public Orden(int numMesa, Estado estado, Venta venta) {
         this.numMesa = numMesa;
         this.estado = estado;
@@ -68,13 +74,13 @@ public class Orden implements Serializable {
         this.venta = venta;
     }
 
-    public Orden(int numMesa, int numOrden, List<DetalleOrden> detalleOrdenes) {
+    public Orden(int numMesa, List<DetalleOrden> detalleOrdenes) {
         this.numMesa = numMesa;
         this.detalleOrdenes = detalleOrdenes;
     }
 
     
-    public Orden(Long id, int numMesa, int numOrden, Estado estado, Venta venta) {
+    public Orden(Long id, int numMesa, Estado estado, Venta venta) {
         this();
         this.id = id;
         this.numMesa = numMesa;

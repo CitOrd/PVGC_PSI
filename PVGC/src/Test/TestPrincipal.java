@@ -102,34 +102,34 @@ public class TestPrincipal {
         EliminarOrden eliminarorden = new EliminarOrden();
         EliminarOrden.main(args);
         
-       //Creación de orden 
-        Orden orden1 = new Orden(5, Estado.CONCLUIDO, venta1);
-        
-        Orden orden2 = new Orden(5,Estado.CONCLUIDO, venta1);
-        
-        Orden orden3 = new Orden(2, Estado.PROCESANDO, venta2);
-       
-        //registro de ordenes
-       co.agregarOrden(orden1);
-       co.agregarOrden(orden2);
-       co.agregarOrden(orden3);
-        
-       List<String> notas = new ArrayList<String>();
-       String nota1= "Con mucha carne, queso y tocino";
-       String nota2= "Sin queso";
-       
-       notas.add(nota1);
-       notas.add(nota2);
-        //Creación de detalles de orden
-        DetalleOrden detOrd1 = new DetalleOrden(orden1, prod1, notas, 2, 80f);
-        DetalleOrden detOrd2 = new DetalleOrden(orden2, prod2,notas, 1, 35f );
-        DetalleOrden detOrd3 = new DetalleOrden(orden3, prod3,notas, 3, 120f);
-        
-        
-           List<DetalleOrden> detOrds= cdo.consultarOrdenes(detOrd3);
-           for (DetalleOrden detOrd : detOrds) {
-            System.out.println(detOrd);
-        }
+//       //Creación de orden 
+//        Orden orden1 = new Orden(5, Estado.CONCLUIDO, venta1);
+//        
+//        Orden orden2 = new Orden(5,Estado.CONCLUIDO, venta1);
+//        
+//        Orden orden3 = new Orden(2, Estado.PROCESANDO, venta2);
+//       
+//        //registro de ordenes
+//       co.agregarOrden(orden1);
+//       co.agregarOrden(orden2);
+//       co.agregarOrden(orden3);
+//        
+//       List<String> notas = new ArrayList<String>();
+//       String nota1= "Con mucha carne, queso y tocino";
+//       String nota2= "Sin queso";
+//       
+//       notas.add(nota1);
+//       notas.add(nota2);
+//        //Creación de detalles de orden
+//        DetalleOrden detOrd1 = new DetalleOrden(orden1, prod1, notas, 2, 80f);
+//        DetalleOrden detOrd2 = new DetalleOrden(orden2, prod2,notas, 1, 35f );
+//        DetalleOrden detOrd3 = new DetalleOrden(orden3, prod3,notas, 3, 120f);
+//        
+//        
+//           List<DetalleOrden> detOrds= cdo.consultarOrdenes(detOrd3);
+//           for (DetalleOrden detOrd : detOrds) {
+//            System.out.println(detOrd);
+//        }
         
 //        //Creación de lista de detalles de orden para guardar en la orden 1
 //        List<DetalleOrden> detOrdenes1 = new ArrayList<DetalleOrden>();
@@ -157,10 +157,10 @@ public class TestPrincipal {
 //        orden2.setDetalleOrdenes(detOrdenes2);
 //        orden3.setDetalleOrdenes(detOrdenes3);
         
-//        
-        cdo.agregarDetalleOrden(detOrd1);
-        cdo.agregarDetalleOrden(detOrd2);
-        cdo.agregarDetalleOrden(detOrd3);
+////        
+//        cdo.agregarDetalleOrden(detOrd1);
+//        cdo.agregarDetalleOrden(detOrd2);
+//        cdo.agregarDetalleOrden(detOrd3);
 //        
 //        //lista ordenes para venta
 //        List<Orden> ordenes1 = new ArrayList<Orden>();
