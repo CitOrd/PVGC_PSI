@@ -44,6 +44,7 @@ public class DetalladoOrden extends FrmBase {
     public DetalladoOrden(List<Producto> pedido, List<DetalleOrden> detalles, Orden orden) {
         initComponents();
         this.orden = orden;
+        this.txtNumMesa.setText(orden.getNumMesa()+"");
         this.detOrdenes = detalles;
         this.pedido = pedido;
         this.ctrlDetalleOrden = new ControlDetalleOrden();
@@ -79,13 +80,13 @@ public class DetalladoOrden extends FrmBase {
             String nombre = detOrdene.getProducto().getNombre();
             int cantidad = detOrdene.getCantidad();
             double precio = detOrdene.getTotal();
-            total = (precio * cantidad);
+            total = precio;
 
             Object[] fila = new Object[4];
             fila[0] = nombre;
             fila[1] = cantidad;
-            fila[3] = precio;
-            fila[2] = total;
+            fila[3] = total;
+            fila[2] = detOrdene.getProducto().getPrecio();
             modelo.addRow(fila);
 
             tot += total;
