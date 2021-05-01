@@ -142,9 +142,9 @@ public class AgregarNotasProd extends FrmBase {
 
     public void mostrarNotas() {
         
-        
+         modeloNotas= new DefaultListModel();
        if(detOrdenes != null && !detOrdenes.isEmpty()){
-             modeloNotas= new DefaultListModel();
+            
              
             for (String nota : notas) {
                 modeloNotas.addElement(nota);
@@ -175,8 +175,8 @@ public class AgregarNotasProd extends FrmBase {
 
             } else if (dialogo == JOptionPane.NO_OPTION) {
                 guardaDetalles();
-                Categoriasv2 cat = new Categoriasv2(pedidos, detOrdenes);
-                cat.setVisible(true);
+                DetalladoOrden detOrd= new DetalladoOrden(pedidos, detOrdenes);
+                detOrd.setVisible(true);
                 this.setVisible(false);
 
             }
@@ -514,8 +514,8 @@ public class AgregarNotasProd extends FrmBase {
     }//GEN-LAST:event_btnFinalizarDetalladoActionPerformed
 
     private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
-        MenuAdministarVenta jFrm = new MenuAdministarVenta();
-        this.setVisible(false);
+        MenuAdministrarVentas jFrm = new MenuAdministrarVentas();
+        this.dispose();
         jFrm.setVisible(true);
     }//GEN-LAST:event_btnMenuPrincipalActionPerformed
 

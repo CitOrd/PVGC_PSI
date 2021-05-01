@@ -14,7 +14,9 @@ import Enums.Estado;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,11 +33,12 @@ public class DetalladoOrden extends FrmBase {
 
     //En este constructor debe de recibir la orden para poder plasmar los productos
     public DetalladoOrden() {
+         initComponents();
         adaptarPantalla();
         this.detOrdenes = new ArrayList<>();
         f = new Font("Arial", Font.ITALIC, 18);
-        initComponents();
-        txtProductos.setFont(f);
+       
+        
     }
 
     public DetalladoOrden(List<Producto> pedido, List<DetalleOrden> detalles) {
@@ -46,7 +49,7 @@ public class DetalladoOrden extends FrmBase {
         this.ctrlOrden = new ControlOrden();
         adaptarPantalla();
         f = new Font("Arial", Font.ITALIC, 18);
-        txtProductos.setFont(f);
+        
         mostrarProductos();
     }
 
@@ -58,24 +61,28 @@ public class DetalladoOrden extends FrmBase {
 
     public void mostrarProductos() {
         double total = 0;
-        String titulo = "    Producto                Cantidad                     Total       \n";
-        txtProductos.append(titulo);
+        double tot = 0;
+        DefaultTableModel modelo = (DefaultTableModel) this.tblDetalles.getModel();     
         for (DetalleOrden detOrdene : detOrdenes) {
             String nombre = detOrdene.getProducto().getNombre();
             int cantidad = detOrdene.getCantidad();
             double precio = detOrdene.getTotal();
             total = (precio * cantidad);
 
-            String cantString = String.valueOf(cantidad);
-            String totalString = String.valueOf(total);
-
-            String cadena = "      " + nombre + "     " + cantString + "       " + totalString + "\n";
-
-            txtProductos.append(cadena);
-
+           
+        
+            Object[] fila = new Object[4];
+            fila[0] = nombre;
+            fila[1] = cantidad;
+            fila[3] = precio;
+            fila[2] = total;
+            modelo.addRow(fila);
+                    
+            tot += total;
         }
+        
 
-        txtTotal.setText("" + total);
+        txtTotal.setText("" + tot);
         txtTotal.setEditable(false);
 
     }
@@ -99,7 +106,7 @@ public class DetalladoOrden extends FrmBase {
         btnRegresar = new javax.swing.JButton();
         brnPrincipal = new javax.swing.JButton();
         scrllDetalleOrdenes = new javax.swing.JScrollPane();
-        txtProductos = new javax.swing.JTextArea();
+        tblDetalles = new javax.swing.JTable();
         pnlCantidad2 = new javax.swing.JPanel();
         lblTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
@@ -113,7 +120,7 @@ public class DetalladoOrden extends FrmBase {
         TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 60)); // NOI18N
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
         TituloMenuTomarPedido.setText("Detallado de orden");
-        pnlFondo.add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
+        pnlFondo.add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
 
         pnlCantidad1.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -151,7 +158,7 @@ public class DetalladoOrden extends FrmBase {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        pnlFondo.add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 870, 100));
+        pnlFondo.add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 870, 100));
 
         btnRegistrarOrden.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnRegistrarOrden.setText("Registrar orden");
@@ -180,11 +187,18 @@ public class DetalladoOrden extends FrmBase {
         });
         pnlFondo.add(brnPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 770, -1, -1));
 
-        txtProductos.setColumns(20);
-        txtProductos.setRows(5);
-        scrllDetalleOrdenes.setViewportView(txtProductos);
+        tblDetalles.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tblDetalles.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        pnlFondo.add(scrllDetalleOrdenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 870, 340));
+            },
+            new String [] {
+                "Nombre", "Cantidad", "Precio unitario", "Total"
+            }
+        ));
+        scrllDetalleOrdenes.setViewportView(tblDetalles);
+
+        pnlFondo.add(scrllDetalleOrdenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 870, 340));
 
         pnlCantidad2.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -235,7 +249,7 @@ public class DetalladoOrden extends FrmBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnPrincipalActionPerformed
-        MenuAdministarVenta jFrm = new MenuAdministarVenta();
+        MenuAdministrarVentas jFrm = new MenuAdministrarVentas();
         this.setVisible(false);
         jFrm.setVisible(true);
     }//GEN-LAST:event_brnPrincipalActionPerformed
@@ -261,8 +275,7 @@ public class DetalladoOrden extends FrmBase {
             JOptionPane.showMessageDialog(this, "Registro de orden exitoso",
                     "Exito", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            new MenuAdministarVenta().setVisible(true);
-
+            new MenuAdministrarVentas().setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Registro de orden no exitoso. Ingrese el número de mesa",
                     "Fallo", JOptionPane.INFORMATION_MESSAGE);
@@ -322,8 +335,8 @@ public class DetalladoOrden extends FrmBase {
     private javax.swing.JPanel pnlCantidad2;
     private javax.swing.JPanel pnlFondo;
     private javax.swing.JScrollPane scrllDetalleOrdenes;
+    private javax.swing.JTable tblDetalles;
     private javax.swing.JTextField txtNumMesa;
-    private javax.swing.JTextArea txtProductos;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -152,7 +152,7 @@ public class ConsultarOrden extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        MenuAdministarVenta jFrm = new MenuAdministarVenta();
+        MenuAdministrarVentas jFrm = new MenuAdministrarVentas();
         jFrm.setVisible(true);
 
 

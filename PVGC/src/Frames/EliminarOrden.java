@@ -146,7 +146,7 @@ public class EliminarOrden extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        MenuAdministarVenta jFrm = new MenuAdministarVenta();
+        MenuAdministrarVentas jFrm = new MenuAdministrarVentas();
         jFrm.setVisible(true);
         //Ok
     }//GEN-LAST:event_jButton2ActionPerformed

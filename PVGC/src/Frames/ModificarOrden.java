@@ -264,7 +264,7 @@ public class ModificarOrden extends FrmBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        MenuAdministarVenta jFrm = new MenuAdministarVenta();
+        MenuAdministrarVentas jFrm = new MenuAdministrarVentas();
         this.setVisible(false);
         jFrm.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
