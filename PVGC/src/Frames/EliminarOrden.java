@@ -181,10 +181,12 @@ public class EliminarOrden extends javax.swing.JFrame {
                     controlOrden.modificarEstadoOrden((int) Long.parseLong(txtOrdenEliminar.getText()));
                     JOptionPane.showMessageDialog(this, "Orden Concluida !!!");
                     this.cargarOrdenes();
+                }else{
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar la orden");
                 }
             } catch (Exception e) {
 
-                JOptionPane.showMessageDialog(this, "No se pudo terminar la orden ");
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar la orden ");
 
             }
 

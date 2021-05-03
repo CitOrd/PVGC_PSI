@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 
 import javax.swing.table.DefaultTableModel;
@@ -60,10 +61,10 @@ public class ConsultarOrden extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btnDetalladoOrden = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 900));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1200, 900));
         jPanel1.setMinimumSize(new java.awt.Dimension(1200, 900));
@@ -131,6 +132,15 @@ public class ConsultarOrden extends javax.swing.JFrame {
         jLabel4.setText("Ordenes Disponibles:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, -1, -1));
 
+        btnDetalladoOrden.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnDetalladoOrden.setText("Ver detalle");
+        btnDetalladoOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetalladoOrdenActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDetalladoOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 660, -1, -1));
+
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
         jLabel5.setPreferredSize(new java.awt.Dimension(1200, 900));
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -120, 1210, 1330));
@@ -168,7 +178,10 @@ public class ConsultarOrden extends javax.swing.JFrame {
                 modelo.addRow(orden.toArray());
 
             }
-
+                    
+        }else{
+            JOptionPane.showConfirmDialog(this, "No hay ordenes disponibles",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
         }
 
     }
@@ -202,6 +215,10 @@ public class ConsultarOrden extends javax.swing.JFrame {
         
       
     }//GEN-LAST:event_tablaOrdenesMouseClicked
+
+    private void btnDetalladoOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalladoOrdenActionPerformed
+       
+    }//GEN-LAST:event_btnDetalladoOrdenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,6 +256,7 @@ public class ConsultarOrden extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDetalladoOrden;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
