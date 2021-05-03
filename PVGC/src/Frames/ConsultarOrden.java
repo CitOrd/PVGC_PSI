@@ -6,8 +6,10 @@
 package Frames;
 
 import Control.ControlOrden;
+import Dominio.DetalleOrden;
 
 import Dominio.Orden;
+import Dominio.Producto;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -83,7 +85,7 @@ public class ConsultarOrden extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, -1, -1));
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 310, -1, -1));
 
         jtxtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,11 +110,6 @@ public class ConsultarOrden extends javax.swing.JFrame {
                 "Num Orden", "Estado", "Num Mesa"
             }
         ));
-        tablaOrdenes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaOrdenesMouseClicked(evt);
-            }
-        });
         jScrollPane3.setViewportView(tablaOrdenes);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 865, 186));
@@ -139,7 +136,7 @@ public class ConsultarOrden extends javax.swing.JFrame {
                 btnDetalladoOrdenActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDetalladoOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 660, -1, -1));
+        jPanel1.add(btnDetalladoOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
         jLabel5.setPreferredSize(new java.awt.Dimension(1200, 900));
@@ -207,16 +204,22 @@ public class ConsultarOrden extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtFiltroActionPerformed
 
-    private void tablaOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaOrdenesMouseClicked
-        // TODO add your handling code here:
-        
-        int seleccionar =tablaOrdenes.rowAtPoint(evt.getPoint());
-        jtxtFiltro.setText(String.valueOf(tablaOrdenes.getValueAt(seleccionar, 0)));
-        
-      
-    }//GEN-LAST:event_tablaOrdenesMouseClicked
-
     private void btnDetalladoOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalladoOrdenActionPerformed
+       String id= jtxtFiltro.getText();
+       int idOrden= Integer.parseInt(id);
+       
+       Orden ord =controlOrden.consultarOrdenPorNumOrden(idOrden);
+       if(ord != null){
+           DetalladoOrden frmDetOrden = new DetalladoOrden(ord);
+           frmDetOrden.setVisible(true);
+           this.dispose();
+           
+       }else{
+           JOptionPane.showConfirmDialog(this, "No se puede acceder al detalle de la orden",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+           
+       }
+       
        
     }//GEN-LAST:event_btnDetalladoOrdenActionPerformed
 

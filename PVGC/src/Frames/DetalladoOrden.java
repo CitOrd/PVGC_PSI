@@ -23,13 +23,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DetalladoOrden extends FrmBase {
 
-    public ControlOrden ctrlOrden;
-    public ControlDetalleOrden ctrlDetalleOrden;
-    public DetalleOrden detOrden;
-    public List<DetalleOrden> detOrdenes;
-    private List<Producto> pedido;
-    public Font f;
-    private Orden orden;
+    ControlOrden ctrlOrden;
+    ControlDetalleOrden ctrlDetalleOrden;
+    DetalleOrden detOrden;
+    List<DetalleOrden> detOrdenes;
+    List<Producto> pedido;
+    Font f;
+    Orden orden;
+    boolean lectura = false;
 
     //En este constructor debe de recibir la orden para poder plasmar los productos
     public DetalladoOrden() {
@@ -43,14 +44,15 @@ public class DetalladoOrden extends FrmBase {
     public DetalladoOrden(List<Producto> pedido, List<DetalleOrden> detalles, Orden orden) {
         initComponents();
         this.orden = orden;
-        this.txtNumMesa.setText(orden.getNumMesa()+"");
+        this.txtNumMesa.setText(orden.getNumMesa() + "");
         this.detOrdenes = detalles;
         this.pedido = pedido;
         this.ctrlDetalleOrden = new ControlDetalleOrden();
         this.ctrlOrden = new ControlOrden();
         adaptarPantalla();
         f = new Font("Arial", Font.ITALIC, 18);
-        mostrarProductos();
+        mostrarProductos(detOrdenes);
+
     }
 
     public DetalladoOrden(List<Producto> pedido, List<DetalleOrden> detalles) {
@@ -62,7 +64,22 @@ public class DetalladoOrden extends FrmBase {
         adaptarPantalla();
         f = new Font("Arial", Font.ITALIC, 18);
 
-        mostrarProductos();
+        mostrarProductos(detOrdenes);
+    }
+
+    public DetalladoOrden(Orden orden) {
+        initComponents();
+        this.orden = orden;
+        detOrdenes = orden.getDetalleOrdenes();
+        btnRegistrarOrden.setEnabled(false);
+        lectura = true;
+        lblNumOrden.setText("Num. Orden: " + orden.getId());
+        txtNumMesa.setText("" + orden.getNumMesa());
+        txtNumMesa.setEditable(false);
+
+        adaptarPantalla();
+
+        mostrarProductos(detOrdenes);
     }
 
     public void mostrarIndicadores() {
@@ -71,7 +88,8 @@ public class DetalladoOrden extends FrmBase {
         lblNumOrden.setText("Num. Orden: " + numOrden);
     }
 
-    public void mostrarProductos() {
+    public void mostrarProductos(List<DetalleOrden> detalles) {
+        detalles = detOrdenes;
         double total = 0;
         double tot = 0;
         DefaultTableModel modelo = (DefaultTableModel) this.tblDetalles.getModel();
@@ -268,8 +286,9 @@ public class DetalladoOrden extends FrmBase {
             String numM = txtNumMesa.getText();
             if (!txtNumMesa.getText().equals("")) {
                 int numMesa = Integer.parseInt(numM);
-
-                Orden orden = new Orden(numMesa, Estado.ESPERA, detOrdenes);
+                
+                try{
+                  Orden orden = new Orden(numMesa, Estado.ESPERA, detOrdenes);
 
                 for (DetalleOrden detOrdene : detOrdenes) {
                     detOrdene.setOrden(orden);
@@ -283,6 +302,11 @@ public class DetalladoOrden extends FrmBase {
                         "Exito", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
                 new MenuAdministrarVentas().setVisible(true);
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar la orden",
+                        "Error", JOptionPane.INFORMATION_MESSAGE);
+                }
+              
             } else {
                 JOptionPane.showMessageDialog(this, "Registro de orden no exitoso. Ingrese el número de mesa",
                         "Fallo", JOptionPane.INFORMATION_MESSAGE);
@@ -313,8 +337,13 @@ public class DetalladoOrden extends FrmBase {
     }//GEN-LAST:event_btnRegistrarOrdenActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        this.dispose();
-        new Categoriasv2(pedido, detOrdenes).setVisible(true);
+        if (!lectura) {
+            this.dispose();
+            new Categoriasv2(pedido, detOrdenes).setVisible(true);
+        } else if (lectura) {
+            new ConsultarOrden().setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
