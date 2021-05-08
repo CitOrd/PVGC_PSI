@@ -100,7 +100,6 @@ public class TestPrincipal {
         
         
         EliminarOrden eliminarorden = new EliminarOrden();
-        EliminarOrden.main(args);
         
 //       //Creación de orden 
 //        Orden orden1 = new Orden(5, Estado.CONCLUIDO, venta1);

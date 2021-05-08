@@ -35,7 +35,7 @@ public class ConsultarOrden extends javax.swing.JFrame {
     public ConsultarOrden() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         controlOrden = new ControlOrden();
         try {
             this.cargarOrdenes();
@@ -110,6 +110,11 @@ public class ConsultarOrden extends javax.swing.JFrame {
                 "Num Orden", "Estado", "Num Mesa"
             }
         ));
+        tablaOrdenes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaOrdenesMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tablaOrdenes);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 865, 186));
@@ -175,8 +180,8 @@ public class ConsultarOrden extends javax.swing.JFrame {
                 modelo.addRow(orden.toArray());
 
             }
-                    
-        }else{
+
+        } else {
             JOptionPane.showConfirmDialog(this, "No hay ordenes disponibles",
                     "Warning", JOptionPane.WARNING_MESSAGE);
         }
@@ -205,58 +210,34 @@ public class ConsultarOrden extends javax.swing.JFrame {
     }//GEN-LAST:event_jtxtFiltroActionPerformed
 
     private void btnDetalladoOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalladoOrdenActionPerformed
-       String id= jtxtFiltro.getText();
-       int idOrden= Integer.parseInt(id);
-       
-       Orden ord =controlOrden.consultarOrdenPorNumOrden(idOrden);
-       if(ord != null){
-           DetalladoOrden frmDetOrden = new DetalladoOrden(ord);
-           frmDetOrden.setVisible(true);
-           this.dispose();
-           
-       }else{
-           JOptionPane.showConfirmDialog(this, "No se puede acceder al detalle de la orden",
+        if (jtxtFiltro.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Seleccione una orden para consultarla");
+            return;
+        }
+        
+        String id = jtxtFiltro.getText();
+        int idOrden = Integer.parseInt(id);
+
+        Orden ord = controlOrden.consultarOrdenPorNumOrden(idOrden);
+        if (ord != null) {
+            DetalladoOrden frmDetOrden = new DetalladoOrden(ord);
+            frmDetOrden.setVisible(true);
+            this.dispose();
+
+        } else {
+            JOptionPane.showConfirmDialog(this, "No se puede acceder al detalle de la orden",
                     "Warning", JOptionPane.WARNING_MESSAGE);
-           
-       }
-       
-       
+
+        }
+
+
     }//GEN-LAST:event_btnDetalladoOrdenActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarOrden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarOrden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarOrden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarOrden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void tablaOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaOrdenesMouseClicked
+        int seleccionar = tablaOrdenes.rowAtPoint(evt.getPoint());
+        jtxtFiltro.setText(String.valueOf(tablaOrdenes.getValueAt(seleccionar, 0)));
+    }//GEN-LAST:event_tablaOrdenesMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConsultarOrden().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDetalladoOrden;
