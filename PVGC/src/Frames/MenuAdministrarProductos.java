@@ -9,13 +9,14 @@ package Frames;
  *
  * @author Citlali Orduño
  */
-public class MenuAdministrarProductos extends javax.swing.JFrame {
+public class MenuAdministrarProductos extends FrmBase {
 
     /**
      * Creates new form MenuAdministrarProductos
      */
     public MenuAdministrarProductos() {
         initComponents();
+        adaptarPantalla();
     }
 
     /**
@@ -51,9 +52,9 @@ public class MenuAdministrarProductos extends javax.swing.JFrame {
 
         TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 94)); // NOI18N
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
-        TituloMenuTomarPedido.setText("Productos");
+        TituloMenuTomarPedido.setText("Menú Productos");
         getContentPane().add(TituloMenuTomarPedido);
-        TituloMenuTomarPedido.setBounds(240, 70, 480, 119);
+        TituloMenuTomarPedido.setBounds(240, 70, 780, 119);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Comidas.png"))); // NOI18N
         getContentPane().add(jLabel1);
