@@ -49,7 +49,7 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
         TituloMenuTomarPedido.setText("Disponibilidad de producto");
         getContentPane().add(TituloMenuTomarPedido);
-        TituloMenuTomarPedido.setBounds(180, 70, 860, 79);
+        TituloMenuTomarPedido.setBounds(180, 40, 860, 79);
 
         pnlCantidad1.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -196,7 +196,7 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
         );
 
         getContentPane().add(pnlCantidad1);
-        pnlCantidad1.setBounds(90, 210, 1010, 600);
+        pnlCantidad1.setBounds(100, 150, 1010, 600);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoGeneral.png"))); // NOI18N
         getContentPane().add(jLabel1);
