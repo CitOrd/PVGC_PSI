@@ -47,9 +47,9 @@ public class RegistrarProducto extends FrmBase {
 
         TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 62)); // NOI18N
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
-        TituloMenuTomarPedido.setText("Registrar producto");
+        TituloMenuTomarPedido.setText("Registro producto");
         getContentPane().add(TituloMenuTomarPedido);
-        TituloMenuTomarPedido.setBounds(280, 90, 620, 79);
+        TituloMenuTomarPedido.setBounds(310, 90, 540, 79);
 
         pnlCantidad.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -147,7 +147,7 @@ public class RegistrarProducto extends FrmBase {
                     .addGroup(pnlCantidadLayout.createSequentialGroup()
                         .addGroup(pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCantidad2)
-                            .addComponent(cmbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 

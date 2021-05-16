@@ -33,11 +33,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e7" green="d7" red="ce" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Registrar producto"/>
+        <Property name="text" type="java.lang.String" value="Registro producto"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="280" y="90" width="620" height="-1"/>
+          <AbsoluteConstraints x="310" y="90" width="540" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -120,7 +120,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblCantidad2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbCategorias" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="cmbCategorias" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
