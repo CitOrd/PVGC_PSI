@@ -28,9 +28,8 @@ import javax.persistence.Table;
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     //ATRIBUTOS
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,18 +37,16 @@ public class Producto implements Serializable {
     private String nombre;
     @Column(name = "precio", nullable = false, length = 50)
     private float precio;
-    @Column(name = "disponibilidad", columnDefinition="BOOLEAN DEFAULT true")
+    @Column(name = "disponibilidad", columnDefinition = "BOOLEAN DEFAULT true")
     private boolean disponibilidad;
-    
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "idCategoria")
     private Categoria categoria;
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
     private List<DetalleOrden> detalleOrdenes;
-    
-    
-    //CONSTRUCTORES
 
+    //CONSTRUCTORES
     public Producto(Long id, String nombre, float precio, Categoria categoria) {
         this();
         this.id = id;
@@ -66,13 +63,11 @@ public class Producto implements Serializable {
         this.categoria = categoria;
     }
 
-    
     public Producto() {
         detalleOrdenes = new ArrayList<>();
     }
-    
+
     //MÉTODOS
-    
     public Long getId() {
         return id;
     }
@@ -120,11 +115,16 @@ public class Producto implements Serializable {
     public void setDetalleOrdenes(List<DetalleOrden> detalleOrdenes) {
         this.detalleOrdenes = detalleOrdenes;
     }
-    
-    
-    
-    //OVERRIDE MÉTODOS
 
+    public Object[] toArray() {
+        return new Object[]{
+            this.getId(),
+            this.getNombre(),
+            this.getCategoria(),
+            this.getPrecio(),};
+    }
+
+    //OVERRIDE MÉTODOS
     @Override
     public int hashCode() {
         int hash = 0;
@@ -147,7 +147,7 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "Dominio.Producto[ id=" + id + " nombre= "+ nombre +" ]";
+        return "Dominio.Producto[ id=" + id + " nombre= " + nombre + " ]";
     }
-    
+
 }

@@ -40,7 +40,7 @@ public class EliminarProducto extends FrmBase {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlCantidad1.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -68,7 +68,7 @@ public class EliminarProducto extends FrmBase {
         });
 
         btnMenuPrincipal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnMenuPrincipal.setText("Menu principal");
+        btnMenuPrincipal.setText("regresar");
         btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuPrincipalActionPerformed(evt);
@@ -126,23 +126,19 @@ public class EliminarProducto extends FrmBase {
                 .addGap(42, 42, 42))
         );
 
-        getContentPane().add(pnlCantidad1);
-        pnlCantidad1.setBounds(90, 210, 1010, 600);
+        getContentPane().add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, 600));
 
         TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 62)); // NOI18N
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
         TituloMenuTomarPedido.setText("Baja de producto");
-        getContentPane().add(TituloMenuTomarPedido);
-        TituloMenuTomarPedido.setBounds(340, 80, 510, 79);
+        getContentPane().add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 510, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoGeneral.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(1, -4, 1200, 910);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, -4, 1200, 910));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(-40, 160, 1490, 1270);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 160, 1490, 1270));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

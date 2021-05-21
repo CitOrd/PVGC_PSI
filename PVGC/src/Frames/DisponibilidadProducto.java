@@ -43,13 +43,12 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 62)); // NOI18N
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
         TituloMenuTomarPedido.setText("Disponibilidad de producto");
-        getContentPane().add(TituloMenuTomarPedido);
-        TituloMenuTomarPedido.setBounds(180, 40, 860, 79);
+        getContentPane().add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 860, -1));
 
         pnlCantidad1.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -117,7 +116,7 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
         jLabel2.setText("Producto seleccionado: ");
 
         btnMenuPrincipal1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnMenuPrincipal1.setText("Menu principal");
+        btnMenuPrincipal1.setText("regresar");
         btnMenuPrincipal1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuPrincipal1ActionPerformed(evt);
@@ -150,7 +149,7 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlCantidad1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
                         .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,17 +189,15 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
                     .addGroup(pnlCantidad1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(btnMenuPrincipal1)
                 .addGap(25, 25, 25))
         );
 
-        getContentPane().add(pnlCantidad1);
-        pnlCantidad1.setBounds(100, 150, 1010, 600);
+        getContentPane().add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoGeneral.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -20, 1200, 940);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, -1, 940));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

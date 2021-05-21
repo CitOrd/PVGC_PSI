@@ -120,7 +120,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "Dominio.Categoria[ id=" + id + " ]";
+        return nombre;
     }
     
 }

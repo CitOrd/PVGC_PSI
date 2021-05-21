@@ -43,13 +43,8 @@ public class ControlCategoria {
         }
     }
     
-    public ArrayList<Categoria> consultarCategorias(Categoria categoria){
-        if(categoria != null){
+    public ArrayList<Categoria> consultarCategorias(){
             return this.categoriaDao.consultarTodos();
-        }else{
-            System.out.println("No se pudo consultar la categoria");
-            return null;
-        }
    } 
     
     public ArrayList<Categoria> consultarCategoriaPorNombre(String nombre){

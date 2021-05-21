@@ -45,20 +45,19 @@ public class MenuAdministrarProductos extends FrmBase {
         pnlDisponibilidadProd = new javax.swing.JPanel();
         btnDisponibilidadProducto = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        btnMenuPrincipal = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 94)); // NOI18N
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
         TituloMenuTomarPedido.setText("Menú Productos");
-        getContentPane().add(TituloMenuTomarPedido);
-        TituloMenuTomarPedido.setBounds(240, 70, 780, 119);
+        getContentPane().add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 780, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Icono Opción Comidas.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(70, 40, 150, 150);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 150, 150));
 
         pnlregistrarProd.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -66,6 +65,11 @@ public class MenuAdministrarProductos extends FrmBase {
 
         btnRegistrarProducto.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnRegistrarProducto.setText("Registrar Producto");
+        btnRegistrarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarProductoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlregistrarProdLayout = new javax.swing.GroupLayout(pnlregistrarProd);
         pnlregistrarProd.setLayout(pnlregistrarProdLayout);
@@ -90,8 +94,7 @@ public class MenuAdministrarProductos extends FrmBase {
                 .addGap(93, 93, 93))
         );
 
-        getContentPane().add(pnlregistrarProd);
-        pnlregistrarProd.setBounds(30, 380, 220, 380);
+        getContentPane().add(pnlregistrarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, 380));
 
         pnlModificarProd.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -129,8 +132,7 @@ public class MenuAdministrarProductos extends FrmBase {
                 .addGap(93, 93, 93))
         );
 
-        getContentPane().add(pnlModificarProd);
-        pnlModificarProd.setBounds(260, 380, 220, 380);
+        getContentPane().add(pnlModificarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, -1, 380));
 
         pnlEliminarProd.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -167,8 +169,7 @@ public class MenuAdministrarProductos extends FrmBase {
                 .addGap(93, 93, 93))
         );
 
-        getContentPane().add(pnlEliminarProd);
-        pnlEliminarProd.setBounds(490, 380, 220, 380);
+        getContentPane().add(pnlEliminarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, -1, -1));
 
         pnlConsultarProd.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -205,8 +206,7 @@ public class MenuAdministrarProductos extends FrmBase {
                 .addGap(93, 93, 93))
         );
 
-        getContentPane().add(pnlConsultarProd);
-        pnlConsultarProd.setBounds(720, 380, 220, 380);
+        getContentPane().add(pnlConsultarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 380, -1, -1));
 
         pnlDisponibilidadProd.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -243,72 +243,59 @@ public class MenuAdministrarProductos extends FrmBase {
                 .addGap(93, 93, 93))
         );
 
-        getContentPane().add(pnlDisponibilidadProd);
-        pnlDisponibilidadProd.setBounds(950, 380, 220, 380);
+        getContentPane().add(pnlDisponibilidadProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 380, -1, -1));
+
+        btnMenuPrincipal.setText("Regresar");
+        btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuPrincipalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 800, 120, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoGeneral.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1200, 902);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 902));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProductoActionPerformed
-        // TODO add your handling code here:
+        new ModificarProducto().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnModificarProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
-        // TODO add your handling code here:
+        new EliminarProducto().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
     private void btnConsultarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarProductoActionPerformed
-        // TODO add your handling code here:
+        new ConsultarProducto().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnConsultarProductoActionPerformed
 
     private void btnDisponibilidadProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponibilidadProductoActionPerformed
-        // TODO add your handling code here:
+        new DisponibilidadProducto().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnDisponibilidadProductoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
+        new MenuPrincipal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMenuPrincipalActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuAdministrarProductos().setVisible(true);
-            }
-        });
-    }
+    private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
+        new RegistrarProducto().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegistrarProductoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloMenuTomarPedido;
     private javax.swing.JButton btnConsultarProducto;
     private javax.swing.JButton btnDisponibilidadProducto;
     private javax.swing.JButton btnEliminarProducto;
+    private javax.swing.JButton btnMenuPrincipal;
     private javax.swing.JButton btnModificarProducto;
     private javax.swing.JButton btnRegistrarProducto;
     private javax.swing.JLabel btnTomasr;

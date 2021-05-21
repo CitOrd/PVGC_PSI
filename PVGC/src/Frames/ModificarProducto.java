@@ -5,17 +5,73 @@
  */
 package Frames;
 
+import Control.ControlProducto;
+import Dominio.Producto;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
- * @author Citlali Orduño
+ * @author Citlali Orduño & R2D2
  */
-public class ModificarProducto extends javax.swing.JFrame {
+public class ModificarProducto extends FrmBase {
 
+    private ControlProducto controlProducto;
+    DefaultTableModel modelo;
+    TableRowSorter trs;
     /**
      * Creates new form ModificarProducto
      */
     public ModificarProducto() {
         initComponents();
+        adaptarPantalla();
+        controlProducto = new ControlProducto();
+        try{
+            cargarOrdenes();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+    }
+    
+    public ModificarProducto(boolean actualizado) {
+        initComponents();
+        adaptarPantalla();
+        controlProducto = new ControlProducto();
+        try{
+            cargarOrdenes();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        if (actualizado) {
+            JOptionPane.showMessageDialog(this, "Producto modificado correctamente");
+        }else{
+            JOptionPane.showMessageDialog(this, "Producto no se pudo actualizar, intentelo de nuevo");
+        }
+        
+    }
+    
+    //mostrar ordenes en la tabla 
+    public void cargarOrdenes() throws SQLException {
+        List<Producto> productos = this.controlProducto.consultarProducto();
+        if (productos != null) {
+            modelo = (DefaultTableModel) tblProductos.getModel();
+            modelo.setRowCount(0);
+            for (Producto producto : productos) {
+                modelo.addRow(producto.toArray());
+            }
+
+        } else {
+            JOptionPane.showConfirmDialog(this, "No hay productos disponibles",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     /**
@@ -30,7 +86,7 @@ public class ModificarProducto extends javax.swing.JFrame {
         TituloMenuTomarPedido = new javax.swing.JLabel();
         pnlCantidad1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        txtOrdenEliminar = new javax.swing.JTextField();
+        txtBusqueda = new javax.swing.JTextField();
         btnModificar = new javax.swing.JButton();
         btnMenuPrincipal = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -38,13 +94,12 @@ public class ModificarProducto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 62)); // NOI18N
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
         TituloMenuTomarPedido.setText("Modifificar producto");
-        getContentPane().add(TituloMenuTomarPedido);
-        TituloMenuTomarPedido.setBounds(280, 90, 630, 79);
+        getContentPane().add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 630, -1));
 
         pnlCantidad1.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -52,14 +107,9 @@ public class ModificarProducto extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Ingrese el nombre del producto, por favor:");
 
-        txtOrdenEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOrdenEliminarActionPerformed(evt);
-            }
-        });
-        txtOrdenEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtOrdenEliminarKeyTyped(evt);
+                txtBusquedaKeyTyped(evt);
             }
         });
 
@@ -72,7 +122,7 @@ public class ModificarProducto extends javax.swing.JFrame {
         });
 
         btnMenuPrincipal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnMenuPrincipal.setText("Menu principal");
+        btnMenuPrincipal.setText("regresar");
         btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuPrincipalActionPerformed(evt);
@@ -81,13 +131,13 @@ public class ModificarProducto extends javax.swing.JFrame {
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Categoría", "Precio"
+                "ID", "Nombre", "Categoría", "Precio"
             }
         ));
         tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,7 +157,7 @@ public class ModificarProducto extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCantidad1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtOrdenEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,86 +171,72 @@ public class ModificarProducto extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtOrdenEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar))
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addComponent(btnMenuPrincipal)
                 .addGap(42, 42, 42))
         );
 
-        getContentPane().add(pnlCantidad1);
-        pnlCantidad1.setBounds(100, 190, 1010, 600);
+        getContentPane().add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoGeneral.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(1, -4, 1200, 910);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, -4, -1, 910));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtOrdenEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrdenEliminarActionPerformed
+    private void txtBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyTyped
+        txtBusqueda.addKeyListener(new KeyAdapter() {
 
-    }//GEN-LAST:event_txtOrdenEliminarActionPerformed
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                trs.setRowFilter(RowFilter.regexFilter(txtBusqueda.getText(), 0));
+            }
 
-    private void txtOrdenEliminarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrdenEliminarKeyTyped
-        // TODO add your handling code here:
+        });
+        trs = new TableRowSorter(modelo);
+        tblProductos.setRowSorter(trs);
 
-    }//GEN-LAST:event_txtOrdenEliminarKeyTyped
+    }//GEN-LAST:event_txtBusquedaKeyTyped
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 
+        if (txtBusqueda.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Seleccione una orden para consultarla");
+            return;
+        }
+        
+         String id = txtBusqueda.getText();
+        int idProducto = Integer.parseInt(id);
+        
+        Producto producto = controlProducto.buscarPorId(Long.parseLong(id));
+        if (producto != null) {
+            new RegistrarProducto(producto).setVisible(true);
+            this.dispose();
+        }else {
+            JOptionPane.showConfirmDialog(this, "No se puede acceder al detalle del producto",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
 
         MenuAdministrarVentas jFrm = new MenuAdministrarVentas();
         jFrm.setVisible(true);
-        //Ok
+        this.dispose();
     }//GEN-LAST:event_btnMenuPrincipalActionPerformed
 
     private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
         // TODO add your handling code here:
 
         int seleccionar =tblProductos.rowAtPoint(evt.getPoint());
-        txtOrdenEliminar.setText(String.valueOf(tblProductos.getValueAt(seleccionar, 0)));
+        txtBusqueda.setText(String.valueOf(tblProductos.getValueAt(seleccionar, 0)));
     }//GEN-LAST:event_tblProductosMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModificarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModificarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModificarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModificarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ModificarProducto().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloMenuTomarPedido;
@@ -211,6 +247,6 @@ public class ModificarProducto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel pnlCantidad1;
     private javax.swing.JTable tblProductos;
-    private javax.swing.JTextField txtOrdenEliminar;
+    private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 }

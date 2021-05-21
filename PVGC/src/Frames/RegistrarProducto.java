@@ -5,11 +5,24 @@
  */
 package Frames;
 
+import Control.ControlCategoria;
+import Control.ControlProducto;
+import Dominio.Categoria;
+import Dominio.Producto;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Citlali Orduño
+ * @author Citlali Orduño && R2D2
  */
 public class RegistrarProducto extends FrmBase {
+
+    private ControlProducto ctrlProducto;
+    private ControlCategoria ctrlCategoria;
+    private boolean actualizar;
+    private Producto producto;
 
     /**
      * Creates new form RegistrarProducto
@@ -17,7 +30,28 @@ public class RegistrarProducto extends FrmBase {
     public RegistrarProducto() {
         initComponents();
         adaptarPantalla();
+        actualizar = false;
+        ctrlProducto = new ControlProducto();
+        ctrlCategoria = new ControlCategoria();
+        this.inicializarCombobox();
+    }
 
+    public RegistrarProducto(Producto producto) {
+        initComponents();
+        adaptarPantalla();
+        this.producto = producto;
+        actualizar = true;
+        ctrlProducto = new ControlProducto();
+        ctrlCategoria = new ControlCategoria();
+        this.inicializarCombobox();
+        txtNombreProducto.setText(producto.getNombre());
+        txtPrecio.setText("" + producto.getPrecio());
+        cmbCategorias.setSelectedItem(producto.getCategoria());
+    }
+
+    private void inicializarCombobox() {
+        ArrayList<Categoria> categorias = ctrlCategoria.consultarCategorias();
+        cmbCategorias.setModel(new DefaultComboBoxModel(categorias.toArray()));
     }
 
     /**
@@ -35,7 +69,7 @@ public class RegistrarProducto extends FrmBase {
         btnRegistrar = new javax.swing.JButton();
         txtNombreProducto = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
-        txtNombreProducto1 = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
         lblCantidad1 = new javax.swing.JLabel();
         lblCantidad2 = new javax.swing.JLabel();
         cmbCategorias = new javax.swing.JComboBox<>();
@@ -43,13 +77,12 @@ public class RegistrarProducto extends FrmBase {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 62)); // NOI18N
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
         TituloMenuTomarPedido.setText("Registro producto");
-        getContentPane().add(TituloMenuTomarPedido);
-        TituloMenuTomarPedido.setBounds(310, 90, 540, 79);
+        getContentPane().add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 540, -1));
 
         pnlCantidad.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -59,9 +92,9 @@ public class RegistrarProducto extends FrmBase {
 
         btnRegistrar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnRegistrar.setText("Registrar");
-        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrarMouseClicked(evt);
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
             }
         });
 
@@ -75,7 +108,7 @@ public class RegistrarProducto extends FrmBase {
             }
         });
 
-        txtNombreProducto1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        txtPrecio.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
         lblCantidad1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         lblCantidad1.setForeground(new java.awt.Color(51, 51, 51));
@@ -86,12 +119,7 @@ public class RegistrarProducto extends FrmBase {
         lblCantidad2.setText("Categoría:");
 
         cmbCategorias.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        cmbCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desayunos", "Comidas", "Bebidas frías", "Bebidas calientes" }));
-        cmbCategorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCategoriasActionPerformed(evt);
-            }
-        });
+        cmbCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desayunos", "Comidas", "Bebidas frías", "Bebidas calientes", "Postres" }));
 
         javax.swing.GroupLayout pnlCantidadLayout = new javax.swing.GroupLayout(pnlCantidad);
         pnlCantidad.setLayout(pnlCantidadLayout);
@@ -115,7 +143,7 @@ public class RegistrarProducto extends FrmBase {
                     .addGroup(pnlCantidadLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombreProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(pnlCantidadLayout.createSequentialGroup()
@@ -138,7 +166,7 @@ public class RegistrarProducto extends FrmBase {
                         .addGap(83, 83, 83)
                         .addGroup(pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCantidad)
-                            .addComponent(txtNombreProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                         .addGroup(pnlCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,77 +179,55 @@ public class RegistrarProducto extends FrmBase {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        getContentPane().add(pnlCantidad);
-        pnlCantidad.setBounds(90, 210, 1000, 440);
+        getContentPane().add(pnlCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, 440));
 
         btnMenuPrincipal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        btnMenuPrincipal.setText("Menu principal");
-        btnMenuPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMenuPrincipalMouseClicked(evt);
+        btnMenuPrincipal.setText("regresar");
+        btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuPrincipalActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMenuPrincipal);
-        btnMenuPrincipal.setBounds(80, 740, 275, 40);
+        getContentPane().add(btnMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 740, 275, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoGeneral.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1210, 900);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-      
+        this.txtNombreProducto.setText("");
+        this.txtPrecio.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-       
-    }//GEN-LAST:event_btnRegistrarMouseClicked
-
-    private void cmbCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbCategoriasActionPerformed
-
-    private void btnMenuPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuPrincipalMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMenuPrincipalMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        if (actualizar) {
+            if (producto != null) {
+                String nombre = txtNombreProducto.getText();
+                float precio = Float.parseFloat(txtPrecio.getText());
+                Categoria categoria = (Categoria) cmbCategorias.getSelectedItem();
+                producto.setNombre(nombre);
+                producto.setPrecio(precio);
+                producto.setCategoria(categoria);
+                ctrlProducto.actualizarProducto(producto);
+                new ModificarProducto(true).setVisible(true);
+                this.dispose();
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } else {
+            String nombre = txtNombreProducto.getText();
+            float precio = Float.parseFloat(txtPrecio.getText());
+            Categoria categoria = (Categoria) cmbCategorias.getSelectedItem();
+            ctrlProducto.agregarProducto(new Producto(nombre, precio, true, categoria));
         }
-        //</editor-fold>
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrarProducto().setVisible(true);
-            }
-        });
-    }
+    private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
+        new MenuAdministrarProductos().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMenuPrincipalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloMenuTomarPedido;
@@ -235,6 +241,6 @@ public class RegistrarProducto extends FrmBase {
     private javax.swing.JLabel lblCantidad2;
     private javax.swing.JPanel pnlCantidad;
     private javax.swing.JTextField txtNombreProducto;
-    private javax.swing.JTextField txtNombreProducto1;
+    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,13 +38,12 @@ public class ConsultarProducto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 62)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(206, 215, 231));
         lblTitulo.setText("Consulta de productos");
-        getContentPane().add(lblTitulo);
-        lblTitulo.setBounds(260, 80, 700, 79);
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 700, -1));
 
         pnlCantidad1.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -72,7 +71,7 @@ public class ConsultarProducto extends javax.swing.JFrame {
         });
 
         btnMenuPrincipal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnMenuPrincipal.setText("Menu principal");
+        btnMenuPrincipal.setText("Regresar");
         btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuPrincipalActionPerformed(evt);
@@ -130,12 +129,10 @@ public class ConsultarProducto extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
         );
 
-        getContentPane().add(pnlCantidad1);
-        pnlCantidad1.setBounds(100, 200, 1010, 600);
+        getContentPane().add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, 600));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoGeneral.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(1, -4, 1200, 910);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, -4, -1, 910));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

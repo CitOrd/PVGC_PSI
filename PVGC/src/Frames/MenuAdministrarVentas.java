@@ -58,11 +58,15 @@ public class MenuAdministrarVentas extends FrmBase {
     private void initComponents() {
 
         JPPrincipal = new javax.swing.JPanel();
+        btnMenuPrincipal = new javax.swing.JButton();
         pnlEliminarOrden = new javax.swing.JPanel();
         BnrEliminarOrden = new javax.swing.JLabel();
         iconoEliminar = new javax.swing.JLabel();
         btnEliminarOrden = new javax.swing.JButton();
         pnlTomarOrden = new javax.swing.JPanel();
+        btnTomasr = new javax.swing.JLabel();
+        BnrBebidasCalientes = new javax.swing.JLabel();
+        btnTomarOrden = new javax.swing.JButton();
         TituloMenuTomarPedido = new javax.swing.JLabel();
         IcTitulo = new javax.swing.JLabel();
         pnlModificarOrden = new javax.swing.JPanel();
@@ -76,14 +80,21 @@ public class MenuAdministrarVentas extends FrmBase {
         iconoConsultar = new javax.swing.JLabel();
         btnConsultarOrden = new javax.swing.JButton();
         BackgroundFrame = new javax.swing.JLabel();
-        BnrBebidasCalientes = new javax.swing.JLabel();
-        btnTomasr = new javax.swing.JLabel();
-        btnTomarOrden = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(1920, 1080));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        JPPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnMenuPrincipal.setText("Regresar");
+        btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuPrincipalActionPerformed(evt);
+            }
+        });
+        JPPrincipal.add(btnMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 832, 190, 50));
 
         pnlEliminarOrden.setBackground(new java.awt.Color(206, 215, 231, 200));
 
@@ -129,24 +140,60 @@ public class MenuAdministrarVentas extends FrmBase {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
+        JPPrincipal.add(pnlEliminarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 322, -1, -1));
+
         pnlTomarOrden.setBackground(new java.awt.Color(206, 215, 231, 200));
+
+        btnTomasr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/IconoOpciónTomarOrden.png"))); // NOI18N
+
+        BnrBebidasCalientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BannerTomarPedido.png"))); // NOI18N
+
+        btnTomarOrden.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
+        btnTomarOrden.setText("Tomar orden");
+        btnTomarOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTomarOrdenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlTomarOrdenLayout = new javax.swing.GroupLayout(pnlTomarOrden);
         pnlTomarOrden.setLayout(pnlTomarOrdenLayout);
         pnlTomarOrdenLayout.setHorizontalGroup(
             pnlTomarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 287, Short.MAX_VALUE)
+            .addGroup(pnlTomarOrdenLayout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(pnlTomarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTomarOrdenLayout.createSequentialGroup()
+                        .addComponent(BnrBebidasCalientes, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTomarOrdenLayout.createSequentialGroup()
+                        .addComponent(btnTomarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTomarOrdenLayout.createSequentialGroup()
+                        .addComponent(btnTomasr)
+                        .addGap(57, 57, 57))))
         );
         pnlTomarOrdenLayout.setVerticalGroup(
             pnlTomarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTomarOrdenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BnrBebidasCalientes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(btnTomasr)
+                .addGap(33, 33, 33)
+                .addComponent(btnTomarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
+
+        JPPrincipal.add(pnlTomarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 322, -1, -1));
 
         TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 94)); // NOI18N
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
         TituloMenuTomarPedido.setText("Tomar pedido");
+        JPPrincipal.add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 115, 890, -1));
 
         IcTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/IconoTituloMenuAdministrarVenta.png"))); // NOI18N
+        JPPrincipal.add(IcTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 94, 150, 140));
 
         pnlModificarOrden.setBackground(new java.awt.Color(206, 215, 231, 95));
 
@@ -197,6 +244,9 @@ public class MenuAdministrarVentas extends FrmBase {
                 .addGap(42, 42, 42))
         );
 
+        JPPrincipal.add(pnlModificarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 319, -1, -1));
+        JPPrincipal.add(BnrModificarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(1188, 422, 1, 105));
+
         pnlConsultarOrdenm.setBackground(new java.awt.Color(206, 215, 231, 95));
 
         BnrEliminarOrden2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BannerConsultarOrden.png"))); // NOI18N
@@ -240,92 +290,10 @@ public class MenuAdministrarVentas extends FrmBase {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
+        JPPrincipal.add(pnlConsultarOrdenm, new org.netbeans.lib.awtextra.AbsoluteConstraints(899, 319, -1, -1));
+
         BackgroundFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
-
-        BnrBebidasCalientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BannerTomarPedido.png"))); // NOI18N
-
-        btnTomasr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/IconoOpciónTomarOrden.png"))); // NOI18N
-
-        btnTomarOrden.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 18)); // NOI18N
-        btnTomarOrden.setText("Tomar orden");
-        btnTomarOrden.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTomarOrdenActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout JPPrincipalLayout = new javax.swing.GroupLayout(JPPrincipal);
-        JPPrincipal.setLayout(JPPrincipalLayout);
-        JPPrincipalLayout.setHorizontalGroup(
-            JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPPrincipalLayout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(pnlTomarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlEliminarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(pnlModificarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(pnlConsultarOrdenm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BnrModificarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(806, Short.MAX_VALUE))
-            .addGroup(JPPrincipalLayout.createSequentialGroup()
-                .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPPrincipalLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(IcTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TituloMenuTomarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPPrincipalLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btnTomasr)
-                        .addGap(46, 46, 46)
-                        .addComponent(BnrBebidasCalientes, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(btnTomarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(JPPrincipalLayout.createSequentialGroup()
-                    .addComponent(BackgroundFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 1998, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        JPPrincipalLayout.setVerticalGroup(
-            JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPPrincipalLayout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(IcTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TituloMenuTomarPedido))
-                .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JPPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTomasr))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JPPrincipalLayout.createSequentialGroup()
-                        .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JPPrincipalLayout.createSequentialGroup()
-                                .addGap(188, 188, 188)
-                                .addComponent(BnrModificarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(JPPrincipalLayout.createSequentialGroup()
-                                .addGap(85, 85, 85)
-                                .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(pnlTomarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pnlEliminarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pnlModificarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pnlConsultarOrdenm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JPPrincipalLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(BnrBebidasCalientes, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(JPPrincipalLayout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(btnTomarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-            .addGroup(JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPPrincipalLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BackgroundFrame)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
+        JPPrincipal.add(BackgroundFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 11, 1998, -1));
 
         getContentPane().add(JPPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 900));
 
@@ -356,47 +324,11 @@ public class MenuAdministrarVentas extends FrmBase {
         this.dispose();
     }//GEN-LAST:event_btnTomarOrdenActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
+        new MenuPrincipal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMenuPrincipalActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuAdministrarVentas().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundFrame;
@@ -411,6 +343,7 @@ public class MenuAdministrarVentas extends FrmBase {
     private javax.swing.JLabel TituloMenuTomarPedido;
     private javax.swing.JButton btnConsultarOrden;
     private javax.swing.JButton btnEliminarOrden;
+    private javax.swing.JButton btnMenuPrincipal;
     private javax.swing.JButton btnModificarOrden;
     private javax.swing.JButton btnTomarOrden;
     private javax.swing.JLabel btnTomasr;

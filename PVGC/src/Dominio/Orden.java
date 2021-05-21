@@ -154,8 +154,6 @@ public class Orden implements Serializable {
             this.getId(),
             this.getEstado(),
             this.getNumMesa(),
-
-           
         };
     }
     
