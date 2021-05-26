@@ -105,7 +105,7 @@ public class EliminarOrden extends javax.swing.JFrame {
                 txtOrdenEliminarKeyTyped(evt);
             }
         });
-        getContentPane().add(txtOrdenEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 85, -1));
+        getContentPane().add(txtOrdenEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 250, 100, -1));
 
         tblOrdenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -215,10 +215,8 @@ public class EliminarOrden extends javax.swing.JFrame {
     }//GEN-LAST:event_txtOrdenEliminarKeyTyped
 
     private void tblOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrdenesMouseClicked
-        // TODO add your handling code here:
-        
-        
-          int seleccionar =tblOrdenes.rowAtPoint(evt.getPoint());
+
+        int seleccionar =tblOrdenes.rowAtPoint(evt.getPoint());
         txtOrdenEliminar.setText(String.valueOf(tblOrdenes.getValueAt(seleccionar, 0)));
     }//GEN-LAST:event_tblOrdenesMouseClicked
 

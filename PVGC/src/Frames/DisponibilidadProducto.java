@@ -30,7 +30,7 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
         TituloMenuTomarPedido = new javax.swing.JLabel();
         pnlCantidad1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        btnGuardar = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListProductos = new javax.swing.JList<>();
         txtBusProducto = new javax.swing.JTextField();
@@ -56,11 +56,11 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ingrese el nombre del producto, por favor:");
 
-        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnGuardar.setText("Guardar ");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
@@ -156,7 +156,7 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
                                 .addComponent(jLabel2))
                             .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(pnlCantidad1Layout.createSequentialGroup()
-                                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCantidad1Layout.createSequentialGroup()
@@ -184,7 +184,7 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
                             .addComponent(jRadioButton2))
                         .addGap(91, 91, 91)
                         .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnGuardar)
+                            .addComponent(btnAceptar)
                             .addComponent(btnCancelar)))
                     .addGroup(pnlCantidad1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
@@ -202,12 +202,12 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
         MenuAdministrarVentas jFrm = new MenuAdministrarVentas();
         jFrm.setVisible(true);
         //Ok
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void ListProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListProductosMouseClicked
        
@@ -284,8 +284,8 @@ public class DisponibilidadProducto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListProductos;
     private javax.swing.JLabel TituloMenuTomarPedido;
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnMenuPrincipal1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

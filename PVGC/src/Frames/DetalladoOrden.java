@@ -102,8 +102,9 @@ public class DetalladoOrden extends FrmBase {
             Object[] fila = new Object[4];
             fila[0] = nombre;
             fila[1] = cantidad;
-            fila[3] = total;
             fila[2] = detOrdene.getProducto().getPrecio();
+            fila[3] = total;
+           
             modelo.addRow(fila);
 
             tot += total;

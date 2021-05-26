@@ -52,55 +52,64 @@ public class TestPrincipal {
         Categoria cat1= new Categoria("Comidas", "Categoria para comidas fuertes");
         Categoria cat2= new Categoria("Bebidas frías", "Categoria para las bebidas preparadas heladas");
         Categoria cat3= new Categoria("Postres", "Categoría para guardar pasteles o algún chuchuluco dulce");
-        
-        cc.agregarCategoria(cat1);
-        cc.agregarCategoria(cat2);
-        cc.agregarCategoria(cat3);
+        Categoria cat4 = new Categoria("Bebidas calientes", "Categoría para las bebidas preparadas calientes");
+        Categoria cat5 = new Categoria("Desayunos", "Categoría para los platillos para iniciar bien el día");
         
         
-        //Creacion de Productos
-        Producto prod1= new Producto("Ensalada", 40f, true, cat1);
-        Producto prod2= new Producto("Frape oreo", 30f, true, cat2);
-        Producto prod3= new Producto("Pastel de Zanahoria rebanada", 20f, true, cat3);
+//        cc.agregarCategoria(cat1);
+//        cc.agregarCategoria(cat2);
+//        cc.agregarCategoria(cat3);
+//        cc.agregarCategoria(cat5);
+//        cc.agregarCategoria(cat4);
         
-        cp.agregarProducto(prod1);
-        cp.agregarProducto(prod2);
-        cp.agregarProducto(prod3);
+        ArrayList<Producto>productos= cp.consultarProducto();
+        for (Producto producto : productos) {
+            System.out.println(producto);
+        }
         
-        
-         
-        //Crear empleados
-        
-        Empleado empleado1= new Empleado("Cajero", "Juan Jimenez Mercado", "juanJM_25@gmail.com", "a2asd123dasdasd", "6441923234", "de las mancha #456 entre blvd torre de la viena");
-        Empleado empleado2= new Empleado("Gerente", "Pedro Montes Jimenez", "PedroMJ_12@gmail.com", "gsgkfks244aksdk", "6442924235", "Fierro viejo #45 entre casa blanca y las fuentes");
-        
-        //Registrarlos en BD
-        ce.agregarEmpleado(empleado1);
-        ce.agregarEmpleado(empleado2);
-        
-
-        // Crear reporte de venta
-        
-        ReporteVenta rv1 = new ReporteVenta(Periodo.VESPERTINO, empleado1);
-        ReporteVenta rv2 = new ReporteVenta(Periodo.MATUTINO, empleado2);
-        
-        //registrar en BD reporte de venta de empleados
-        crv.agregarReporteVenta(rv1);
-        crv.agregarReporteVenta(rv2);
-        
-        //Creación de venta
-        Calendar fecha = new GregorianCalendar();
-       
-        Venta venta1= new Venta(fecha, 324f, rv1);
-        Venta venta2= new Venta(fecha, 200f, rv2);
-        
-        //Registro de venta
-        cv.agregarVenta(venta1);
-        cv.agregarVenta(venta2);
-        
-        
-        EliminarOrden eliminarorden = new EliminarOrden();
-        
+//        //Creacion de Productos
+//        Producto prod1= new Producto("Ensalada", 40f, true, cat1);
+//        Producto prod2= new Producto("Frape oreo", 30f, true, cat2);
+//        Producto prod3= new Producto("Pastel de Zanahoria rebanada", 20f, true, cat3);
+//        
+//        cp.agregarProducto(prod1);
+//        cp.agregarProducto(prod2);
+//        cp.agregarProducto(prod3);
+//        
+//        
+//         
+//        //Crear empleados
+//        
+//        Empleado empleado1= new Empleado("Cajero", "Juan Jimenez Mercado", "juanJM_25@gmail.com", "a2asd123dasdasd", "6441923234", "de las mancha #456 entre blvd torre de la viena");
+//        Empleado empleado2= new Empleado("Gerente", "Pedro Montes Jimenez", "PedroMJ_12@gmail.com", "gsgkfks244aksdk", "6442924235", "Fierro viejo #45 entre casa blanca y las fuentes");
+//        
+//        //Registrarlos en BD
+//        ce.agregarEmpleado(empleado1);
+//        ce.agregarEmpleado(empleado2);
+//        
+//
+//        // Crear reporte de venta
+//        
+//        ReporteVenta rv1 = new ReporteVenta(Periodo.VESPERTINO, empleado1);
+//        ReporteVenta rv2 = new ReporteVenta(Periodo.MATUTINO, empleado2);
+//        
+//        //registrar en BD reporte de venta de empleados
+//        crv.agregarReporteVenta(rv1);
+//        crv.agregarReporteVenta(rv2);
+//        
+//        //Creación de venta
+//        Calendar fecha = new GregorianCalendar();
+//       
+//        Venta venta1= new Venta(fecha, 324f, rv1);
+//        Venta venta2= new Venta(fecha, 200f, rv2);
+//        
+//        //Registro de venta
+//        cv.agregarVenta(venta1);
+//        cv.agregarVenta(venta2);
+//        
+//        
+//        EliminarOrden eliminarorden = new EliminarOrden();
+//        
 //       //Creación de orden 
 //        Orden orden1 = new Orden(5, Estado.CONCLUIDO, venta1);
 //        

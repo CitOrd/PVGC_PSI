@@ -5,18 +5,67 @@
  */
 package Frames;
 
+import Control.ControlProducto;
+import Dominio.Orden;
+import Dominio.Producto;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Citlali Orduño
  */
 public class EliminarProducto extends FrmBase {
 
-    
+    ControlProducto ctrlProducto;
+    ArrayList<Producto> productos;
+    TableRowSorter trs;
+    DefaultTableModel modelo;
+
     /**
      * Creates new form EliminarProducto
      */
     public EliminarProducto() {
         initComponents();
+        ctrlProducto = new ControlProducto();
+        productos = new ArrayList<>();
+        cargarProductos();
+    }
+
+    public void cargarProductos() {
+        productos = this.ctrlProducto.consultarProducto();
+        if (productos != null) {
+            modelo = (DefaultTableModel) tblProductos.getModel();
+            modelo.setRowCount(0);
+            for (Producto producto : productos) {
+
+                String nombre = producto.getNombre();
+                String categoria = producto.getCategoria().getNombre();
+                float precio = producto.getPrecio();
+
+                Object[] fila = new Object[3];
+                fila[0] = nombre;
+                fila[1] = categoria;
+                fila[2] = precio;
+
+                modelo.addRow(fila);
+
+            }
+
+        } else {
+            JOptionPane.showConfirmDialog(this, "No hay productos disponibles",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
     }
 
     /**
@@ -28,11 +77,11 @@ public class EliminarProducto extends FrmBase {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlCantidad1 = new javax.swing.JPanel();
+        pnlProductosEliminar = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        txtOrdenEliminar = new javax.swing.JTextField();
+        txtProdEliminar = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
-        btnMenuPrincipal = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblProductos = new javax.swing.JTable();
         TituloMenuTomarPedido = new javax.swing.JLabel();
@@ -40,22 +89,17 @@ public class EliminarProducto extends FrmBase {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
-        pnlCantidad1.setBackground(new java.awt.Color(206, 215, 231, 200));
+        pnlProductosEliminar.setBackground(new java.awt.Color(206, 215, 231, 200));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ingrese el nombre del producto, por favor:");
 
-        txtOrdenEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOrdenEliminarActionPerformed(evt);
-            }
-        });
-        txtOrdenEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtProdEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtOrdenEliminarKeyTyped(evt);
+                txtProdEliminarKeyTyped(evt);
             }
         });
 
@@ -67,20 +111,17 @@ public class EliminarProducto extends FrmBase {
             }
         });
 
-        btnMenuPrincipal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnMenuPrincipal.setText("regresar");
-        btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
+        btnMenu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnMenu.setText("regresar");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuPrincipalActionPerformed(evt);
+                btnMenuActionPerformed(evt);
             }
         });
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre", "Categoría", "Precio"
@@ -93,84 +134,107 @@ public class EliminarProducto extends FrmBase {
         });
         jScrollPane2.setViewportView(tblProductos);
 
-        javax.swing.GroupLayout pnlCantidad1Layout = new javax.swing.GroupLayout(pnlCantidad1);
-        pnlCantidad1.setLayout(pnlCantidad1Layout);
-        pnlCantidad1Layout.setHorizontalGroup(
-            pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCantidad1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlProductosEliminarLayout = new javax.swing.GroupLayout(pnlProductosEliminar);
+        pnlProductosEliminar.setLayout(pnlProductosEliminarLayout);
+        pnlProductosEliminarLayout.setHorizontalGroup(
+            pnlProductosEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProductosEliminarLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCantidad1Layout.createSequentialGroup()
+                .addGroup(pnlProductosEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlProductosEliminarLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtOrdenEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtProdEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlProductosEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
-        pnlCantidad1Layout.setVerticalGroup(
-            pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCantidad1Layout.createSequentialGroup()
+        pnlProductosEliminarLayout.setVerticalGroup(
+            pnlProductosEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProductosEliminarLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlProductosEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtOrdenEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProdEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar))
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
-                .addComponent(btnMenuPrincipal)
+                .addComponent(btnMenu)
                 .addGap(42, 42, 42))
         );
 
-        getContentPane().add(pnlCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, 600));
+        getContentPane().add(pnlProductosEliminar);
+        pnlProductosEliminar.setBounds(100, 190, 1010, 600);
 
         TituloMenuTomarPedido.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 1, 62)); // NOI18N
         TituloMenuTomarPedido.setForeground(new java.awt.Color(206, 215, 231));
         TituloMenuTomarPedido.setText("Baja de producto");
-        getContentPane().add(TituloMenuTomarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 510, -1));
+        getContentPane().add(TituloMenuTomarPedido);
+        TituloMenuTomarPedido.setBounds(340, 80, 510, 79);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoGeneral.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, -4, 1200, 910));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(1, -4, 1200, 910);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 160, 1490, 1270));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(-40, 160, 1490, 1270);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtOrdenEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrdenEliminarActionPerformed
+    private void txtProdEliminarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProdEliminarKeyTyped
+        txtProdEliminar.addKeyListener(new KeyAdapter() {
 
-    }//GEN-LAST:event_txtOrdenEliminarActionPerformed
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                trs.setRowFilter(RowFilter.regexFilter(txtProdEliminar.getText(), 0));
+            }
+        });
 
-    private void txtOrdenEliminarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrdenEliminarKeyTyped
-        // TODO add your handling code here:
+        trs = new TableRowSorter(modelo);
+        tblProductos.setRowSorter(trs);
 
-      
-
-    }//GEN-LAST:event_txtOrdenEliminarKeyTyped
+    }//GEN-LAST:event_txtProdEliminarKeyTyped
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int dialogo = JOptionPane.showConfirmDialog(this, "¿Desea dar de baja el producto?",
+                "Confirmación", JOptionPane.YES_NO_OPTION);
 
-       
+        if (dialogo == JOptionPane.YES_OPTION) {
+            String prod = txtProdEliminar.getText();
+            List<Producto> producto = ctrlProducto.consultarProductoPorNombre(prod);
+            for (Producto producto1 : producto) {
+                String prodAux = producto1.getNombre();
+                if (prod.equals(prodAux));
+                ctrlProducto.eliminarProducto(producto1);
+            }
+            JOptionPane.showMessageDialog(this, "¡Se ha dado de baja el producto!");
+            this.cargarProductos();
+
+        } else if (dialogo == JOptionPane.NO_OPTION) {
+
+            JOptionPane.showMessageDialog(this, "No se eliminó el producto");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
 
-        MenuAdministrarVentas jFrm = new MenuAdministrarVentas();
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        MenuAdministrarProductos jFrm = new MenuAdministrarProductos();
         jFrm.setVisible(true);
-        //Ok
-    }//GEN-LAST:event_btnMenuPrincipalActionPerformed
+        this.dispose();
+
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
-        // TODO add your handling code here:
 
-        int seleccionar =tblProductos.rowAtPoint(evt.getPoint());
-        txtOrdenEliminar.setText(String.valueOf(tblProductos.getValueAt(seleccionar, 0)));
+        int seleccionar = tblProductos.rowAtPoint(evt.getPoint());
+        txtProdEliminar.setText(String.valueOf(tblProductos.getValueAt(seleccionar, 0)));
     }//GEN-LAST:event_tblProductosMouseClicked
 
     /**
@@ -211,13 +275,13 @@ public class EliminarProducto extends FrmBase {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloMenuTomarPedido;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnMenuPrincipal;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JPanel pnlCantidad1;
+    private javax.swing.JPanel pnlProductosEliminar;
     private javax.swing.JTable tblProductos;
-    private javax.swing.JTextField txtOrdenEliminar;
+    private javax.swing.JTextField txtProdEliminar;
     // End of variables declaration//GEN-END:variables
 }

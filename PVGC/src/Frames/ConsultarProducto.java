@@ -5,19 +5,92 @@
  */
 package Frames;
 
+import Control.ControlProducto;
+import Dominio.Producto;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Citlali Orduño
  */
-public class ConsultarProducto extends javax.swing.JFrame {
+public class ConsultarProducto extends FrmBase {
+
+    ControlProducto ctrlProducto;
+    ArrayList<Producto> productos;
+    TableRowSorter trs;
+    DefaultTableModel modelo;
+    int seleccionar;
 
     /**
      * Creates new form ConsultarProducto
      */
     public ConsultarProducto() {
         initComponents();
+        this.ctrlProducto = new ControlProducto();
+        this.productos = new ArrayList<>();
+        this.cargarProductos();
     }
 
+    public void cargarProductos() {
+        productos = this.ctrlProducto.consultarProducto();
+        if (productos != null) {
+            modelo = (DefaultTableModel) tblProductos.getModel();
+            modelo.setRowCount(0);
+            for (Producto producto : productos) {
+                String nombre = producto.getNombre();
+                String categoria = producto.getCategoria().getNombre();
+                float precio = producto.getPrecio();
+
+                Object[] fila = new Object[3];
+                fila[0] = nombre;
+                fila[1] = categoria;
+                fila[2] = precio;
+
+                modelo.addRow(fila);
+
+            }
+
+        } else {
+            JOptionPane.showConfirmDialog(this, "No hay productos disponibles",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    
+    public void obtenProducto(){
+         Producto prod = new Producto();
+         String nombreProducto= txtBusquedaNombre.getText();
+         String nom;
+         if(nombreProducto.equals("")){
+            nom= String.valueOf(tblProductos.getValueAt(seleccionar, 0));
+           prod = this.buscarProducto(nom);
+         }else{
+            prod = this.buscarProducto(nombreProducto);
+         }
+         
+        String nombre = prod.getNombre();
+        String categoria= prod.getCategoria().getNombre();
+        float precio= prod.getPrecio();
+        
+        JOptionPane.showMessageDialog(null, "Nombre: "+nombre+"\n"+"Categoria: "+categoria+"\n"+"Precio: $"+precio);
+    }
+    
+
+    
+    public Producto buscarProducto(String nombre){
+        Producto prod = new Producto();
+        ArrayList<Producto> productoPorNombre = ctrlProducto.consultarProductoPorNombre(nombre);
+         for (Producto producto : productoPorNombre) {
+            prod = producto;
+        }
+         return prod;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +103,7 @@ public class ConsultarProducto extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         pnlCantidad1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
+        txtBusquedaNombre = new javax.swing.JTextField();
         btnDetalle = new javax.swing.JButton();
         btnMenuPrincipal = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -51,14 +124,14 @@ public class ConsultarProducto extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ingresa el nombre del producto a consultar:");
 
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+        txtBusquedaNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
+                txtBusquedaNombreActionPerformed(evt);
             }
         });
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtBusquedaNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
+                txtBusquedaNombreKeyTyped(evt);
             }
         });
 
@@ -80,10 +153,7 @@ public class ConsultarProducto extends javax.swing.JFrame {
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre", "Categoría", "Precio"
@@ -106,7 +176,7 @@ public class ConsultarProducto extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCantidad1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBusquedaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +190,7 @@ public class ConsultarProducto extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(pnlCantidad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBusquedaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDetalle))
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,22 +207,29 @@ public class ConsultarProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+    private void txtBusquedaNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaNombreKeyTyped
+        txtBusquedaNombre.addKeyListener(new KeyAdapter() {
 
-    }//GEN-LAST:event_txtNombreActionPerformed
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                trs.setRowFilter(RowFilter.regexFilter(txtBusquedaNombre.getText(), 0));
+            }
 
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        // TODO add your handling code here:
+        });
 
-    }//GEN-LAST:event_txtNombreKeyTyped
+        trs = new TableRowSorter(modelo);
+        tblProductos.setRowSorter(trs);
+    }//GEN-LAST:event_txtBusquedaNombreKeyTyped
 
     private void btnDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleActionPerformed
 
+        this.obtenProducto();
+        
     }//GEN-LAST:event_btnDetalleActionPerformed
 
     private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
 
-        MenuAdministrarVentas jFrm = new MenuAdministrarVentas();
+        MenuAdministrarProductos jFrm = new MenuAdministrarProductos();
         jFrm.setVisible(true);
         //Ok
     }//GEN-LAST:event_btnMenuPrincipalActionPerformed
@@ -160,44 +237,15 @@ public class ConsultarProducto extends javax.swing.JFrame {
     private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
         // TODO add your handling code here:
 
-        int seleccionar =tblProductos.rowAtPoint(evt.getPoint());
-        txtNombre.setText(String.valueOf(tblProductos.getValueAt(seleccionar, 0)));
+        seleccionar = tblProductos.rowAtPoint(evt.getPoint());
+        txtBusquedaNombre.setText(String.valueOf(tblProductos.getValueAt(seleccionar, 0)));
+        
     }//GEN-LAST:event_tblProductosMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void txtBusquedaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBusquedaNombreActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConsultarProducto().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDetalle;
@@ -208,6 +256,6 @@ public class ConsultarProducto extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlCantidad1;
     private javax.swing.JTable tblProductos;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtBusquedaNombre;
     // End of variables declaration//GEN-END:variables
 }
