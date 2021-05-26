@@ -212,7 +212,9 @@ public class RegistrarProducto extends FrmBase {
                 producto.setPrecio(precio);
                 producto.setCategoria(categoria);
                 ctrlProducto.actualizarProducto(producto);
+                  JOptionPane.showMessageDialog(this, "¡Se ha modificado el producto!");
                 new ModificarProducto(true).setVisible(true);
+                
                 this.dispose();
             }
         } else {
@@ -220,6 +222,7 @@ public class RegistrarProducto extends FrmBase {
             float precio = Float.parseFloat(txtPrecio.getText());
             Categoria categoria = (Categoria) cmbCategorias.getSelectedItem();
             ctrlProducto.agregarProducto(new Producto(nombre, precio, true, categoria));
+              JOptionPane.showMessageDialog(this, "¡Se ha registrado el producto!");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

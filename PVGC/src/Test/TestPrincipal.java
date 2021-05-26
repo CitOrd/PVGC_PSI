@@ -62,20 +62,9 @@ public class TestPrincipal {
 //        cc.agregarCategoria(cat5);
 //        cc.agregarCategoria(cat4);
         
-        ArrayList<Producto>productos= cp.consultarProducto();
-        for (Producto producto : productos) {
-            System.out.println(producto);
-        }
+      
+       
         
-//        //Creacion de Productos
-//        Producto prod1= new Producto("Ensalada", 40f, true, cat1);
-//        Producto prod2= new Producto("Frape oreo", 30f, true, cat2);
-//        Producto prod3= new Producto("Pastel de Zanahoria rebanada", 20f, true, cat3);
-//        
-//        cp.agregarProducto(prod1);
-//        cp.agregarProducto(prod2);
-//        cp.agregarProducto(prod3);
-//        
 //        
 //         
 //        //Crear empleados
