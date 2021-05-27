@@ -56,44 +56,37 @@ public class EliminarOrden extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JButton();
         txtOrdenEliminar = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         tblOrdenes = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(1200, 900));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1200, 900));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 900));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4960, 1117, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Regresar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 250, 99, -1));
-
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, 88, -1));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Ingresa el numero de la  orden que deseas terminar:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
+        jLabel2.setText("__________________________________________");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 1090, -1));
+
+        btnRegresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 310, -1, -1));
 
         txtOrdenEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +98,7 @@ public class EliminarOrden extends javax.swing.JFrame {
                 txtOrdenEliminarKeyTyped(evt);
             }
         });
-        getContentPane().add(txtOrdenEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 250, 100, -1));
+        jPanel1.add(txtOrdenEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 87, -1));
 
         tblOrdenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,7 +108,7 @@ public class EliminarOrden extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Numero Orden", "Estado", "Numero Mesa"
+                "Num Orden", "Estado", "Num Mesa"
             }
         ));
         tblOrdenes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,35 +116,64 @@ public class EliminarOrden extends javax.swing.JFrame {
                 tblOrdenesMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tblOrdenes);
+        jScrollPane3.setViewportView(tblOrdenes);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 851, 230));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("________________________________________________________________________________");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, -1, -1));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 865, 186));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Eliminar Orden");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 330, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 410, 30));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Ingresa el numero de la orden que deseas terminar:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 520, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Ordenes Disponibles:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, -1, -1));
+
+        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondoMenuAdministarVenta.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -90, 1490, 1270));
+        jLabel5.setPreferredSize(new java.awt.Dimension(1200, 900));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -120, 1210, 1330));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1210, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1040, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         MenuAdministrarVentas jFrm = new MenuAdministrarVentas();
         jFrm.setVisible(true);
         //Ok
-    }//GEN-LAST:event_jButton2ActionPerformed
+
+
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     DefaultTableModel modelo;
-
+    //mostrar ordenes en la tabla 
     public void cargarOrdenes() throws SQLException {
         List<Orden> ordenes = this.controlOrden.consultarOrdenes();
         if (ordenes != null) {
@@ -162,14 +184,40 @@ public class EliminarOrden extends javax.swing.JFrame {
 
             }
 
-        }
+        } 
+            
+        
 
     }
 
+    //Codigo filtro por numero de orden 
+    private void txtOrdenEliminarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrdenEliminarKeyTyped
+
+       // TODO add your handling code here:
+
+        txtOrdenEliminar.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                trs.setRowFilter(RowFilter.regexFilter(txtOrdenEliminar.getText(), 0));
+            }
+
+        });
+        trs = new TableRowSorter(modelo);
+        tblOrdenes.setRowSorter(trs);
+
+
+                 
+
+
+    }//GEN-LAST:event_txtOrdenEliminarKeyTyped
+
+    private void txtOrdenEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrdenEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOrdenEliminarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
-        JOptionPane.showMessageDialog(this, "Terminar Orden " + txtOrdenEliminar.getText());
+    JOptionPane.showMessageDialog(this, "Terminar Orden " + txtOrdenEliminar.getText());
         int i = JOptionPane.showOptionDialog(this, "Seguro que deseas terminar?", "Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, botones, botones[0]);
         // String ValorID=txtEliminar.getText();
 
@@ -191,45 +239,25 @@ public class EliminarOrden extends javax.swing.JFrame {
 
         }
 
+                                        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void txtOrdenEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrdenEliminarActionPerformed
-
-    }//GEN-LAST:event_txtOrdenEliminarActionPerformed
-
-    private void txtOrdenEliminarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrdenEliminarKeyTyped
-        // TODO add your handling code here:
-
-        txtOrdenEliminar.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyReleased(KeyEvent ke) {
-                trs.setRowFilter(RowFilter.regexFilter(txtOrdenEliminar.getText(), 0));
-            }
-
-        });
-        trs = new TableRowSorter(modelo);
-        tblOrdenes.setRowSorter(trs);
-
-
-    }//GEN-LAST:event_txtOrdenEliminarKeyTyped
-
     private void tblOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrdenesMouseClicked
-
-        int seleccionar =tblOrdenes.rowAtPoint(evt.getPoint());
+      int seleccionar =tblOrdenes.rowAtPoint(evt.getPoint());
         txtOrdenEliminar.setText(String.valueOf(tblOrdenes.getValueAt(seleccionar, 0)));
     }//GEN-LAST:event_tblOrdenesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblOrdenes;
     private javax.swing.JTextField txtOrdenEliminar;
     // End of variables declaration//GEN-END:variables

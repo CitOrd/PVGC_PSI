@@ -313,7 +313,7 @@ public class MenuAdministrarVentas extends FrmBase {
     }//GEN-LAST:event_btnEliminarOrdenActionPerformed
 
     private void btnConsultarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarOrdenActionPerformed
-        ConsultarOrden frmCon = new ConsultarOrden();
+        EliminarOrden frmCon = new EliminarOrden();
         frmCon.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnConsultarOrdenActionPerformed

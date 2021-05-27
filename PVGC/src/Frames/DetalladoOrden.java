@@ -342,7 +342,7 @@ public class DetalladoOrden extends FrmBase {
             this.dispose();
             new Categoriasv2(pedido, detOrdenes).setVisible(true);
         } else if (lectura) {
-            new ConsultarOrden().setVisible(true);
+            new EliminarOrden().setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnRegresarActionPerformed

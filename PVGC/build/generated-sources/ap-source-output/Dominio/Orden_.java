@@ -8,7 +8,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-05-25T20:47:34")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-05-27T16:05:32")
 @StaticMetamodel(Orden.class)
 public class Orden_ { 
 
