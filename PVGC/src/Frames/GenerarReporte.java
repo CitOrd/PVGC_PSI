@@ -227,7 +227,7 @@ public class GenerarReporte extends javax.swing.JFrame {
        Connection conn = con.getConexion();
         
        JasperReport reporte = null;
-       String path = "src\\Report\\reporteVentas.jasper";
+       String path = "src//Report//modelo//report1.jasper";
         
        reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
        
