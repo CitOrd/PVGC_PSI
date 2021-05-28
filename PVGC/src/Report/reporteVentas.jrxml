@@ -100,7 +100,7 @@ FROM
 			</image>
 			<staticText>
 				<reportElement style="Title" x="198" y="0" width="397" height="62" uuid="81f978cd-fa9c-4577-bfe4-f0d436fa9d74"/>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font pdfFontName="Times-Roman"/>
 				</textElement>
 				<text><![CDATA[Reporte Ventas]]></text>
@@ -120,8 +120,8 @@ FROM
 				<text><![CDATA[Microempresa dedicada a brindar a sus clientes las delicias de sus diferentes opciones de café, degustando a cualquier hora del día un alimento rico y saludable en un ambiente cómodo y satisfactorio. ]]></text>
 			</staticText>
 			<image>
-				<reportElement x="633" y="-73" width="219" height="209" uuid="a1b19818-0643-4078-888a-700cdf1f0f28"/>
-				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+				<reportElement x="640" y="0" width="151" height="136" uuid="cd1259bc-a850-4b1a-91be-3de3b87ece22"/>
+				<imageExpression><![CDATA["C:\\Users\\miish\\OneDrive\\Escritorio\\Pi\\PVGC_PSI\\PVGC\\src\\Report\\gcc.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

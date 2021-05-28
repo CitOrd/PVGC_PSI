@@ -11,15 +11,28 @@ import Control.ControlVenta;
 import Dominio.Orden;
 import static Dominio.Orden_.venta;
 import Dominio.Venta;
+import Report.modelo.Conexion;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.PersistenceException;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
+
 
 /**
  *
@@ -96,7 +109,7 @@ public class GenerarReporte extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 290, -1, -1));
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 630, -1, -1));
 
         tblVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,7 +152,7 @@ public class GenerarReporte extends javax.swing.JFrame {
                 btnGenerarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 620, -1, -1));
+        jPanel1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 630, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -186,8 +199,9 @@ public class GenerarReporte extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     DefaultTableModel modelo;
+
     //mostrar ordenes en la tabla 
-    public void cargarVentas() throws SQLException {
+    public void cargarVentas() throws SQLException { /*
         List<Venta> ventas = this.controlVenta.consultarVenta((Venta) venta);
         if (ventas != null) {
             modelo = (DefaultTableModel) tblVentas.getModel();
@@ -197,11 +211,9 @@ public class GenerarReporte extends javax.swing.JFrame {
 
             }
 
-        } 
-            
-        
+        } */
 
-    }
+    } 
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
   List lista = new ArrayList();
@@ -210,8 +222,39 @@ public class GenerarReporte extends javax.swing.JFrame {
   {
        
   }
-
-                                        
+    try {
+       Conexion con = new Conexion();
+       Connection conn = con.getConexion();
+        
+       JasperReport reporte = null;
+       String path = "src\\Report\\reporteVentas.jasper";
+        
+       reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+       
+       
+       JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conn);
+       
+        
+        JasperViewer view = new JasperViewer(jprint, false);
+        
+        view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+        view.setVisible(true);
+        
+        } catch (JRException ex) {
+            Logger.getLogger(GenerarReporte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(GenerarReporte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GenerarReporte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(GenerarReporte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(GenerarReporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                      
+  
+  
     }//GEN-LAST:event_btnGenerarActionPerformed
 
     private void tblVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVentasMouseClicked
