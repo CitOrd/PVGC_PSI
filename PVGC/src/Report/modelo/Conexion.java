@@ -13,6 +13,7 @@ import javax.persistence.PersistenceException;
  * @Fecha 28/05/2021
  */
 public class Conexion {
+    
 
     private final String baseD = "pvgc";
     private final String user = "root";
