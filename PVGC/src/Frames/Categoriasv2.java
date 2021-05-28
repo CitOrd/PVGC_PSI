@@ -345,7 +345,7 @@ public class Categoriasv2 extends FrmBase {
         if (orden == null) {
             new MenuAdministrarVentas().setVisible(true);
             this.dispose();
-        }else{
+        } else {
             new ModificarOrden().setVisible(true);
             this.dispose();
         }
@@ -365,11 +365,16 @@ public class Categoriasv2 extends FrmBase {
     private void agregarPedido() {
         String nombre = ListProductos.getSelectedValue();
         Producto producto = controlProducto.consultarProductoPorNombre(nombre).get(0);
+        if (producto.isDisponibilidad() == false) {
+            JOptionPane.showMessageDialog(this, "Producto no disponible",
+                    "Cuidado", JOptionPane.INFORMATION_MESSAGE);
+        } else if (producto.isDisponibilidad() == true) {
+            if (!pedido.contains(producto)) {
 
-        if (!pedido.contains(producto)) {
-            pedido.add(producto);
-            modeloListaPedido.addElement(producto.getNombre());
-            ListPedido.setModel(modeloListaPedido);
+                pedido.add(producto);
+                modeloListaPedido.addElement(producto.getNombre());
+                ListPedido.setModel(modeloListaPedido);
+            }
         }
 
     }
