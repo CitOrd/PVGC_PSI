@@ -179,6 +179,10 @@ public class MenuPrincipal extends FrmBase {
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
         // TODO add your handling code here:
+        new GenerarReporte().setVisible(true);
+        this.dispose();
+        
+        
     }//GEN-LAST:event_btnReportesActionPerformed
 
     private void btnAdministrarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarVentasActionPerformed
