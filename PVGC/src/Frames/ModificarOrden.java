@@ -239,7 +239,7 @@ public class ModificarOrden extends FrmBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        new MenuAdministrarVentas().setVisible(true);
+        new MenuAdministrarProductos().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

@@ -51,7 +51,13 @@ public class RegistrarProducto extends FrmBase {
 
     private void inicializarCombobox() {
         ArrayList<Categoria> categorias = ctrlCategoria.consultarCategorias();
-        cmbCategorias.setModel(new DefaultComboBoxModel(categorias.toArray()));
+        if (categorias != null) {
+            cmbCategorias.setModel(new DefaultComboBoxModel(categorias.toArray()));
+        } else {
+            JOptionPane.showMessageDialog(this, "Categorías no disponibles",
+                    "Cuidado", JOptionPane.INFORMATION_MESSAGE);
+        }
+
     }
 
     /**
@@ -208,21 +214,43 @@ public class RegistrarProducto extends FrmBase {
                 String nombre = txtNombreProducto.getText();
                 float precio = Float.parseFloat(txtPrecio.getText());
                 Categoria categoria = (Categoria) cmbCategorias.getSelectedItem();
+
                 producto.setNombre(nombre);
                 producto.setPrecio(precio);
                 producto.setCategoria(categoria);
                 ctrlProducto.actualizarProducto(producto);
-                  JOptionPane.showMessageDialog(this, "¡Se ha modificado el producto!");
+                JOptionPane.showMessageDialog(this, "¡Se ha modificado el producto!");
                 new ModificarProducto(true).setVisible(true);
-                
+
                 this.dispose();
             }
         } else {
             String nombre = txtNombreProducto.getText();
             float precio = Float.parseFloat(txtPrecio.getText());
             Categoria categoria = (Categoria) cmbCategorias.getSelectedItem();
-            ctrlProducto.agregarProducto(new Producto(nombre, precio, true, categoria));
-              JOptionPane.showMessageDialog(this, "¡Se ha registrado el producto!");
+
+            if (nombre.equals("")) {
+                JOptionPane.showMessageDialog(this, "Ingrese el nombre, por favor",
+                        "Cuidado", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                String nomAux = "";
+                ArrayList<Producto> prod = ctrlProducto.consultarProductoPorNombre(nombre);
+                for (Producto producto1 : prod) {
+                    nomAux = producto1.getNombre();
+                }
+                if (nomAux == nombre) {
+                    JOptionPane.showMessageDialog(this, "¡Producto existente!",
+                            "Cuidado", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    ctrlProducto.agregarProducto(new Producto(nombre, precio, true, categoria));
+                    JOptionPane.showMessageDialog(this, "¡Se ha registrado el producto!");
+                    
+                    new MenuAdministrarProductos().setVisible(true);
+                    this.dispose();
+                }
+
+            }
+
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="746b471a-f01d-4341-a0a0-8e598954e7fb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     venta.`ID` AS venta_ID,
+     venta.`fecha` AS venta_fecha,
+     venta.`total` AS venta_total,
+     venta.`idReporteVenta` AS venta_idReporteVenta,
+     orden.`ID` AS orden_ID,
+     orden.`estado` AS orden_estado,
+     orden.`numMesa` AS orden_numMesa,
+     orden.`numOrden` AS orden_numOrden,
+     orden.`idVenta` AS orden_idVenta
+FROM
+     `venta` venta INNER JOIN `orden` orden ON venta.`ID` = orden.`idVenta`]]>
+	</queryString>
+	<field name="venta_ID" class="java.lang.Long"/>
+	<field name="venta_fecha" class="java.sql.Date"/>
+	<field name="venta_total" class="java.lang.Float"/>
+	<group name="venta_ID">
+		<groupExpression><![CDATA[$F{venta_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<frame>
+					<reportElement mode="Opaque" x="-21" y="7" width="843" height="24" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="a7de53eb-d0f3-461a-8643-38ec3058d256"/>
+					<rectangle>
+						<reportElement mode="Opaque" x="21" y="0" width="36" height="24" backcolor="#736343" uuid="bdff7fa9-fcce-48cd-9697-fce7de92f636"/>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="55"/>
+		</groupFooter>
+	</group>
+	<group name="venta_fecha">
+		<groupExpression><![CDATA[$F{venta_fecha}]]></groupExpression>
+		<groupHeader>
+			<band height="108">
+				<textField>
+					<reportElement style="Column header" x="274" y="70" width="148" height="30" uuid="54049637-3535-42a2-841b-a00ebb1f5e26"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{venta_fecha}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="36" y="70" width="148" height="30" forecolor="#736343" uuid="93b70444-d356-43a0-b534-48617ddc0473"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{venta_ID}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="SubTitle" x="40" y="7" width="144" height="33" uuid="7d45668f-581d-4d36-8d51-8eb2fb709e7c"/>
+					<text><![CDATA[ID Venta ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="274" y="7" width="125" height="33" uuid="651f70b2-9e36-4aa9-8979-846ccd5c15e3"/>
+					<text><![CDATA[Fecha]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="520" y="7" width="134" height="33" uuid="456b4af9-bfa2-4779-85b0-ba00772cc693"/>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Column header" x="514" y="70" width="140" height="30" uuid="a7aaa870-a6d2-4856-b3a5-718066e28bbd"/>
+					<textFieldExpression><![CDATA[$F{venta_total}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="venta_total">
+		<groupExpression><![CDATA[$F{venta_total}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="126" uuid="6c1a53d3-3416-44bd-b436-910099dc3d34"/>
+				<imageExpression><![CDATA["coffee.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="198" y="0" width="397" height="62" uuid="81f978cd-fa9c-4577-bfe4-f0d436fa9d74"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Reporte Ventas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="303" y="62" width="196" height="22" uuid="407d3390-06f2-4d97-a42e-34efda0cbb1f"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Green Cup Coffee]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="94" width="423" height="42" uuid="2ac4e528-3020-411e-b6c8-6d105f7bdbc5"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Microempresa dedicada a brindar a sus clientes las delicias de sus diferentes opciones de café, degustando a cualquier hora del día un alimento rico y saludable en un ambiente cómodo y satisfactorio. ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="633" y="-73" width="219" height="209" uuid="a1b19818-0643-4078-888a-700cdf1f0f28"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="ea827ed1-0c86-4c44-892f-e067bb07b2fe"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="4" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="232" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="208" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="5ffab67b-ad18-4c4d-97b8-a57bf1c93ca1"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="914c9202-c6ff-4af5-87c8-ca2ed5cd80d5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="071c7963-9a47-4777-ac93-17be74a12bbf"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="082c00bf-cb01-4cae-a2da-0c7991ed85ea"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
