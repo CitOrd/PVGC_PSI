@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="746b471a-f01d-4341-a0a0-8e598954e7fb">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="74"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -113,11 +113,11 @@ FROM
 				<text><![CDATA[Green Cup Coffee]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="172" y="94" width="383" height="42" uuid="2ac4e528-3020-411e-b6c8-6d105f7bdbc5"/>
-				<textElement textAlignment="Right">
+				<reportElement x="184" y="94" width="423" height="42" uuid="2ac4e528-3020-411e-b6c8-6d105f7bdbc5"/>
+				<textElement textAlignment="Center">
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+				<text><![CDATA[Microempresa dedicada a brindar a sus clientes las delicias de sus diferentes opciones de café, degustando a cualquier hora del día un alimento rico y saludable en un ambiente cómodo y satisfactorio. ]]></text>
 			</staticText>
 			<image>
 				<reportElement x="633" y="-73" width="219" height="209" uuid="a1b19818-0643-4078-888a-700cdf1f0f28"/>
